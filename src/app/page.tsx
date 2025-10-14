@@ -41,6 +41,8 @@ export default function Home() {
         <ClientsSection />
       </Suspense>
 
+
+
        <Suspense fallback={<div className="h-96 animate-pulse bg-gray-100" />}>
         <AboutSection />
       </Suspense>
