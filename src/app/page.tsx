@@ -48,17 +48,11 @@ export default function Home() {
         <Suspense fallback={<div className="h-96 animate-pulse bg-gray-100" />}>
         <ServicesSection />
       </Suspense>
-      
-     
-      
-    
-      
+ 
       <Suspense fallback={<div className="h-96 animate-pulse bg-gray-100" />}>
         <Works />
       </Suspense>
-      
-   
-      
+     
       <Suspense fallback={<div className="h-96 animate-pulse bg-gray-100" />}>
         <ClientReviews />
       </Suspense>
