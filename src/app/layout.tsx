@@ -6,19 +6,19 @@
 
 
 import "./globals.css";
-import { Lexend } from 'next/font/google';
+import { Montserrat } from 'next/font/google';
 import { IBM_Plex_Sans_Arabic } from 'next/font/google';
 import LayoutShell from "@/components/LayoutShell";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import FontProvider from "@/components/FontProvider";
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
-// Load Lexend font with required weights
-const poppins = Lexend({
+// Load Montserrat font with required weights
+const poppins = Montserrat({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700'], // add the weights you need
-  style: ['normal'], // Lexend only supports normal style
-  display: 'swap',             // best for SEO and performance
+  style: ['normal'],
+  display: 'swap',
 });
 
 // Load IBM Plex Sans Arabic font

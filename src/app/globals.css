@@ -1,14 +1,38 @@
 @import "tailwindcss"; 
+/* Nohemi font family */
+@font-face {
+  font-family: 'Nohemi';
+  src: url('/nohemi-font-family-1760774811-0/Nohemi-Regular-BF6438cc579d934.woff') format('woff'),
+       url('/nohemi-font-family-1760774811-0/Nohemi-Regular-BF6438cc4d0e493.ttf') format('truetype'),
+       url('/nohemi-font-family-1760774811-0/Nohemi-Regular-BF6438cc58b98fc.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Nohemi';
+  src: url('/nohemi-font-family-1760774811-0/Nohemi-Bold-BF6438cc577b524.woff') format('woff'),
+       url('/nohemi-font-family-1760774811-0/Nohemi-Bold-BF6438cc587b5b5.ttf') format('truetype'),
+       url('/nohemi-font-family-1760774811-0/Nohemi-Bold-BF6438cc5812315.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Utility class for Nohemi font */
+.font-nohemi {
+  font-family: 'Nohemi', 'Poppins', sans-serif !important;
+}
+ 
+ 
 
 /* Arabic font utilities */
 .font-arabic {
   font-family: "IBM Plex Sans Arabic", "Noto Sans Arabic", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif !important;
 }
 
-/* English font utility for elements that should always use English font */
-.font-english {
-  font-family: "Poppins", sans-serif !important;
-}
+ 
 
 /* Ensure proper Arabic text rendering */
 [dir="rtl"] {
@@ -36,10 +60,10 @@ body {
 }
 
 .primary-background-two {
-  background: url('../../public/images/about-bg.png');
+  /* background: url('../../public/images/about-bg.png');
   background-attachment: fixed;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: cover; */
 }
 
 .secondary-color {

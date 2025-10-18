@@ -117,21 +117,15 @@ export default function AboutBoxes() {
   ];
 
   return (
-    <div className="relative py-16 lg:py-28 flex justify-center items-center w-full primary-background px-4 md:px-16 lg:px-24 overflow-hidden">
-      {/* Background diagonal stripes */}
-      <div className="absolute inset-0 z-0">
-        {Array.from({ length: 20 }).map((_, i) => (
-          <div
-            key={i}
-            className="absolute h-full w-[100px] bg-zinc-900"
-            style={{
-              left: `${i * 100}px`,
-              transform: "skew(-20deg)",
-              opacity: i % 2 === 0 ? 0.5 : 0.3,
-            }}
-          />
-        ))}
-      </div>
+    <div className="relative py-16 lg:py-28 flex justify-center items-center w-full   px-4 md:px-16 lg:px-24 overflow-hidden"
+    style={{
+  backgroundImage: "url('/work-bg.jpg')",
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
+  backgroundRepeat: 'no-repeat',
+}}
+>
+      
 
       {/* Shadow effects */}
       <div className="absolute left-0 top-0 bottom-0 w-32 z-10">

@@ -30,8 +30,14 @@ function SocialLinks({ className = "" }: { className?: string }) {
 export default function Footer() {
   return (
     <footer
-      className="w-full bg-[#E1AAFF] text-white px-4 py-10 md:py-14 lg:px-0 relative overflow-hidden"
-      style={{ background: 'linear-gradient(135deg, #3D096C 0%, #A43EF9 40%, #5A189A 80%, #E1AAFF 100%)' }}
+      className="w-full   text-white px-4 py-10 md:py-14 lg:px-0 relative overflow-hidden"
+     style={{
+  backgroundImage: "url('/footer-bg.jpg')",
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
+  backgroundRepeat: 'no-repeat',
+}}
+
     >
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:justify-between gap-6 md:gap-16 lg:gap-24">
         {/* Logo & About */}

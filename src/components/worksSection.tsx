@@ -359,9 +359,13 @@ export default function Works() {
       className={`lg:h-screen h-auto pb-4 pt-2 lg:pb-0 text-white px-5 md:pl-0 md:pr-20 transition-colors duration-1000 ease-in-out ${language === 'ar' ? 'text-right' : ''}`}
       ref={sectionRef}
       dir={language === 'ar' ? 'rtl' : 'ltr'}
-      style={{
-        background: 'linear-gradient(135deg, #A43EF9 0%, #3D096C 35%, #5A189A 70%, #E1AAFF 100%)',
-      }}
+    style={{
+  backgroundImage: "url('/work-bg.jpg')",
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
+  backgroundRepeat: 'no-repeat',
+}}
+
     >
       <div className="container mx-auto h-full">
         {/* Mobile Header - Only visible on small screens */}

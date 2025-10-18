@@ -1,156 +1,121 @@
 "use client"
-import Image from "next/image" 
-import { Plus, Minus } from "lucide-react"
-import { Poppins } from 'next/font/google'
-import { useState } from 'react'
-import { useLanguage } from "@/contexts/LanguageContext";
-
-const poppins = Poppins({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'], // Medium
-  variable: '--font-poppins', // Optional, for Tailwind
-})
 
 
-interface Location {
-  id: string;
-  name: string;
-  flag: string;
-  address: string;
-  mapUrl: string;
-}
+import type React from "react"
+import { FiMapPin, FiPhone, FiArrowRight } from "react-icons/fi"
+import { useLanguage } from "../contexts/LanguageContext";
 
 export default function LocationsSection() {
-  const { t } = useLanguage();
-
-  const locations: Location[] = [
+  const {  language } = useLanguage();
+  const locations = [
     {
-      id: 'india',
-      name: t('location.india.name'),
-      flag: '/images/india-flag.png',
-      address: t('location.india.address'),
-      mapUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15666.945519479!2d76.10872!3d11.11667!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba7b5803b9e5c7b%3A0x3b7f8b8f8b8f8b8f!2sManjeri%2C%20Kerala!5e0!3m2!1sen!2sin!4v1621234567890!5m2!1sen!2sin'
+      id: 1,
+      name: language === "ar" ?   "دبي" :  "Dubai",
+      address:
+        language === "ar"
+          ?   " Dubai Internet City, Building 10, Dubai, UAE"
+          :   "Dubai Internet City, Building 10, Dubai, UAE",
+      phone: "+91 9947400278",
+      coordinates: { lat: 25.2048, lng: 55.2708 },
     },
     {
-      id: 'saudi',
-      name: t('location.saudi.name'),
-      flag: '/images/saudia-flag.jpg',
-      address: t('location.saudi.address'),
-      mapUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3624.6719404031995!2d46.6752773!3d24.7135517!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f03890d489399%3A0xba974d1c98e79fd5!2sAl%20Batha%2C%20Riyadh%20Saudi%20Arabia!5e0!3m2!1sen!2sin!4v1621234567890!5m2!1sen!2sin'
+      id: 2,
+      name: language === "ar" ?   "كاليكوت" :  "Calicut",
+      address:
+        language === "ar"
+ ?"Sahya building, Govt. Cyberpark, Calicut - 673014"          :   "Sahya building, Govt. Cyberpark, Calicut - 673014",
+      phone: "+91 9947400278",
+      coordinates: { lat: 11.2588, lng: 75.7804 },
     },
     {
-      id: 'uk',
-      name: t('location.uk.name'),
-      flag: '/images/uk-flag.png',
-      address: t('location.uk.address'),
-      mapUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2429.1234567890123!2d-1.5083!3d52.4068!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48774c9c8e8b3c1f%3A0x1e67c8735d3a2f25!2sCoventry%2C%20UK!5e0!3m2!1sen!2sin!4v1621234567890!5m2!1sen!2sin'
-    }
+      id: 3,
+      name: language === "ar" ?   "المملكة المتحدة" :  "UK",
+      address:
+        language === "ar"
+          ? "10 Downing Street, London, UK"  
+          :  "10 Downing Street, London, UK",
+      phone: "+91 9947400278",
+      coordinates: { lat: 51.5034, lng: -0.1276 },
+    },
   ];
 
-  const [selectedLocationId, setSelectedLocationId] = useState('india');
-  const [isLoading, setIsLoading] = useState(false);
 
-  const selectedLocation = locations.find(loc => loc.id === selectedLocationId) || locations[0];
-
-  const handleLocationChange = (location: Location) => {
-    setIsLoading(true);
-    setSelectedLocationId(location.id);
-    // Simulate loading delay
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
-  };
+  const handleLocationClick = (coordinates: { lat: number; lng: number }) => {
+    const mapsUrl = `https://www.google.com/maps?q=${coordinates.lat},${coordinates.lng}`
+    window.open(mapsUrl, "_blank")
+  }
 
   return (
-    <div className={`container mx-auto px-5 md:px-16 lg:px-24 md:py-20 py-12 ${poppins.className}`}>
-      <h1 className="text-4xl lg:text-[48px] font-medium mb-10">{t('location.title')}</h1>
+    <section className={`w-full bg-white py-12 md:py-16 lg:py-20${language === "ar" ? " rtl" : ""}`}>
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* Header Section */}
+        <div className="mb-12 md:mb-16">
+          <h2
+            className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight text-balance"
+            style={{ color: "#000539" }}
+          >
+            {language === "ar"
+              ?   "لاستكشاف فرص عمل أو أعمال أخرى، تواصل معنا"
+              :   "To explore other business opportunities or career options, reach out to us"}
+          </h2>
+        </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
-        {locations.map((location) => (
-          <div key={location.id}>
-            <div
-              onClick={() => handleLocationChange(location)}
-              className={`bg-white rounded-lg border border-[#848484] py-3 lg:py-4 cursor-pointer transition-all duration-300 hover:shadow-lg hover:scale-[1.02] ${
-                selectedLocationId === location.id ? 'ring-2 ring-black' : ''
-              }`}
+  {/* Locations Grid */}
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8" style={{ direction: "ltr" }}>
+          {locations.map((location) => (
+            <button
+              key={location.id}
+              onClick={() => handleLocationClick(location.coordinates)}
+              className="group relative h-full overflow-hidden rounded-lg border border-gray-200 bg-white p-6 md:p-8 text-left transition-all duration-300 hover:shadow-lg hover:border-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2"
+              style={{ "--ring-color": "#000539" } as React.CSSProperties}
             >
-              <div className="p-6 h-[140px]">
-                <div className="flex items-center gap-5 mb-4">
-                  <div className="w-10 h-10 relative">
-                    <Image 
-                      src={location.flag} 
-                      alt={`${location.name} Flag`} 
-                      fill 
-                      className="object-cover rounded-md"
-                      priority
-                      quality={100}
-                    />
+              {/* Background gradient on hover */}
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+
+              {/* Content */}
+              <div className="relative z-10">
+                {/* Location Name with Icon */}
+                <div className="mb-4 flex items-center gap-3">
+                  <div
+                    className="flex h-10 w-10 items-center justify-center rounded-full"
+                    style={{ backgroundColor: "#000539", color: "white" }}
+                  >
+                    <FiMapPin size={20} />
                   </div>
-                  <h2 className="text-[30px] font-medium">{location.name}</h2>
+                  <h3 className="text-xl md:text-2xl font-semibold" style={{ color: "#000539" }}>
+                    {location.name}
+                  </h3>
                 </div>
-                <p className="text-gray-600 text-sm font-light">
-                  {location.address}
-                </p>
+
+                {/* Address */}
+                <p className="mb-6 text-sm md:text-base leading-relaxed text-gray-600">{location.address}</p>
+
+                {/* Phone */}
+                <div className="flex items-center gap-3 pt-4 border-t border-gray-200">
+                  <FiPhone size={18} style={{ color: "#000539" }} />
+                  <a
+                    href={`tel:${location.phone.replace(/\s/g, "")}`}
+                    className="text-sm md:text-base font-medium transition-colors duration-200"
+                    style={{ color: "#000539" }}
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    {location.phone}
+                  </a>
+                </div>
+
+                {/* Arrow Icon on Hover */}
+                <div className="absolute top-6 right-6 transition-transform duration-300 group-hover:translate-x-1">
+                  <FiArrowRight
+                    size={24}
+                    style={{ color: "#000539" }}
+                    className="opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  />
+                </div>
               </div>
-            </div>
-            
-            {/* Mobile View Map - Show below selected location */}
-            {selectedLocationId === location.id && (
-              <div className="md:hidden mt-4">
-                {isLoading ? (
-                  <div className="animate-pulse bg-gray-200 h-[300px] rounded-lg"></div>
-                ) : (
-                  <div className="relative w-full h-[300px] rounded-lg overflow-hidden border border-gray-200">
-                    <iframe
-                      src={selectedLocation.mapUrl}
-                      width="100%"
-                      height="100%"
-                      style={{ border: 0 }}
-                      allowFullScreen={false}
-                      loading="lazy"
-                      className="grayscale"
-                    ></iframe>
-                  </div>
-                )}
-              </div>
-            )}
-          </div>
-        ))}
+            </button>
+          ))}
+        </div>
       </div>
-
-      {/* Desktop View Map */}
-      <div className="hidden md:block relative w-full h-[400px] rounded-lg overflow-hidden border border-gray-200">
-        {isLoading ? (
-          <div className="animate-pulse bg-gray-200 h-full rounded-lg"></div>
-        ) : (
-          <>
-            <iframe
-              src={selectedLocation.mapUrl}
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              allowFullScreen={false}
-              loading="lazy"
-              className="grayscale"
-            ></iframe>
-
-            {/* Map Controls */}
-            <div className="absolute right-4 bottom-16 flex flex-col">
-              <button className="bg-white w-8 h-8 flex items-center justify-center shadow-md hover:bg-gray-50 transition-colors">
-                <Plus className="w-4 h-4" />
-              </button>
-              <button className="bg-white w-8 h-8 flex items-center justify-center shadow-md border-t border-gray-200 hover:bg-gray-50 transition-colors">
-                <Minus className="w-4 h-4" />
-              </button>
-            </div>
-
-            {/* Map Attribution */}
-            <div className="absolute bottom-0 left-0 right-0 bg-white text-[10px] text-gray-500 px-2 py-1">
-              <span>{t('location.map.attribution')}</span>
-            </div>
-          </>
-        )}
-      </div>
-    </div>
+    </section>
   )
 }
