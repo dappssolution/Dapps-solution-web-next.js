@@ -35,12 +35,12 @@ body {
    background-color: #5A189A;
 }
 
-.primary-background-two {
+/* .primary-background-two {
   background: url('../../public/images/about-bg.png');
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
-}
+} */
 
 .secondary-color {
   color: rgba(0, 0, 0, 0.61);
@@ -324,12 +324,12 @@ body {
   }
 }
 
-.bg-galaxy-paints-banner {
+/* .bg-galaxy-paints-banner {
   background-image: url('/images/Web-development/galaxy-3.jpg');
   background-position: center right;
   background-repeat: no-repeat;
   background-size: cover;
-}
+} */
 
 @media (min-width: 768px) {
   .bg-galaxy-paints-banner {
