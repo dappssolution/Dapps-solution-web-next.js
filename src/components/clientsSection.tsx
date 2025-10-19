@@ -21,7 +21,7 @@ export default function ClientsMarquee({
 }: ClientsMarqueeProps) {
   const items = [...brands, ...brands]
   const rootClass = [
-    "relative w-full overflow-hidden bg-white text-black",
+    "relative w-full bg-white text-black",
     "flex items-center justify-center",
     className,
   ]
@@ -30,10 +30,10 @@ export default function ClientsMarquee({
 
   return (
     <section aria-label="Our clients" className={rootClass}>
-      <div className="relative mx-auto w-full max-w-7xl px-4 md:px-6">
-        {/* Marquee viewport with edge fade mask */}
+      <div className="relative mx-auto w-full max-w-7xl px-2 sm:px-4 md:px-6">
+        {/* Marquee viewport with edge fade mask and mobile scroll fallback */}
         <div
-          className="relative mx-auto w-full overflow-hidden rounded-xl border border-black/5 bg-white px-2 py-6 md:px-4 md:py-8"
+            className="relative mx-auto w-full overflow-x-hidden hide-scrollbar rounded-xl border border-black/5 bg-white px-1 py-4 sm:px-2 sm:py-6 md:px-4 md:py-8"
           style={{
             WebkitMaskImage:
               "linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)",
@@ -43,7 +43,7 @@ export default function ClientsMarquee({
           }}
         >
           <div
-            className="marquee-track flex w-max items-center gap-10 md:gap-16"
+            className="marquee-track flex w-max items-center gap-6 sm:gap-10 md:gap-16"
             style={
               {
                 "--speed": `${speedSeconds}s`,
@@ -70,6 +70,14 @@ export default function ClientsMarquee({
             transform: translateX(0%);
           }
         }
+        /* Hide scrollbar cross-browser */
+        .hide-scrollbar {
+          scrollbar-width: none; /* Firefox */
+          -ms-overflow-style: none; /* IE 10+ */
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+          display: none; /* Chrome, Safari, Opera */
+        }
         @media (prefers-reduced-motion: reduce) {
           .marquee-track {
             animation: none;
@@ -89,7 +97,7 @@ function LogoItem({ slug }: { slug: string }) {
 
   return (
     <div
-      className="group flex shrink-0 items-center justify-center rounded-lg px-3 py-2 transition-transform duration-300 hover:scale-105 md:px-4 md:py-3"
+      className="group flex shrink-0 items-center justify-center rounded-lg px-2 py-1 sm:px-3 sm:py-2 transition-transform duration-300 hover:scale-105 md:px-4 md:py-3"
       role="img"
       aria-label={label}
       title={label}
@@ -102,12 +110,12 @@ function LogoItem({ slug }: { slug: string }) {
         }}
       >
         <svg
-          width="40"
-          height="40"
+          width="32"
+          height="32"
           viewBox="0 0 40 40"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="h-6 w-auto md:h-8 lg:h-10"
+          className="h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10"
         >
           <defs>
             {/* Updated gradient colors */}

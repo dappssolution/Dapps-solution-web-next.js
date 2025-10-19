@@ -70,7 +70,7 @@ const HeroSection = () => {
         className="mb-6 z-20"
       >
         <span
-          className="inline-block px-6 py-2 font-semibold tracking-wider rounded-[8px] text-base shadow-lg backdrop-blur-sm"
+          className="inline-block px-3 py-2 font-semibold tracking-wider rounded-[8px] text-[14px] sm:text-base shadow-lg backdrop-blur-sm"
           style={{
             background: gradient,
             color: "#fff",
