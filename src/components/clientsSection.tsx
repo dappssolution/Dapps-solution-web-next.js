@@ -33,7 +33,7 @@ export default function ClientsMarquee({
       <div className="relative mx-auto w-full max-w-7xl px-2 sm:px-4 md:px-6">
         {/* Marquee viewport with edge fade mask and mobile scroll fallback */}
         <div
-          className="relative mx-auto w-full overflow-x-auto rounded-xl border border-black/5 bg-white px-1 py-4 sm:px-2 sm:py-6 md:px-4 md:py-8"
+            className="relative mx-auto w-full overflow-x-hidden hide-scrollbar rounded-xl border border-black/5 bg-white px-1 py-4 sm:px-2 sm:py-6 md:px-4 md:py-8"
           style={{
             WebkitMaskImage:
               "linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)",
@@ -70,12 +70,13 @@ export default function ClientsMarquee({
             transform: translateX(0%);
           }
         }
-        @media (max-width: 640px) {
-          .marquee-track {
-            animation: none !important;
-            transform: none !important;
-            min-width: 100vw;
-          }
+        /* Hide scrollbar cross-browser */
+        .hide-scrollbar {
+          scrollbar-width: none; /* Firefox */
+          -ms-overflow-style: none; /* IE 10+ */
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+          display: none; /* Chrome, Safari, Opera */
         }
         @media (prefers-reduced-motion: reduce) {
           .marquee-track {
