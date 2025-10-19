@@ -198,24 +198,16 @@ export default function ServiceContent() {
 
   return (
 
-    <div className={`relative py-16 md:h-[50vh] flex justify-center items-center w-full bg-[#b362de] px-5 md:px-16 lg:px-32 overflow-hidden ${language === 'ar' ? 'text-right' : ''}`}>
+    <div className={`relative py-16 md:h-[50vh] flex justify-center items-center w-full   px-5 md:px-16 lg:px-32 overflow-hidden ${language === 'ar' ? 'text-right' : ''}`}
+    style={{
+  backgroundImage: "url('/bg-4.jpg')",
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
+  backgroundRepeat: 'no-repeat',
+}}
+>
      
-      {/* ===== SHADOW EFFECTS ===== */}
-      {/* Top black shadow */}
-      <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-[#7c3bbd] to-transparent z-10"></div>
-
-      {/* Bottom black shadow */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 z-40 bg-gradient-to-t from-[#7c3bbd] to-transparent"></div>
-
-      {/* Left side WHITE shadow */}
-      <div className="absolute left-0 top-0 bottom-0 w-32 z-10">
-        <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent"></div>
-      </div>
-
-      {/* Right side WHITE shadow */}
-      <div className="absolute right-0 top-0 bottom-0 w-32 z-10">
-        <div className="absolute inset-0 bg-gradient-to-l from-white/20 to-transparent"></div>
-      </div>
+     
 
       <div className="relative">
         <h1 

@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import { useLanguage } from "@/contexts/LanguageContext"
+ 
 
 const slideInUpKeyframes = `
   @keyframes slideInUp {
@@ -17,7 +17,7 @@ const slideInUpKeyframes = `
 `
 
 export default function CareerHero() {
-  const { language } = useLanguage();
+ 
   return (
     <>
 
@@ -30,7 +30,7 @@ export default function CareerHero() {
           }}
         >
           <Image
-            src="https://images.unsplash.com/photo-1504805572947-34fad45aed93?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2070"
+            src="/bg-1.jpg"
             alt="Modern office environment with professionals collaborating"
             fill
             priority
@@ -44,19 +44,7 @@ export default function CareerHero() {
           dir="ltr"
         >
           <div className="max-w-xl sm:max-w-2xl lg:max-w-3xl absolute bottom-12 sm:bottom-32">
-            {language === 'ar' ? (
-              <>
-                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-medium text-white mb-4 sm:mb-6 leading-tight">
-                  استكشف شغفك،
-                  <br className="hidden sm:block" />
-                  <span className="sm:hidden"> </span>اصنع التغيير
-                </h1>
-                <p className="text-lg sm:text-xl md:text-2xl text-white/90 mb-6 sm:mb-8 max-w-2xl pr-2">
-                  غيّر مسارك المهني بينما تغيّر حياة الآخرين.
-                </p>
-              </>
-            ) : (
-              <>
+            
                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-medium text-white mb-4 sm:mb-6 leading-tight">
                   Explore your passion,
                   <br className="hidden sm:block" />
@@ -65,11 +53,11 @@ export default function CareerHero() {
                 <p className="text-lg sm:text-xl md:text-2xl text-white/90 mb-6 sm:mb-8 max-w-2xl pr-2">
                   Transform your career while transforming lives.
                 </p>
-              </>
-            )}
+            
           </div>
         </div>
       </section>
     </>
   )
 } 
+

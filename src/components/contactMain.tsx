@@ -2,216 +2,245 @@
 
 import type React from "react"
 
-import { useState } from "react" 
-import {   Phone, Mail, Twitter, Linkedin, MessageCircle, Instagram } from "lucide-react"
-// import Image from "next/image"
-import Image from "next/image"
-import { useLanguage } from "@/contexts/LanguageContext";
+import { useState } from "react"
+import { useLanguage } from "@/contexts/LanguageContext"
+import { FiStar,  FiCheck } from "react-icons/fi"
 
-// Add keyframes animation
-const gradientAnimation = `
-  @keyframes gradient {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
-`;
-
-export default function ContactMain() {
-  const { t } = useLanguage();
+export default function ContactFormPage() {
+  const { t, language } = useLanguage();
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
+    name: "",
     email: "",
-    mobile: "",
-    message: "",
+    phone: "",
+    requirements: "",
   })
+
+  const [submitted, setSubmitted] = useState(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }))
   }
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    console.log("Form submitted:", formData)
-    
-    // Format the message for WhatsApp
-    const whatsappMessage = `New Contact Form Submission:\n\nName: ${formData.firstName} ${formData.lastName}\nEmail: ${formData.email}\nMobile: ${formData.mobile}\nMessage: ${formData.message}`
-    
-    // Encode the message for URL
-    const encodedMessage = encodeURIComponent(whatsappMessage)
-    
-    // Open WhatsApp with the pre-filled message
-    window.open(`https://wa.me/966571961404?text=${encodedMessage}`, '_blank')
+    e.preventDefault();
+    setSubmitted(true);
+    // WhatsApp integration
+    const whatsappNumber = "+919947400278";
+    const message =
+      `${t('contact.whatsapp.intro') || 'New Contact Form Submission:'}\n` +
+      `${t('contact.whatsapp.name') || 'Name'}: ${formData.name}\n` +
+      `${t('contact.whatsapp.email') || 'Email'}: ${formData.email}\n` +
+      `${t('contact.whatsapp.phone') || 'Phone'}: ${formData.phone}\n` +
+      `${t('contact.whatsapp.requirements') || 'Requirements'}: ${formData.requirements}`;
+    const encodedMsg = encodeURIComponent(message);
+    window.open(`https://wa.me/${whatsappNumber}?text=${encodedMsg}`, '_blank');
+    setTimeout(() => {
+      setFormData({ name: "", email: "", phone: "", requirements: "" });
+      setSubmitted(false);
+    }, 2000);
   }
 
   return (
-    <div
-      dir="ltr"
-      className={`min-h-screen flex items-center justify-center relative overflow-hidden px-4 sm:px-5 md:px-16 lg:px-24 font-poppins`}
-      style={{
-        backgroundSize: '400% 400%',
-        animation: 'gradient 15s ease infinite',
-        direction: 'ltr', // extra safety
-      }}
+    <div className={`min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex items-center justify-center p-4 md:p-8 ${language === 'ar' ? 'text-right' : ''}` } dir={language === 'ar' ? 'rtl' : 'ltr'}
+    style={{
+  backgroundImage: "url('/bg-3.jpg')",
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
+  backgroundRepeat: 'no-repeat',
+}}
     >
-      <style>{gradientAnimation}</style>
-      {/* Background image */}
-      <div className="absolute w-full h-full">
-        <Image 
-          src="/images/contact-bg.webp" 
-          alt="Contact background" 
-          fill
-          className="object-cover"
-          priority
-        />
-        <div className="absolute inset-0 bg-black/60"></div>
-      </div>
+      <style>{`
+        @keyframes slideInLeft {
+          from {
+            opacity: 0;
+            transform: translateX(-30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+        
+        @keyframes slideInRight {
+          from {
+            opacity: 0;
+            transform: translateX(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+        
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        .animate-slide-in-left {
+          animation: slideInLeft 0.6s ease-out forwards;
+        }
+        
+        .animate-slide-in-right {
+          animation: slideInRight 0.6s ease-out forwards;
+        }
+        
+        .animate-fade-in-up {
+          animation: fadeInUp 0.6s ease-out forwards;
+        }
+        
+        .form-input {
+          animation: fadeInUp 0.6s ease-out forwards;
+        }
+        
+        .form-input:nth-child(1) { animation-delay: 0.1s; }
+        .form-input:nth-child(2) { animation-delay: 0.2s; }
+        .form-input:nth-child(3) { animation-delay: 0.3s; }
+        .form-input:nth-child(4) { animation-delay: 0.4s; }
+        .form-input:nth-child(5) { animation-delay: 0.5s; }
+      `}</style>
 
-      <div className="container mx-auto px-2 sm:px-4 py-8 sm:py-12 z-10 flex flex-col lg:flex-row items-center justify-between gap-12 sm:gap-12">
-        {/* Right side form */}
-        <div className="lg:w-1/2 w-full order-1 lg:order-2">
-          <div className="lg:bg-[#9696961f] backdrop-blur-sm p-0 sm:p-2 md:p-8 rounded-[24px] lg:border lg:border-[#dedddd] lg:shadow-lg">
-            <div className="sm:hidden block text-center">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-medium text-white mb-4 sm:mb-6">{t('contact.title')}</h1>
-          <p className="text-gray-300 text-[14px] sm:text-[16px] mb-8 sm:mb-12 lg:max-w-[460px] max-w-[300px] font-medium mx-auto lg:mx-0">
-            {t('contact.subtitle')}
-          </p>
+      <div className="w-full max-w-7xl">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.85fr_1fr] gap-8 lg:gap-12 h-auto  pt-[120px]">
+          {/* Left Section - Form */}
+          <div className="flex flex-col justify-center animate-slide-in-left">
+            <div className="bg-white rounded-2xl p-8 md:p-10 shadow-lg h-full flex flex-col justify-center">
+              <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4 leading-tight form-input opacity-0">
+                {t('contact.heading') || 'Start your journey to profit'}
+              </h1>
+              <p className="text-lg text-slate-600 mb-8 form-input opacity-0">
+                {t('contact.subheading') || `Let's work together to grow your idea into a market success.`}
+              </p>
+
+              <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Name Field */}
+                <div className="form-input opacity-0">
+                  <label className="block text-sm font-medium text-slate-700 mb-2">{t('contact.name') || 'Name*'}</label>
+                  <input
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-4 py-3 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#000539] focus:border-transparent transition-all bg-slate-50 hover:bg-white"
+                    placeholder={t('contact.namePlaceholder') || 'Your name'}
+                  />
+                </div>
+
+                {/* Email and Phone Row */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 form-input opacity-0">
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-2">{t('contact.email') || 'Email*'}</label>
+                    <input
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-3 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#000539] focus:border-transparent transition-all bg-slate-50 hover:bg-white"
+                      placeholder={t('contact.emailPlaceholder') || 'your@email.com'}
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-2">{t('contact.phone') || 'Phone number*'}</label>
+                    <input
+                      type="tel"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-3 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#000539] focus:border-transparent transition-all bg-slate-50 hover:bg-white"
+                      placeholder={t('contact.phonePlaceholder') || '+1 (555) 000-0000'}
+                    />
+                  </div>
+                </div>
+
+                {/* Requirements Field */}
+                <div className="form-input opacity-0">
+                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                    {t('contact.requirements') || 'Tell us about your requirements'}
+                  </label>
+                  <textarea
+                    name="requirements"
+                    value={formData.requirements}
+                    onChange={handleChange}
+                    rows={4}
+                    className="w-full px-4 py-3 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#000539] focus:border-transparent transition-all bg-slate-50 hover:bg-white resize-none"
+                    placeholder={t('contact.requirementsPlaceholder') || 'Describe your project, goals, and any specific requirements...'}
+                  />
+                </div>
+
+                {/* Submit Button */}
+                <div className="form-input opacity-0">
+                  <button
+                    type="submit"
+                    className="w-full md:w-auto bg-gradient-to-r from-[#000539] to-[#000000] hover:from-[#1d2793] hover:to-purple-800 text-white font-semibold py-3 px-8 rounded-lg transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transform hover:scale-105"
+                  >
+                    {submitted ? (
+                      <>
+                        <FiCheck className="w-5 h-5" />
+                        {t('contact.sent') || 'Message sent!'}
+                      </>
+                    ) : (
+                      <>
+                        {t('contact.send') || 'Send a message'}
+                        
+                      </>
+                    )}
+                  </button>
+                </div>
+              </form>
             </div>
-            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-                <div className="space-y-2">
-                  <label htmlFor="firstName" className="text-white font-medium text-left text-sm sm:text-base block">
-                    {t('contact.form.firstName')}
-                  </label>
-                  <input
-                    id="firstName"
-                    name="firstName"
-                    value={formData.firstName}
-                    onChange={handleChange}
-                    placeholder={t('contact.form.firstNamePlaceholder')}
-                    className="w-full px-4 py-3 border border-[#dedddd] rounded-md sm:bg-[#a2a1a1] text-white placeholder:text-white placeholder:font-light focus:ring-2 focus:ring-white focus:outline-none transition-all text-left sm:px-3 sm:py-2 sm:rounded-md sm:border-0"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <label htmlFor="lastName" className="text-white font-medium text-left text-sm sm:text-base block">
-                    {t('contact.form.lastName')}
-                  </label>
-                  <input
-                    id="lastName"
-                    name="lastName"
-                    value={formData.lastName}
-                    onChange={handleChange}
-                    placeholder={t('contact.form.lastNamePlaceholder')}
-                    className="w-full px-4 py-3 border border-[#dedddd] rounded-md sm:bg-[#a2a1a1] text-white placeholder:text-white placeholder:font-light focus:ring-2 focus:ring-white focus:outline-none transition-all text-left sm:px-3 sm:py-2 sm:rounded-md sm:border-0"
-                  />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-                <div className="space-y-2">
-                  <label htmlFor="email" className="text-white font-medium text-left text-sm sm:text-base block">
-                    {t('contact.form.email')}
-                  </label>
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder={t('contact.form.emailPlaceholder')}
-                    className="w-full px-4 py-3 border border-[#dedddd] rounded-md sm:bg-[#a2a1a1] text-white placeholder:text-white placeholder:font-light focus:ring-2 focus:ring-white focus:outline-none transition-all text-left sm:px-3 sm:py-2 sm:rounded-md sm:border-0"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <label htmlFor="mobile" className="text-white font-medium text-left text-sm sm:text-base block">
-                    {t('contact.form.mobile')}
-                  </label>
-                  <input
-                    id="mobile"
-                    name="mobile"
-                    value={formData.mobile}
-                    onChange={handleChange}
-                    placeholder={t('contact.form.mobilePlaceholder')}
-                    className="w-full px-4 py-3 border border-[#dedddd] rounded-md sm:bg-[#a2a1a1] text-white placeholder:text-white placeholder:font-light focus:ring-2 focus:ring-white focus:outline-none transition-all text-left sm:px-3 sm:py-2 sm:rounded-md sm:border-0"
-                  />
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <label htmlFor="message" className="text-white font-medium text-left text-sm sm:text-base block">
-                  {t('contact.form.message')}
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  placeholder={t('contact.form.messagePlaceholder')}
-                  className="w-full px-4 py-3 border border-[#dedddd] rounded-md sm:bg-[#a2a1a1] text-white placeholder:text-white placeholder:font-light min-h-[120px] focus:ring-2 focus:ring-white focus:outline-none transition-all text-left sm:px-3 sm:py-2 sm:rounded-md sm:border-0"
-                />
-              </div>
-
-              <button 
-                type="submit" 
-                className="w-full bg-white sm:bg-black hover:bg-zinc-900 sm:text-white py-3 rounded-md transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] font-medium"
-              >
-                {t('contact.form.submit')}
-              </button>
-            </form>
           </div>
-        </div>
 
-        {/* Left side content */}
-        <div className=" w-full lg:w-1/2 space-y-6 sm:space-y-8 text-center lg:text-left order-2 lg:order-1">
-         <div className="hidden sm:block">
-         <h1 className="text-3xl sm:text-4xl md:text-5xl font-medium text-white mb-4 sm:mb-6">{t('contact.title')}</h1>
-          <p className="text-gray-300 text-[14px] sm:text-[16px] mb-8 sm:mb-12 lg:max-w-[460px] max-w-[300px] font-medium mx-auto lg:mx-0">
-            {t('contact.subtitle')}
-          </p>
-         </div>
+          {/* Right Section - Testimonial */}
+          <div className="flex flex-col justify-center animate-slide-in-right">
+            <div className="bg-gradient-to-br from-[#030f96] via-[#000539] to-[#111a7d] rounded-2xl p-8 md:p-10 shadow-2xl text-white h-full flex flex-col justify-center">
+              {/* Rating */}
+              <div className="flex items-center gap-3 mb-6 form-input opacity-0">
+                <div className="w-12 h-12   rounded-full flex items-center justify-center font-bold text-[#000539]text-lg" >
+                  <img src="/rafi-one.jpg" alt="Logo"    className="rounded-full object-cover w-full h-full" />
+                </div>
+                <div>
+                  <div className="flex gap-1">
+                    {[...Array(5)].map((_, i) => (
+                      <FiStar key={i} className="w-5 h-5 fill-red-400 text-red-400" />
+                    ))}
+                  </div>
+                  <p className="text-sm font-semibold mt-1">47 Reviews</p>
+                </div>
+              </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 items-center">
-            <div className="flex items-center gap-4 sm:gap-5 bg-[#24242483] border border-[#dedddd] shadow-lg backdrop-blur-sm p-3 sm:p-4 px-6 sm:px-8 rounded-[24px] w-full sm:w-auto h-[80px]">
-              <Phone className="text-white w-5 h-5 sm:w-6 sm:h-6" />
-              <div className="text-gray-300">
-                <a href="tel:+919074851748" className="text-[14px] sm:text-[16px] font-medium hover:text-white transition-colors">+91 90748 51748,</a>
-                <br />
-                <a href="tel:+966571961404" className="text-[14px] sm:text-[16px] font-medium hover:text-white transition-colors">+966 571 961 404</a>
+              {/* Testimonial Content */}
+              <h3 className="text-2xl md:text-3xl font-bold mb-6 form-input opacity-0">{t('contact.testimonialTitle') || 'Our client says'}</h3>
+
+              <blockquote className="text-lg md:text-xl leading-relaxed mb-8 italic form-input opacity-0">
+                {t('contact.testimonialText') || `“The people working in Aufait are not just about doing their job and delivering, they are unique in their ability to communicate well, build rapport and have continuously great engagement. They have a great company culture.”`}
+              </blockquote>
+
+              {/* Client Info */}
+              <div className="border-t border-white/30 pt-6 form-input opacity-0">
+                <p className="font-bold text-lg">{t('contact.testimonialAuthor') || 'Director'}</p>
+                <p className="text-purple-100">{t('contact.testimonialCompany') || 'Contracting PLUS'}</p>
               </div>
             </div>
 
-            <div className="flex items-center gap-4 sm:gap-5 bg-[#24242483] border border-[#dedddd] shadow-lg backdrop-blur-sm p-3 sm:p-4 px-6 sm:px-8 rounded-[24px] w-full sm:w-auto h-[80px]">
-              <Mail className="text-white w-5 h-5 sm:w-6 sm:h-6" />
-              <div className="text-gray-300">
-                <a href="mailto:info@brandbik.com" className="text-[14px] sm:text-[16px] font-medium hover:text-white transition-colors">info@brandbik.com</a>
-                <br />
-              </div>
+            {/* Mobile Testimonial Card - Additional Info */}
+            <div className="mt-6 lg:hidden bg-white rounded-xl p-6 shadow-md animate-fade-in-up">
+              <p className="text-sm text-slate-600">
+                {t('contact.mobileTestimonial') || 'Join hundreds of satisfied clients who have transformed their business with our services.'}
+              </p>
             </div>
-          </div>
-
-          <div className="flex gap-6 mt-6 sm:mt-8 justify-center lg:justify-start">
-            <a href="https://www.instagram.com/brandbik_creatives/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-300 transition-colors transform hover:scale-110">
-              <Instagram className="text-[20px] sm:text-[24px]" />
-            </a>
-            <a href="https://wa.me/919074851748" target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-300 transition-colors transform hover:scale-110">
-              <MessageCircle className="text-[20px] sm:text-[24px]" />
-            </a>
-            <a href="https://twitter.com/brandbik" target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-300 transition-colors transform hover:scale-110">
-              <Twitter className="text-[20px] sm:text-[24px]" />
-            </a>
-            <a href="https://www.linkedin.com/company/brandbik-creatives" target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-300 transition-colors transform hover:scale-110">
-              <Linkedin className="text-[20px] sm:text-[24px]" />
-            </a>
           </div>
         </div>
       </div>

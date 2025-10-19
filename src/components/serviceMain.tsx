@@ -2,7 +2,6 @@
 
 import { ArrowRight } from "lucide-react"
 import { useEffect, useRef } from "react"
-import { motion, useInView } from "framer-motion"
 import { Poppins } from "next/font/google"
 import { useLanguage } from "@/contexts/LanguageContext"
 
@@ -11,52 +10,12 @@ const poppins = Poppins({
   weight: "500",
 })
 
-// Floating animation keyframes
-const floatingAnimation = `
-@keyframes float {
-  0% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
-}
-
-@keyframes slideBackgroundLTR {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-@keyframes slideBackgroundRTL {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(50%);
-  }
-}
-
-@keyframes textReveal {
-  0% {
-    clip-path: inset(0 100% 0 0);
-  }
-  100% {
-    clip-path: inset(0 0 0 0);
-  }
-}
-`
+ 
 
 export default function ServiceMain() {
   const { language } = useLanguage();
   const sectionRef = useRef<HTMLElement>(null)
-  const isInView = useInView(sectionRef, { once: true, amount: 0.1 })
+  
   const bannerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -80,63 +39,17 @@ export default function ServiceMain() {
     <section
       ref={sectionRef}
       className="relative w-full min-h-[400px] sm:min-h-[500px] md:min-h-[600px] flex flex-col justify-center items-center overflow-hidden md:px-16 lg:px-24 pt-16"
-    >
-      {/* Animated gradient background with moving colors */}
-  <div className="absolute inset-0 w-full h-full z-0">
-        <div
-          ref={bannerRef}
-          className="absolute inset-0 w-[200%] h-full flex"
-          style={{
-            willChange: "transform",
-          }}
-        >
-          {/* Custom animated gradient backgrounds */}
-          <div
-            className="w-full h-full flex-shrink-0"
-            style={{
-              background: "linear-gradient(90deg, #A43EF9 0%, #3D096C 25%, #5A189A 50%, #E1AAFF 100%)",
-              backgroundSize: "200% 100%",
-              backgroundPosition: "center",
-            }}
-          />
-          <div
-            className="w-full h-full flex-shrink-0"
-            style={{
-              background: "linear-gradient(90deg, #E1AAFF 0%, #5A189A 25%, #3D096C 50%, #A43EF9 100%)",
-              backgroundSize: "200% 100%",
-              backgroundPosition: "center",
-            }}
-          />
-        </div>
-      </div>
+      style={{
+  backgroundImage: "url('/bg-1.jpg')",
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
+  backgroundRepeat: 'no-repeat',
+}}
 
-      {/* Modern decorative elements */}
-      <style jsx global>
-        {floatingAnimation}
-      </style>
-      
-      {/* Floating circles */}
-      {/* Floating circles with new colors */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={isInView ? { opacity: 1, scale: 1 } : {}}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="absolute top-1/4 right-1/4 w-32 h-32 rounded-full blur-2xl z-10 pointer-events-none"
-        style={{
-          animation: "float 4s ease-in-out infinite",
-          background: "linear-gradient(135deg, #A43EF9 0%, #E1AAFF 100%)",
-        }}
-      />
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={isInView ? { opacity: 1, scale: 1 } : {}}
-        transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-        className="absolute bottom-1/4 left-1/4 w-40 h-40 rounded-full blur-2xl z-10 pointer-events-none"
-        style={{
-          animation: "float 5s ease-in-out infinite",
-          background: "linear-gradient(135deg, #3D096C 0%, #5A189A 100%)",
-        }}
-      />
+    >
+   
+
+     
 
       {/* Content */}
       {/* Service banner text overlay */}

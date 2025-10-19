@@ -38,7 +38,14 @@ const AboutBanner = () => {
 // @keyframes gradient-x { 0%,100%{background-position:left} 50%{background-position:right} }
 
 	return (
-		<section className="relative w-full min-h-[90vh] flex items-center justify-center bg-[#18191B] overflow-hidden px-4 md:px-12 lg:px-24 pb-16 pt-22">
+		<section className="relative w-full min-h-[90vh] flex items-center justify-center   overflow-hidden px-4 md:px-12 lg:px-24 pb-16 pt-22"
+		style={{
+  backgroundImage: "url('/bg-6.jpg')",
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
+  backgroundRepeat: 'no-repeat',
+}}
+>
 			{/* Left Content */}
 			<div className="flex-1 z-10 max-w-2xl">
 				<div className="mb-4 text-lg font-medium text-white/80">Who we are</div>
