@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function Loading () {
     return (
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#3D096C]">
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#390d63]">
         <div className="relative w-40 h-40 flex items-center justify-center">
           {/* Animated glowing gradient ring */}
           <div className="absolute w-full h-full rounded-full animate-spin-slow bg-gradient-to-tr from-[#A43EF9] via-[#5A189A] to-[#E1AAFF] opacity-80 shadow-[0_0_40px_10px_#A43EF9]" />
