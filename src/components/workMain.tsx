@@ -18,7 +18,7 @@ export default function WorkMain() {
   const [activeCategory, setActiveCategory] = useState<Category>("all")
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [hoveredProjectId, setHoveredProjectId] = useState<number | null>(null)
-  const [isLoading, setIsLoading] = useState(true)
+  // Removed local isLoading state, rely on global loading
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1)
   const [itemsPerPage, setItemsPerPage] = useState(9)
@@ -32,14 +32,7 @@ export default function WorkMain() {
     }
   }, [language]);
 
-  useEffect(() => {
-    // Simulate loading
-    const timer = setTimeout(() => {
-      setIsLoading(false)
-    }, 1000)
 
-    return () => clearTimeout(timer)
-  }, [])
 
   // Add useEffect to handle initial category from URL and history state
   useEffect(() => {
@@ -89,12 +82,9 @@ export default function WorkMain() {
   }, [currentPage]);
 
   const handleCategoryChange = (category: Category) => {
-    setIsLoading(true)
     setActiveCategory(category);
     // Update history state when category changes
     window.history.replaceState({ category }, '');
-    // Simulate loading delay
-    setTimeout(() => setIsLoading(false), 500)
   };
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -196,18 +186,8 @@ export default function WorkMain() {
 
       {/* Projects Grid - Strict 3x3 layout */}
   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-        {isLoading ? (
-          // Loading skeleton - 9 items for 3x3 grid
-          Array.from({ length: itemsPerPage }).map((_, index) => (
-            <div key={index} className="animate-pulse bg-white rounded-[8px] shadow-sm p-3 md:p-4 border border-gray-100">
-              <div className="bg-gray-200 h-[200px] md:h-[250px] mb-4 rounded-[8px]"></div>
-              <div className="h-6 bg-gray-200 w-3/4 mb-2 rounded"></div>
-              <div className="h-4 bg-gray-200 w-full rounded"></div>
-            </div>
-          ))
-        ) : (
-          paginatedProjects.map((project) => (
-            <div 
+        {paginatedProjects.map((project) => (
+            <div
               key={project.id} 
               className="project-card sm:mb-4 bg-white border border-gray-100 cursor-pointer rounded-[8px] shadow-sm transition-shadow hover:shadow-lg p-3 md:p-4"
               onClick={() => handleProjectClick(project.title, project.category)}
@@ -243,16 +223,19 @@ export default function WorkMain() {
                 )}
               </div>
               <div className="px-1 md:px-2 pb-2 md:pb-3">
-                <h3 className={`text-base md:text-lg lg:text-[24px] font-medium mb-1`}>{project.title}</h3>
-                <p className={`text-xs md:text-sm text-gray-600`}>{project.description}</p>
+                <h3 className={`text-base md:text-lg lg:text-[24px] font-medium mb-1`}>
+                  {language === 'ar' && project.titleAr ? project.titleAr : project.title}
+                </h3>
+                <p className={`text-xs md:text-sm text-gray-600`}>
+                  {language === 'ar' && project.descriptionAr ? project.descriptionAr : project.description}
+                </p>
               </div>
             </div>
-          ))
-        )}
+  ))}
       </div>
 
-      {/* Pagination Controls */}
-      {!isLoading && totalPages > 1 && (
+  {/* Pagination Controls */}
+  {totalPages > 1 && (
         <div className="flex justify-center items-center mt-8">
           <div className="flex items-center gap-2 px-4 py-3 rounded-2xl bg-white ">
             <button

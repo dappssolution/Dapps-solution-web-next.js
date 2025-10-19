@@ -26,7 +26,7 @@ export default function Works() {
         category: { en: "", ar: "" },
         number: "",
         type: "image",
-        src: "/images/BRANDING.jpg",
+        src: "/workslide-1.jpg",
         alt: "Business Person",
       },
       {
@@ -62,7 +62,7 @@ export default function Works() {
         category: { en: "", ar: "" },
         number: "",
         type: "image",
-        src: "/images/APP.jpg",
+        src: "/workslide-2.jpg",
         alt: "Business Person",
       },
       {
@@ -71,7 +71,7 @@ export default function Works() {
         category: { en: "", ar: "" },
         number: "",
         type: "image",
-        src: "/images/GENCHI.jpg",
+        src: "/workslide-3.jpg",
         alt: "Business Person",
       },
       {
@@ -110,7 +110,7 @@ export default function Works() {
         category: { en: "", ar: "" },
         number: "",
         type: "image",
-        src: "/images/tenderoutes-min.jpg",
+        src: "/workslide-1.jpg",
         alt: "Business Person",
       },
       {
@@ -125,7 +125,7 @@ export default function Works() {
         },
         number: "",
         type: "image",
-        src: "/images/SOCIAL.jpg",
+        src: "/workslide-2.jpg",
         alt: "Business Person",
       },
       {
@@ -162,7 +162,7 @@ export default function Works() {
         category: { en: "", ar: "" },
         number: "",
         type: "image",
-        src: "/images/chef-pillai.jpg",
+        src: "/workslide-3.jpg",
         alt: "Business Person",
       },
       {
@@ -171,7 +171,7 @@ export default function Works() {
         category: { en: "", ar: "" },
         number: "",
         type: "image",
-        src: "/images/FINANCEVA.jpg",
+        src: "/workslide-4.jpg",
         alt: "Business Person",
       },
       {
@@ -207,7 +207,7 @@ export default function Works() {
         category: { en: "", ar: "" },
         number: "",
         type: "image",
-        src: "/images/WE ON WHEELS-min.jpeg",
+        src: "/workslide-5.jpg",
         alt: "Business Person",
       },
       {
@@ -216,7 +216,7 @@ export default function Works() {
         category: { en: "", ar: "" },
         number: "",
         type: "image",
-        src: "/images/CYBERBRANDD.jpg",
+        src: "/workslide-6.jpg",
         alt: "Business Person",
       },
       {
@@ -428,7 +428,7 @@ export default function Works() {
                 className="inline-flex items-center gap-2 border border-gray-600 bg-white text-[#A43EF9] rounded-full px-4 py-2 md:px-6 md:py-3 w-fit mt-8 md:mt-12 hover:bg-gray-900 transition-colors"
               >
                 <span>{t('clients.viewAll')}</span>
-                <ArrowRight size={16} />
+             
               </Link>
             </div>
           </div>

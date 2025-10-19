@@ -16,7 +16,7 @@ export default function Header() {
   const { language, setLanguage, t } = useLanguage()
   const pathname = usePathname()
 
-  const gradient = "linear-gradient(135deg, #040150 0%, #5A189A 50%, #A43EF9 100%)"
+  const gradient = "linear-gradient(135deg, #040150 0%, #5A189A 50%, #000 100%)"
   const isDarkTextRoute = pathname === "/works" || pathname === "/about" || pathname === "/clients"
 
   useEffect(() => {
@@ -83,23 +83,24 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed h-[90px] top-0 left-0 z-50 w-full transition-all duration-500`}
+      className={`fixed h-[70px] md:h-[90px] top-2 border rounded-full left-2 right-2 md:left-10 md:right-10 z-50 flex justify-center items-center transition-all duration-500`}
       style={{
-        background: isScrolled || isDarkTextRoute ? "#fff" : 'transparent',
+        background: isScrolled || isDarkTextRoute ? "#fff" : "transparent",
         boxShadow: isScrolled || isDarkTextRoute ? "0 2px 16px 0 rgba(61,9,108,0.08)" : "none",
+        borderColor: isScrolled || isDarkTextRoute ? "rgba(0,0,0,0.1)" : "transparent",
       }}
     >
-      <div className="relative z-10 container mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-24 py-3 sm:py-4">
+      <div className="relative z-10 container mx-auto px-2 sm:px-3 md:px-6 lg:px-8">
         <div className="flex items-center justify-center">
-          <div className="relative flex items-center justify-between w-full transition-all duration-500 ease-in-out rounded-[8px] px-3 sm:px-4 md:px-6 lg:px-8 py-2 sm:py-3">
+          <div className="relative flex items-center justify-between w-full transition-all duration-500 ease-in-out rounded-[8px] px-2 sm:px-3 md:px-6 lg:px-8 py-2 sm:py-3">
             <div className="flex-shrink-0">
               <Link href="/" prefetch>
-                <Image src={"/dapps-logo.png"} alt="Dapps Logo" width={130} height={100} />
+                <Image src={"/dapps-logo.png"} alt="Dapps Logo" width={110} height={80} className="w-[90px] md:w-[130px] h-auto" />
               </Link>
             </div>
 
-            {/* Navigation */}
-            <nav className="hidden lg:flex absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 items-center space-x-4">
+            {/* Navigation - visible on desktop, flex on md+ for tablets */}
+            <nav className="hidden md:flex absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 items-center space-x-2 sm:space-x-4">
               {[
                 { href: "/about", label: t("header.about") },
                 { href: "/service", label: t("header.services") },
@@ -111,7 +112,7 @@ export default function Header() {
                   key={item.href}
                   href={item.href}
                   onClick={handleNavigation}
-                  className={`font-medium px-3 py-2 rounded-[8px] text-sm transition-all duration-300 ${
+                  className={`font-medium px-2 sm:px-3 py-2 rounded-[8px] text-xs sm:text-sm md:text-base transition-all duration-300 ${
                     isScrolled || isDarkTextRoute
                       ? "text-[#040150] hover:text-white"
                       : "text-white hover:text-white"
@@ -120,7 +121,7 @@ export default function Header() {
                     background: isScrolled || isDarkTextRoute ? "transparent" : "transparent",
                   }}
                 >
-                  <span className="relative hover:bg-gradient-to-r hover:from-[#040150] hover:via-[#5A189A] hover:to-[#A43EF9] hover:px-3 hover:py-2 hover:rounded-[8px] transition-all duration-300">
+                  <span className="relative hover:bg-gradient-to-r hover:from-[#040150] hover:via-[#5A189A] hover:to-[#000] hover:px-3 hover:py-2 hover:rounded-[8px] transition-all duration-300">
                     {item.label}
                   </span>
                 </Link>
@@ -129,26 +130,31 @@ export default function Header() {
 
             {/* Right Side */}
             <div className="flex items-center">
-              <div className="hidden lg:flex items-center gap-3">
+              <div className="hidden md:flex items-center gap-2 sm:gap-3">
                 <LanguageSwitcher />
-                <button
-                  onClick={() => setIsPanelOpen(true)}
-                  className="inline-flex items-center justify-center gap-2 text-white px-4 py-[10px] rounded-[8px] transition-all duration-300 hover:scale-105"
-                  style={{ background: gradient }}
-                >
-                  <span className="text-sm md:text-base">{t("header.contact")}</span>
-                </button>
+               <a
+  href={`https://wa.me/919947400278?text=${encodeURIComponent(
+    "Hello Dapps Solutions,\nI'm interested in learning more about your AI-driven websites, automation systems, and digital transformation services designed to enhance business growth and efficiency.\nPlease share more details."
+  )}`}
+  target="_blank"
+  rel="noopener noreferrer"
+  className="inline-flex items-center justify-center gap-2 text-white px-3 sm:px-4 py-2 sm:py-[10px] rounded-[8px] transition-all duration-300 hover:scale-105"
+  style={{ background: gradient }}
+>
+  <span className="text-xs sm:text-sm md:text-base">{t("header.contact")}</span>
+</a>
+
               </div>
 
-              {/* Mobile Controls */}
-              <div className="lg:hidden flex items-center gap-3">
+              {/* Mobile/Tablet Controls */}
+              <div className="md:hidden flex items-center gap-2 sm:gap-3">
                 <LanguageSwitcher isMobile={true} />
                 <button
                   className={`${isScrolled || isDarkTextRoute ? "text-[#040150]" : "text-white"} ml-1`}
                   onClick={() => setIsPanelOpen(true)}
                   aria-label="Open menu"
                 >
-                  <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-8 h-8 sm:w-10 sm:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
                   </svg>
                 </button>
@@ -158,17 +164,13 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Mobile Panel */}
+      {/* Mobile/Tablet Panel with animated menu items */}
       {!isLargeScreen && (
         <div
-          className={`fixed inset-0 z-[60] transition-all duration-700 ${
-            isPanelOpen ? "visible" : "invisible"
-          }`}
+          className={`fixed inset-0 z-[60] transition-all duration-700 ${isPanelOpen ? "visible" : "invisible"}`}
         >
           <div
-            className={`absolute inset-0 transition-opacity duration-500 ${
-              isPanelOpen ? "opacity-70 bg-[#000]" : "opacity-0 bg-transparent"
-            }`}
+            className={`absolute inset-0 transition-opacity duration-500 ${isPanelOpen ? "opacity-70 bg-[#000]" : "opacity-0 bg-transparent"}`}
             onClick={() => setIsPanelOpen(false)}
           />
 
@@ -176,13 +178,13 @@ export default function Header() {
             initial={{ y: "-100%", opacity: 0 }}
             animate={isPanelOpen ? { y: 0, opacity: 1 } : { y: "-100%", opacity: 0 }}
             transition={{ type: "spring", stiffness: 200, damping: 30 }}
-            className="absolute top-0 left-0 h-full w-full sm:w-[90vw] text-white"
+            className="absolute top-0 left-0 h-full w-full text-white"
             style={{ background: gradient }}
           >
             <div className="flex flex-col h-full relative overflow-hidden">
-              <div className="flex items-center justify-between p-6 border-b border-white/20">
+              <div className="flex items-center justify-between p-4 sm:p-6 border-b border-white/20">
                 <Link href="/" onClick={() => setIsPanelOpen(false)} prefetch>
-                  <Image src={"/dapps-logo.png"} alt="Dapps Logo" width={130} height={100} />
+                  <Image src={"/dapps-logo.png"} alt="Dapps Logo" width={110} height={80} className="w-[90px] sm:w-[130px] h-auto" />
                 </Link>
                 <button
                   onClick={() => setIsPanelOpen(false)}
@@ -192,34 +194,51 @@ export default function Header() {
                 </button>
               </div>
 
-              <nav className="flex-1 p-6 space-y-4">
+              <nav className="flex-1 flex flex-col justify-center items-center gap-3 sm:gap-4 px-2 sm:px-6">
                 {[
                   { href: "/about", label: t("header.about") },
                   { href: "/service", label: t("header.services") },
                   { href: "/works", label: t("header.works") },
                   { href: "/careers", label: t("header.career") },
                   { href: "/contact", label: t("header.contact") },
-                ].map((item) => (
-                  <Link
+                ].map((item, idx) => (
+                  <motion.div
                     key={item.href}
-                    href={item.href}
-                    onClick={handleNavigation}
-                    className="block py-3 px-6 rounded-[8px] bg-white/10 hover:bg-white/20 transition-all duration-300"
+                    initial={{ x: idx % 2 === 0 ? "-100vw" : "100vw", opacity: 0 }}
+                    animate={isPanelOpen ? { x: 0, opacity: 1 } : { x: idx % 2 === 0 ? "-100vw" : "100vw", opacity: 0 }}
+                    transition={{ type: "spring", stiffness: 200, damping: 30, delay: isPanelOpen ? 0.1 + idx * 0.08 : 0 }}
+                    className="w-full flex justify-center"
                   >
-                    <span className="text-lg font-medium">{item.label}</span>
-                  </Link>
+                    <Link
+                      href={item.href}
+                      onClick={handleNavigation}
+                      className="block w-full max-w-xs py-3 px-6 rounded-[12px] bg-white/10 hover:bg-white/20 transition-all duration-300 shadow-lg text-center"
+                    >
+                      <span className="text-lg font-semibold tracking-wide">{item.label}</span>
+                    </Link>
+                  </motion.div>
                 ))}
               </nav>
 
-              <div className="p-6">
-                <Link
-                  href="/contact"
-                  onClick={() => setIsPanelOpen(false)}
-                  className="block w-full text-center py-4 rounded-[8px] font-medium text-lg bg-white text-[#040150] hover:bg-[#E1AAFF] transition-all duration-300"
-                >
-                  {t("header.connectUs")}
-                </Link>
-              </div>
+              <motion.div
+                initial={{ y: 80, opacity: 0 }}
+                animate={isPanelOpen ? { y: 0, opacity: 1 } : { y: 80, opacity: 0 }}
+                transition={{ type: "spring", stiffness: 200, damping: 30, delay: isPanelOpen ? 0.6 : 0 }}
+                className="p-4 sm:p-6 w-full flex justify-center"
+              >
+                <a
+  href={`https://wa.me/919947400278?text=${encodeURIComponent(
+    "Hello Dapps Solutions,\nI'm interested in learning more about your AI-driven websites, automation systems, and digital transformation services designed to enhance business growth and efficiency.\nPlease share more details."
+  )}`}
+  target="_blank"
+  rel="noopener noreferrer"
+  onClick={() => setIsPanelOpen(false)}
+  className="block w-full max-w-xs text-center py-4 rounded-[12px] font-semibold text-lg bg-white text-[#040150] hover:bg-[#E1AAFF] transition-all duration-300 shadow-lg"
+>
+  {t("header.connectUs")}
+</a>
+
+              </motion.div>
             </div>
           </motion.div>
         </div>

@@ -10,32 +10,33 @@ export default function LocationsSection() {
   const locations = [
     {
       id: 1,
-      name: language === "ar" ?   "دبي" :  "Dubai",
+      name: language === "ar" ? "دبي-ديرة" : "Dubai-Deira",
       address:
         language === "ar"
-          ?   " Dubai Internet City, Building 10, Dubai, UAE"
-          :   "Dubai Internet City, Building 10, Dubai, UAE",
-      phone: "+91 9947400278",
+          ? "Dubai-Deira, UAE"
+          : "Dubai-Deira, UAE",
+      phone: "+971544878929",
       coordinates: { lat: 25.2048, lng: 55.2708 },
     },
     {
       id: 2,
-      name: language === "ar" ?   "كاليكوت" :  "Calicut",
+      name: language === "ar" ? "كاليكوت" : "Calicut",
       address:
         language === "ar"
- ?"Sahya building, Govt. Cyberpark, Calicut - 673014"          :   "Sahya building, Govt. Cyberpark, Calicut - 673014",
+          ? "KPM Arcade, Calicut Road, Valanchery, Kerala, India, 676552"
+          : "KPM Arcade, Calicut Road, Valanchery, Kerala, India, 676552",
       phone: "+91 9947400278",
       coordinates: { lat: 11.2588, lng: 75.7804 },
     },
     {
       id: 3,
-      name: language === "ar" ?   "المملكة المتحدة" :  "UK",
+      name: language === "ar" ? "Qatar" : "Qatar",
       address:
         language === "ar"
-          ? "10 Downing Street, London, UK"  
-          :  "10 Downing Street, London, UK",
+          ? "Doha, Qatar"
+          : "Doha, Qatar",
       phone: "+91 9947400278",
-      coordinates: { lat: 51.5034, lng: -0.1276 },
+      coordinates: { lat: 25.2854, lng: 51.5310 },
     },
   ];
 

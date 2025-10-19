@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { Suspense } from 'react';
+// Removed unused Suspense import after fallback cleanup
 import { useLanguage } from "@/contexts/LanguageContext"
 import React from 'react';
 
@@ -137,22 +137,20 @@ export default function AboutBoxes() {
 
       <div className="container mx-auto">
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-6">
-          <Suspense fallback={<div>Loading...</div>}>
-            {cards.map((card, index) => {
-              // Format number and + placement, always as suffix
-              const displayValue = <span dir="ltr">{card.value}+</span>;
-              return (
-                <div key={index} className={index === 5 ? "block lg:hidden" : ""}>
-                  <InteractiveCard
-                    imageSrc={card.imageSrc}
-                    imageAlt={card.imageAlt}
-                    title={displayValue}
-                    description={card.description}
-                  />
-                </div>
-              );
-            })}
-          </Suspense>
+          {cards.map((card, index) => {
+            // Format number and + placement, always as suffix
+            const displayValue = <span dir="ltr">{card.value}+</span>;
+            return (
+              <div key={index} className={index === 5 ? "block lg:hidden" : ""}>
+                <InteractiveCard
+                  imageSrc={card.imageSrc}
+                  imageAlt={card.imageAlt}
+                  title={displayValue}
+                  description={card.description}
+                />
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>

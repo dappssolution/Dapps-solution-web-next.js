@@ -1,65 +1,26 @@
 "use client"
 
 import type React from "react"
-
+import { useLanguage } from "../../contexts/LanguageContext";
 import { useEffect, useRef, useState } from "react"
 import { AlertCircle, FileText, Clock, Database, MessageSquare, Shield } from "lucide-react"
 
-interface Challenge {
-  id: number
-  icon: React.ReactNode
-  title: string
-  description: string
+
+export interface ChallengeText {
+  title: string;
+  description: string;
 }
 
-const challenges: Challenge[] = [
-  {
-    id: 1,
-    icon: <AlertCircle className="w-6 h-6" />,
-    title: "Errors in Manual Processes",
-    description:
-      "Manual handling led to inefficiencies and increased errors. Tasks were prone to delays and inaccuracies.",
-  },
-  {
-    id: 2,
-    icon: <FileText className="w-6 h-6" />,
-    title: "Complexity of Multiple Forms",
-    description:
-      "Employees navigated through various forms and documents. This complexity often caused confusion and incomplete submissions.",
-  },
-  {
-    id: 3,
-    icon: <Clock className="w-6 h-6" />,
-    title: "Slow Approval Processes",
-    description:
-      "Manual tracking and follow-up for approvals caused significant delays in processing onboarding requests.",
-  },
-  {
-    id: 4,
-    icon: <Database className="w-6 h-6" />,
-    title: "Lack of Centralized Data Management",
-    description:
-      "There was scattered information across different platforms. This caused difficulty in tracking and managing offboarding tasks.",
-  },
-  {
-    id: 5,
-    icon: <MessageSquare className="w-6 h-6" />,
-    title: "Communication Inefficiencies",
-    description:
-      "With the absence of automated notifications and reminders, keeping all parties informed and on schedule became an upheaval task.",
-  },
-  {
-    id: 6,
-    icon: <Shield className="w-6 h-6" />,
-    title: "Security and Compliance Risks",
-    description:
-      "Manual processes come with risks to data security. Conforming compliance with regulations and company policies was challenging.",
-  },
-]
+interface ChallengesSectionProps {
+  challenges: ChallengeText[];
+  description: string;
+}
 
-export function ChallengesSection() {
-  const [visibleCards, setVisibleCards] = useState<number[]>([])
-  const containerRef = useRef<HTMLDivElement>(null)
+
+export function ChallengesSection({ challenges, description }: ChallengesSectionProps) {
+  const [visibleCards, setVisibleCards] = useState<number[]>([]);
+  const containerRef = useRef<HTMLDivElement>(null);
+    const { t } = useLanguage();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -89,22 +50,21 @@ export function ChallengesSection() {
 
   return (
     <section className="w-full py-12 md:py-20 px-4 md:px-8 lg:px-12 bg-background">
-      <div className="max-w-8xl mx-auto">
+      <div className="max-w-8xl px-4 mx-auto">
         {/* Header Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 mb-12 md:mb-20">
           {/* Left Column - Title */}
           <div className="flex items-start">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight animate-in fade-in slide-in-from-left-8 duration-700">
-              Challenges
+              {t("workDetailChallenge.title")}
             </h1>
           </div>
+          
 
           {/* Right Column - Description */}
           <div className="flex items-start">
             <p className="text-base md:text-lg text-muted-foreground leading-relaxed animate-in fade-in slide-in-from-right-8 duration-700 delay-100">
-              The client sought to enhance their employee offboarding process, originally manual and cumbersome with
-              multiple stages and forms, resulting in significant delays and poor tracking capabilities. Lack of an
-              automated and centralized Employee Exit Management System posed the following challenges:
+              {description}
             </p>
           </div>
         </div>
@@ -113,20 +73,25 @@ export function ChallengesSection() {
         <div ref={containerRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {challenges.map((challenge, index) => (
             <div
-              key={challenge.id}
-              data-card-id={challenge.id}
+              key={index}
+              data-card-id={index}
               className={`group relative p-6 md:p-8 rounded-lg border border-border bg-card hover:shadow-lg transition-all duration-500 cursor-default ${
-                visibleCards.includes(challenge.id)
+                visibleCards.includes(index)
                   ? "animate-in fade-in slide-in-from-bottom-4 duration-700"
                   : "opacity-0"
               }`}
               style={{
-                animationDelay: visibleCards.includes(challenge.id) ? `${index * 100}ms` : "0ms",
+                animationDelay: visibleCards.includes(index) ? `${index * 100}ms` : "0ms",
               }}
             >
               {/* Icon Container */}
               <div className="mb-4 inline-flex p-3 rounded-lg bg-secondary text-secondary-foreground group-hover:scale-110 transition-transform duration-300">
-                {challenge.icon}
+                {index === 0 && <AlertCircle className="w-6 h-6" />}
+                {index === 1 && <FileText className="w-6 h-6" />}
+                {index === 2 && <Clock className="w-6 h-6" />}
+                {index === 3 && <Database className="w-6 h-6" />}
+                {index === 4 && <MessageSquare className="w-6 h-6" />}
+                {index === 5 && <Shield className="w-6 h-6" />}
               </div>
 
               {/* Title */}

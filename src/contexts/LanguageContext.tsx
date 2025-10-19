@@ -60,6 +60,84 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   const translations: Translations = {
   en: {
+    // Service Main Banner (custom for ServiceMain)
+    'serviceMain.title': 'Our Services',
+    'serviceMain.description': 'We offer a wide range of digital solutions including App Development, Branding, Digital Marketing, Web Development, and more. Let us help you grow your business with innovative strategies and creative execution.',
+    'serviceMain.button': 'Get Started',
+    'serviceMain.whatsappMessage': "Hello Dapps Solutions,%0AI'm interested in learning more about your AI-driven websites, automation systems, and digital transformation services designed to enhance business growth and efficiency.%0APlease share more details.",
+    // About Banner
+    'aboutBanner.badge': 'Who we are',
+    'aboutBanner.title': 'Building the future with <span class="text-[#A43EF9]">innovation</span> and passion.',
+    'aboutBanner.button': 'Explore our mission',
+    'aboutBanner.team1.alt': 'Team Member 1',
+    'aboutBanner.team2.alt': 'Team Member 2',
+    'aboutBanner.team.plus': '+',
+  // Work Detail Banner Buttons
+  'workDetailBanner.downloadCaseStudy': 'Download Case Study',
+  'workDetailBanner.letsTalk': `Let's talk`,
+
+    // ...existing keys...
+      // Client Review Items
+      'clientReview.item1.name': 'Basil Saman',
+      'clientReview.item1.role': 'Client',
+      'clientReview.item1.quote': 'Innovative solutions with reliable support. Highly recommended.',
+      'clientReview.item2.name': 'Fadhil Alim',
+      'clientReview.item2.role': 'Client',
+      'clientReview.item2.quote': 'Efficient team delivering smart, scalable technology.',
+      // Client Review Section
+      'clientReview.title': 'Smart Growth with Technology',
+      'clientReview.description': 'Dapps Solutions empowers businesses with AI, automation, and tailored systems for smarter growth.',
+      'clientReview.cta': 'Explore opportunities',
+      'clientReview.rating': '4.9/5 from clients',
+      'clientReview.blockquotePrefix': '“',
+      'clientReview.blockquoteSuffix': '”',
+      'clientReview.blockquoteBy': '— {name}, {role}',
+      'clientReview.locations': 'Locations',
+      'clientReview.contact': 'Contact',
+      'clientReview.phone': 'Phone:',
+      'clientReview.uae': 'UAE',
+      'clientReview.kerala': 'Kerala, Calicut',
+      // Footer Section (additional keys)
+  'footer.quickLinks': 'Quick Links',
+  'footer.career': 'Career',
+  'footer.solutions': 'Solutions',
+  'footer.email': 'info@dappssolutions.com',
+  'footer.phone': 'Phone:',
+  'footer.phoneNumber': '+91 99474 00278',
+  'footer.locations': 'Locations',
+  'footer.uae': 'UAE',
+  'footer.kerala': 'Kerala, Calicut',
+  // Footer Services Links
+  'footer.services':'Services',
+  'footer.webDevelopment': 'Web Development',
+  'footer.appDevelopment': 'App Development',
+  'footer.branding': 'Branding',
+  'footer.digitalMarketing': 'Digital Marketing',
+  'footer.videoPhotoEditing': 'Video & Photo Editing',
+  'footer.aiAgentsAutomation': 'AI Agents & Automation',
+    // Services Section
+    'services.section.title': 'Services',
+    'services.section.header': 'Our major services that drive the Digital Transformation',
+    'services.section.viewAll': 'View Services',
+    'services.card.learnMore': 'Learn more',
+    'services.service1.title': 'App Development',
+    'services.service1.desc': 'High-quality mobile and cross-platform apps with strong performance and security.',
+    'services.service2.title': 'Web Development',
+    'services.service2.desc': 'Modern, fast, and secure websites. We turn your ideas into delightful web experiences.',
+    'services.service3.title': 'Branding',
+    'services.service3.desc': 'Build a unique brand identity with thoughtful visual systems and messaging.',
+    'services.service4.title': 'Digital Marketing',
+    'services.service4.desc': 'Grow your audience with data-driven strategies across paid, search, and social.',
+    'services.service5.title': 'Video & Photo Editing',
+    'services.service5.desc': 'Professional editing for videos and images — enhancing visuals, color grading.',
+    'services.service6.title': 'AI Agents & Automation',
+    'services.service6.desc': 'Streamline workflows with intelligent AI agents and automated systems.',
+    // Hero Section
+    'hero.tagline': 'Websites • Apps • Automation',
+    'hero.headline': 'AI-Powered Growth',
+    'hero.forYourBusiness': 'For Your Business',
+    'hero.cta': 'Get Started',
+    'hero.shortTagline': 'Smarter digital solutions for modern businesses.',
       // Contact Form
       'contact.heading': 'Start your journey to profit',
       'contact.subheading': "Let's work together to grow your idea into a market success.",
@@ -98,8 +176,12 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       'works.categories.branding': 'Branding',
       'works.categories.social': 'Social Media',
       'works.categories.all': 'All',
+
+      // Work Detail Challenge 
+      'workDetailChallenge.title': 'Challenge',
       
       // Works Section Project 3
+      'works.title': 'Our Works',
       'worksSection.project3.title': 'Engineered and Launched Robust Full-Stack Web Platforms',
       'worksSection.project3.category': 'Full-Stack Web Development',
       
@@ -140,7 +222,6 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       'footer.brandbik' : 'BRANDBIK LLP' , 
       'footer.home': 'Home',
       'footer.aboutUs': 'About us',
-      'footer.services': 'Services',
       'footer.works': 'Works',
       'footer.contactUs': 'Contact Us',
       'footer.contactInfo': 'Contact Us',
@@ -220,9 +301,94 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       'bottom.bar.button': 'Download India in One Book Now!',
       'work.banner.title': "Work that speaks louder than words.",
       'works.subtitle': "Discover our latest projects and creative solutions that make an impact.",
+    // About Section
+    'aboutSection.badge': 'About',
+    'aboutSection.headline': 'We prioritize open communication and reliability, keeping you informed and valued every step.',
+    'aboutSection.description': 'At Leniq, we believe that creativity has the power to transform brands and connect them with their audiences in meaningful ways. Based in the heart of innovation, our agency specializes in crafting digital experiences that resonate and inspire.',
+    'aboutSection.button': 'About Us',
     },
     
-    ar: {
+  ar: {
+
+     // Work Detail Challenge
+     'workDetailChallenge.title': 'تحدي',
+
+  // Service Main Banner (custom for ServiceMain)
+  'serviceMain.title': 'خدماتنا',
+  'serviceMain.description': 'نقدم مجموعة واسعة من الحلول الرقمية بما في ذلك تطوير التطبيقات، العلامة التجارية، التسويق الرقمي، تطوير المواقع والمزيد. دعنا نساعدك على تنمية عملك باستراتيجيات مبتكرة وتنفيذ إبداعي.',
+  'serviceMain.button': 'ابدأ الآن',
+  'serviceMain.whatsappMessage': 'مرحبًا Dapps Solutions،%0Aأرغب في معرفة المزيد عن مواقع الويب المدعومة بالذكاء الاصطناعي، وأنظمة الأتمتة، وخدمات التحول الرقمي المصممة لتعزيز نمو وكفاءة الأعمال.%0Aيرجى مشاركة المزيد من التفاصيل.',
+  // About Banner (Arabic)
+  'aboutBanner.badge': 'من نحن',
+  'aboutBanner.title': 'نبني المستقبل بـ <span class="text-[#A43EF9]">الابتكار</span> والشغف.',
+  'aboutBanner.button': 'استكشف مهمتنا',
+  'aboutBanner.team1.alt': 'عضو الفريق 1',
+  'aboutBanner.team2.alt': 'عضو الفريق 2',
+  'aboutBanner.team.plus': '+',
+  // ...existing keys...
+      // Client Review Items (Arabic)
+      'clientReview.item1.name': 'باسل سمان',
+      'clientReview.item1.role': 'عميل',
+      'clientReview.item1.quote': 'حلول مبتكرة ودعم موثوق. أنصح بهم بشدة.',
+      'clientReview.item2.name': 'فاضل عليم',
+      'clientReview.item2.role': 'عميل',
+      'clientReview.item2.quote': 'فريق فعال يقدم تقنيات ذكية وقابلة للتطوير.',
+      // Client Review Section (RTL)
+      'clientReview.title': 'النمو الذكي بالتكنولوجيا',
+      'clientReview.description': 'تمكّن Dapps Solutions الشركات من خلال الذكاء الاصطناعي والأتمتة والأنظمة المصممة خصيصًا لنمو أذكى.',
+      'clientReview.cta': 'استكشف الفرص',
+      'clientReview.rating': '٤.٩/٥ من العملاء',
+      'clientReview.blockquotePrefix': '“',
+      'clientReview.blockquoteSuffix': '”',
+      'clientReview.blockquoteBy': '— {name}، {role}',
+      'clientReview.locations': 'المواقع',
+      'clientReview.contact': 'اتصل',
+      'clientReview.phone': 'الهاتف:',
+      'clientReview.uae': 'الإمارات',
+      'clientReview.kerala': 'كيرالا، كاليكوت',
+      // Footer Section (additional keys)
+  'footer.quickLinks': 'روابط سريعة',
+  'footer.career': 'الوظائف',
+  'footer.solutions': 'الحلول',
+  'footer.email': 'info@dappssolutions.com',
+  'footer.phone': 'الهاتف:',
+  'footer.phoneNumber': '+٩١ ٩٩٤٧٤ ٠٠٢٧٨',
+  'footer.locations': 'المواقع',
+  'footer.uae': 'الإمارات',
+  'footer.kerala': 'كيرالا، كاليكوت',
+  // Footer Services Links (Arabic)
+  'footer.webDevelopment': 'تطوير المواقع',
+  'footer.appDevelopment': 'تطوير التطبيقات',
+  'footer.branding': 'العلامة التجارية',
+  'footer.digitalMarketing': 'التسويق الرقمي',
+  'footer.videoPhotoEditing': 'تحرير الفيديو والصور',
+  'footer.aiAgentsAutomation': 'وكلاء الذكاء الاصطناعي والأتمتة',
+        // Work Detail Banner Buttons
+  'workDetailBanner.downloadCaseStudy': 'تحميل دراسة الحالة',
+  'workDetailBanner.letsTalk': 'تحدث معنا',
+    // Services Section (Arabic)
+    'services.section.title': 'الخدمات',
+    'services.section.header': 'خدماتنا الرئيسية التي تقود التحول الرقمي',
+    'services.section.viewAll': 'عرض جميع الخدمات',
+    'services.card.learnMore': 'اعرف المزيد',
+    'services.service1.title': 'تطوير التطبيقات',
+    'services.service1.desc': 'تطبيقات عالية الجودة للهاتف المحمول وعبر الأنظمة الأساسية مع أداء قوي وأمان.',
+    'services.service2.title': 'تطوير المواقع الإلكترونية',
+    'services.service2.desc': 'مواقع حديثة وسريعة وآمنة. نحول أفكارك إلى تجارب ويب رائعة.',
+    'services.service3.title': 'العلامة التجارية',
+    'services.service3.desc': 'بناء هوية علامة تجارية فريدة بأنظمة بصرية ورسائل مدروسة.',
+    'services.service4.title': 'التسويق الرقمي',
+    'services.service4.desc': 'نمِ جمهورك باستراتيجيات قائمة على البيانات عبر الإعلانات والبحث ووسائل التواصل.',
+    'services.service5.title': 'تحرير الفيديو والصور',
+    'services.service5.desc': 'تحرير احترافي للفيديوهات والصور — تحسين المرئيات وتعديل الألوان.',
+    'services.service6.title': 'وكلاء الذكاء الاصطناعي والأتمتة',
+    'services.service6.desc': 'تبسيط سير العمل باستخدام وكلاء الذكاء الاصطناعي الذكي والأنظمة المؤتمتة.',
+  // Hero Section (Arabic)
+  'hero.tagline': 'مواقع إلكترونية • تطبيقات • أتمتة',
+  'hero.headline': 'نمو مدعوم بالذكاء الاصطناعي',
+  'hero.forYourBusiness': 'لأعمالك',
+  'hero.cta': 'ابدأ الآن',
+  'hero.shortTagline': 'حلول رقمية أذكى للأعمال الحديثة.',
       // Contact Form (Arabic)
       'work.banner.title': "عمل يتحدث بصوت أعلى من الكلمات.",
       'work.subtitle': "اكتشف أحدث مشاريعنا وحلولنا الإبداعية.",
@@ -286,6 +452,11 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       'location.sectionHeading.3': 'الأسرار،',
       'location.sectionHeading.4': 'الإلهام',
       // AboutMe Section (Arabic)
+    // About Section (Arabic)
+    'aboutSection.badge': 'حول',
+    'aboutSection.headline': 'نحن نولي أهمية للتواصل المفتوح والموثوقية، ونبقيك على اطلاع وتقدير في كل خطوة.',
+    'aboutSection.description': 'في Leniq، نؤمن بأن الإبداع لديه القدرة على تحويل العلامات التجارية وربطها بجمهورها بطرق ذات مغزى. مقرنا في قلب الابتكار، تتخصص وكالتنا في ابتكار تجارب رقمية تلهم وتترك أثراً.',
+    'aboutSection.button': 'حولنا',
       'aboutMe.heading.ar': 'من أنا',
 'aboutMe.label.ar': 'الهند في كتاب واحد – بعيني',
 'aboutMe.para1.ar': `السلام عليكم ورحمة الله وبركاته،\n\nأنا محمد رافع، أول صانع محتوى هندي بالعربية وابن فخور من كيرالا. منذ سنوات كرّست جهدي لبناء جسر بين الهند والعالم العربي، عبر مشاركة القصص والتقاليد والواقع اليومي لهذا البلد المدهش – وكل ذلك بلغة أحببتها: العربية.\n\nبدأت رحلتي من قلب كيرالا، بين ثقافة عريقة وجمال طبيعي لا ينتهي. واستلهمت من الروابط التاريخية العميقة بين الهند والخليج، فجعلت مهمتي الإجابة عن الأسئلة الحقيقية التي يطرحها إخوتي العرب: كيف هي الهند فعلًا؟ ماذا نأكل؟ أين نسافر؟ كيف نجد الشفاء؟ وكيف نبدأ أعمالنا؟\n\nكل رسالة وكل تعليق من جمهوري كان مصدر إلهام لي. ومن هنا وضعت قلبي في مشروع "الهند في كتاب واحد – بعيني": مرجع رقمي شامل يتجاوز السفر ليجيب عن أسئلتكم حول التاريخ، الطعام، الصحة، السياحة العلاجية، الرحلات العائلية، الأعمال، وأسرار موطني كيرالا.`,
@@ -381,11 +552,12 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       
       // Footer Navigation
       'footer.tagline': ' نقدّم التميز والابتكار التكنولوجي للأعمال حول العالم — مع تواجد في الهند والمملكة العربية السعودية والمملكة المتحدة' ,
+      'footer.services': 'الخدمات',
+
       'footer.pages': 'الصفحات',
       'footer.brandbik' : 'براندبيك LLP',
       'footer.home': 'الرئيسية',
       'footer.aboutUs': 'من نحن',
-      'footer.services': 'خدماتنا',
       'footer.works': 'أعمالنا',
       'footer.contactUs': 'اتصل بنا',
       'footer.contactInfo': 'معلومات الاتصال',
@@ -496,7 +668,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       'service.banner.advertising.button': 'تحدث معنا',
       
       // Work Banner
-      'work.banner.title': 'عمل يتحدث بصوت أعلى من الكلمات.',
+  // 'work.banner.title': 'عمل يتحدث بصوت أعلى من الكلمات.',
       'work.banner.countries': 'الدول',
       'work.banner.industries': ' الصناعات',
       

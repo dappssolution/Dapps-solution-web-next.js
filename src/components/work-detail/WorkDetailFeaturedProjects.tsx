@@ -3,36 +3,26 @@
 import { useEffect, useState } from "react"
 import Link from "next/link"
 
-export default function WorkDetailFeaturedProjects() {
-  const [isVisible, setIsVisible] = useState(false)
+
+export interface FeaturedProject {
+  title: string;
+  description: string;
+  image: string;
+  link: string;
+  delay?: number;
+}
+
+interface WorkDetailFeaturedProjectsProps {
+  projects: FeaturedProject[];
+  heading: string;
+}
+
+export default function WorkDetailFeaturedProjects({ projects, heading }: WorkDetailFeaturedProjectsProps) {
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    setIsVisible(true)
-  }, [])
-
-  const projects = [
-    {
-      id: 1,
-      title: "Intranet Portal",
-      image: "http://wallpapercave.com/wp/OsshDMo.jpg",
-      delay: 0,
-      link: "/projects/intranet-portal",
-    },
-    {
-      id: 2,
-      title: "Document Management System",
-      image: "https://cdnb.artstation.com/p/assets/images/images/041/576/171/large/3d-pro-club-a540d7126542929-612f83f928d25.jpg?1632102481",
-      delay: 100,
-      link: "/projects/document-management-system",
-    },
-    {
-      id: 3,
-      title: "Performance Management System",
-      image: "https://mma.prnewswire.com/media/2041787/PEPSI_Multipack.jpg?p=facebook",
-      delay: 200,
-      link: "/projects/performance-management-system",
-    },
-  ]
+    setIsVisible(true);
+  }, []);
 
   return (
     <main className="min-h-screen bg-background">
@@ -44,21 +34,21 @@ export default function WorkDetailFeaturedProjects() {
           }`}
         >
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-foreground tracking-tight">
-            Our featured projects
+            {heading}
           </h1>
         </div>
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {projects.map((project) => (
+          {projects.map((project, idx) => (
             <Link
-              key={project.id}
+              key={idx}
               href={project.link}
               className={`group flex flex-col transition-all duration-700 ease-out ${
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
               }`}
               style={{
-                transitionDelay: isVisible ? `${project.delay}ms` : "0ms",
+                transitionDelay: isVisible ? `${project.delay || 0}ms` : "0ms",
               }}
             >
               <div className="relative overflow-hidden rounded-2xl mb-4 aspect-square bg-muted">
@@ -78,5 +68,5 @@ export default function WorkDetailFeaturedProjects() {
         </div>
       </section>
     </main>
-  )
+  );
 }

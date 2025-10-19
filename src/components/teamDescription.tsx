@@ -172,11 +172,13 @@ export default function TeamDescription() {
     setIsPaused(prev => !prev);
   }, []);
 
-  const handleWhatsAppClick = useCallback(() => {
-    const phoneNumber = "+919074851748";
-    const whatsappUrl = `https://wa.me/${phoneNumber}`;
-    window.open(whatsappUrl, '_blank');
-  }, []);
+const handleWhatsAppClick = useCallback(() => {
+  const phoneNumber = "+919947400278";
+  const message = `Hello Dapps Solutions,%0AI'm interested in learning more about your AI-driven websites, automation systems, and digital transformation services designed to enhance business growth and efficiency.%0APlease share more details.`;
+  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+  window.open(whatsappUrl, '_blank');
+}, []);
+
 
   // Use appropriate highlighted sets based on language
   const currentHighlightedSets = language === 'ar' ? arabicHighlightedSets : highlightedSets;
