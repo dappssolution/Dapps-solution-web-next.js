@@ -7,6 +7,7 @@ import WorkMain from "@/components/workMain";
 
 export default function Works() {
     return (
+        
         <div> 
             <WorkBanner/>
             <WorkMain/>

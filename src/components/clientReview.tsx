@@ -2,33 +2,34 @@
 
 import type React from "react"
 import { useEffect, useMemo, useState } from "react"
-import { FiArrowRight, FiChevronLeft, FiChevronRight } from "react-icons/fi"
+import { useLanguage } from "../contexts/LanguageContext"
+import {  FiChevronLeft, FiChevronRight } from "react-icons/fi"
 import { FaStar } from "react-icons/fa6"
 
 type Item = {
-  src: string
-  alt: string
-  name: string
-  role: string
-  quote: string
-}
+  src: string;
+  alt: string;
+  nameKey: string;
+  roleKey: string;
+  quoteKey: string;
+};
 
 const ITEMS: Item[] = [
   {
     src: "https://img.freepik.com/premium-photo/phone-mobile-application-development-concept-mobile-internet-3d-illustration_76964-5164.jpg?w=826",
-    alt: "Shamna",
-    name: "Shamna",
-    role: "Client",
-    quote: "Innovative solutions with reliable support. Highly recommended.",
+    alt: "Basil Saman",
+    nameKey: "clientReview.item1.name",
+    roleKey: "clientReview.item1.role",
+    quoteKey: "clientReview.item1.quote",
   },
   {
     src: "https://sklc-tinymce-2021.s3.amazonaws.com/comp/2023/02/179_1675948994.png",
-    alt: "Shaheed",
-    name: "Shaheed",
-    role: "Client",
-    quote: "Efficient team delivering smart, scalable technology.",
+    alt: "Fadhil Alim",
+    nameKey: "clientReview.item2.name",
+    roleKey: "clientReview.item2.role",
+    quoteKey: "clientReview.item2.quote",
   },
-]
+];
 
 const fadeAnimStyle = `
 @keyframes fade-ltr {
@@ -45,6 +46,7 @@ const fadeAnimStyle = `
 
 export default function TestimonialHero() {
   const [index, setIndex] = useState(0)
+  const { t, language } = useLanguage();
 
   // Auto advance carousel every 2 seconds
   useEffect(() => {
@@ -71,35 +73,36 @@ export default function TestimonialHero() {
 
   return (
     <section
-      className="relative w-full min-h-screen overflow-hidden bg-white text-black"
+      className={`relative w-full min-h-screen overflow-hidden bg-white text-black${language === 'ar' ? ' rtl' : ''}`}
       aria-label="Testimonial Hero"
+      dir={language === 'ar' ? 'rtl' : 'ltr'}
     >
       <div className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-6 py-16 sm:px-8 lg:grid-cols-2 lg:py-24">
         {/* Left content */}
         <div className="flex flex-col gap-8">
           <header className="space-y-6">
             <h1 className="text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl text-black">
-              Smart Growth with Technology
+              {t('clientReview.title')}
             </h1>
             <p className="text-pretty leading-relaxed text-base sm:text-lg text-black">
-              Dapps Solutions empowers businesses with AI, automation, and tailored systems for smarter growth.
+              {t('clientReview.description')}
             </p>
           </header>
 
           <div className="flex flex-wrap items-center gap-6">
             <button
               className="inline-flex items-center gap-3 rounded-lg border border-border bg-secondary px-5 py-3 text-base font-medium text-foreground transition-colors hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
-              aria-label="Explore opportunities"
+              aria-label={t('clientReview.cta')}
             >
-              <span>Explore opportunities</span>
-              <FiArrowRight aria-hidden className="size-5" />
+              <span>{t('clientReview.cta')}</span>
+          
             </button>
 
             <div className="flex items-center gap-2 text-[#A43EF9]">
               {[...Array(5)].map((_, i) => (
                 <FaStar key={i} className="size-5" />
               ))}
-              <span className="ml-2 text-sm text-[#A43EF9]">4.9/5 from clients</span>
+              <span className="ml-2 text-sm text-[#A43EF9]">{t('clientReview.rating')}</span>
             </div>
           </div>
 
@@ -108,9 +111,9 @@ export default function TestimonialHero() {
               <FaStar className="size-6" />
             </div>
             <blockquote className="text-pretty leading-relaxed">
-              <p className="text-base sm:text-lg text-black">“{current.quote}”</p>
+              <p className="text-base sm:text-lg text-black">{t('clientReview.blockquotePrefix')}{t(current.quoteKey)}{t('clientReview.blockquoteSuffix')}</p>
               <footer className="mt-3 text-sm text-[#4B1083]">
-                — {current.name}, {current.role}
+                {t('clientReview.blockquoteBy').replace('{name}', t(current.nameKey)).replace('{role}', t(current.roleKey))}
               </footer>
             </blockquote>
           </div>

@@ -5,7 +5,6 @@ import type React from "react"
 type ClientsMarqueeProps = {
   speedSeconds?: number
   className?: string
-  // Pass Simple Icons slugs for ANY brand available
   brands?: string[]
 }
 
@@ -14,11 +13,10 @@ export default function ClientsMarquee({
   speedSeconds = 22,
   className,
   brands = [
-    "apple", "google",   "netflix", "adidas", "nike", "samsung",
-    "spotify", "uber", "airbnb", "paypal", "facebook",  "instagram" ,
+    "apple", "google", "netflix", "adidas", "nike", "samsung",
+    "spotify", "uber", "airbnb", "paypal", "facebook", "instagram",
     "github", "gitlab", "slack", "youtube", "tiktok", "whatsapp", "pinterest", "dropbox",
     "dribbble", "figma", "behance", "wordpress", "vimeo", "snapchat", "telegram"
-    // Add more as needed from Simple Icons list
   ],
 }: ClientsMarqueeProps) {
   const items = [...brands, ...brands]
@@ -37,8 +35,10 @@ export default function ClientsMarquee({
         <div
           className="relative mx-auto w-full overflow-hidden rounded-xl border border-black/5 bg-white px-2 py-6 md:px-4 md:py-8"
           style={{
-            WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)",
-            maskImage: "linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)",
+            WebkitMaskImage:
+              "linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)",
+            maskImage:
+              "linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)",
             backdropFilter: "blur(6px)",
           }}
         >
@@ -81,26 +81,24 @@ export default function ClientsMarquee({
   )
 }
 
-// Individual logo, black SVG on white
+// Individual logo, gradient mask
 function LogoItem({ slug }: { slug: string }) {
-  // Use SVG with gradient fill for the logo
-  const label = `Logo of ${slug.charAt(0).toUpperCase()}${slug.slice(1)}`;
-  // Gradient SVG string for mask
-  const gradientId = `gradient-${slug}`;
-  const svgUrl =
-    `https://cdn.simpleicons.org/${encodeURIComponent(slug)}/ffffff`;
+  const label = `Logo of ${slug.charAt(0).toUpperCase()}${slug.slice(1)}`
+  const gradientId = `gradient-${slug}`
+  const svgUrl = `https://cdn.simpleicons.org/${encodeURIComponent(slug)}/ffffff`
+
   return (
     <div
       className="group flex shrink-0 items-center justify-center rounded-lg px-3 py-2 transition-transform duration-300 hover:scale-105 md:px-4 md:py-3"
       role="img"
       aria-label={label}
       title={label}
-      style={{ position: 'relative' }}
+      style={{ position: "relative" }}
     >
       <span
         style={{
-          display: 'inline-block',
-          position: 'relative',
+          display: "inline-block",
+          position: "relative",
         }}
       >
         <svg
@@ -112,11 +110,18 @@ function LogoItem({ slug }: { slug: string }) {
           className="h-6 w-auto md:h-8 lg:h-10"
         >
           <defs>
-            <linearGradient id={gradientId} x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
-              <stop offset="0%" stopColor="#3D096C" />
-              <stop offset="35%" stopColor="#A43EF9" />
-              <stop offset="70%" stopColor="#5A189A" />
-              <stop offset="100%" stopColor="#E1AAFF" />
+            {/* Updated gradient colors */}
+            <linearGradient
+              id={gradientId}
+              x1="0"
+              y1="0"
+              x2="40"
+              y2="40"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop offset="0%" stopColor="#040150" />
+              <stop offset="50%" stopColor="#5A189A" />
+              <stop offset="100%" stopColor="#000000" />
             </linearGradient>
           </defs>
           <image
@@ -129,5 +134,5 @@ function LogoItem({ slug }: { slug: string }) {
         </svg>
       </span>
     </div>
-  );
+  )
 }
