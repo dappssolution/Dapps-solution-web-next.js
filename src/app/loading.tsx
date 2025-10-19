@@ -11,6 +11,7 @@ export default function Loading() {
           opacity-90 shadow-[0_0_40px_10px_rgba(90,24,154,0.4)]"
         />
 
+ 
         {/* Inner circle with gradient background */}
         <div
           className="absolute w-36 h-36 rounded-full 
@@ -25,6 +26,7 @@ export default function Loading() {
             height={80}
             className="drop-shadow-[0_0_25px_#A43EF9]"
           />
+ 
         </div>
       </div>
 
