@@ -82,6 +82,7 @@ export default function Header() {
   )
 
   return (
+
     <header
       className={`fixed h-[70px] md:h-[90px] top-2 border rounded-full left-2 right-2 md:left-10 md:right-10 z-50 flex justify-center items-center transition-all duration-500`}
       style={{
@@ -95,12 +96,14 @@ export default function Header() {
           <div className="relative flex items-center justify-between w-full transition-all duration-500 ease-in-out rounded-[8px] px-2 sm:px-3 md:px-6 lg:px-8 py-2 sm:py-3">
             <div className="flex-shrink-0">
               <Link href="/" prefetch>
-                <Image src={"/dapps-logo.png"} alt="Dapps Logo" width={110} height={80} className="w-[90px] md:w-[130px] h-auto" />
+                <Image src={"/dapps-logo.png"} alt="Dapps Logo" width={110} height={80} className="w-[100px] md:w-[130px] h-auto" />
               </Link>
             </div>
 
-            {/* Navigation - visible on desktop, flex on md+ for tablets */}
-            <nav className="hidden md:flex absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 items-center space-x-2 sm:space-x-4">
+            {/* Navigation - visible on desktop, flex on lg+ only. Mobile view for <=991px */}
+            <nav
+              className="hidden lg:flex absolute lg:relative top-1/2 left-1/2 lg:top-auto lg:left-auto -translate-y-1/2 -translate-x-1/2 lg:translate-y-0 lg:translate-x-0 items-center space-x-2 sm:space-x-4"
+            >
               {[
                 { href: "/about", label: t("header.about") },
                 { href: "/service", label: t("header.services") },
@@ -130,24 +133,23 @@ export default function Header() {
 
             {/* Right Side */}
             <div className="flex items-center">
-              <div className="hidden md:flex items-center gap-2 sm:gap-3">
+              <div className="hidden lg:flex items-center gap-2 sm:gap-3">
                 <LanguageSwitcher />
-               <a
-  href={`https://wa.me/919947400278?text=${encodeURIComponent(
-    "Hello Dapps Solutions,\nI'm interested in learning more about your AI-driven websites, automation systems, and digital transformation services designed to enhance business growth and efficiency.\nPlease share more details."
-  )}`}
-  target="_blank"
-  rel="noopener noreferrer"
-  className="inline-flex items-center justify-center gap-2 text-white px-3 sm:px-4 py-2 sm:py-[10px] rounded-[8px] transition-all duration-300 hover:scale-105"
-  style={{ background: gradient }}
->
-  <span className="text-xs sm:text-sm md:text-base">{t("header.contact")}</span>
-</a>
-
+                <a
+                  href={`https://wa.me/919947400278?text=${encodeURIComponent(
+                    "Hello Dapps Solutions,\nI'm interested in learning more about your AI-driven websites, automation systems, and digital transformation services designed to enhance business growth and efficiency.\nPlease share more details."
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 text-white px-3 sm:px-4 py-2 sm:py-[10px] rounded-[8px] transition-all duration-300 hover:scale-105"
+                  style={{ background: gradient }}
+                >
+                  <span className="text-xs sm:text-sm md:text-base">{t("header.contact")}</span>
+                </a>
               </div>
 
-              {/* Mobile/Tablet Controls */}
-              <div className="md:hidden flex items-center gap-2 sm:gap-3">
+              {/* Mobile/Tablet Controls - visible for <=991px */}
+              <div className="lg:hidden flex items-center gap-2 sm:gap-3">
                 <LanguageSwitcher isMobile={true} />
                 <button
                   className={`${isScrolled || isDarkTextRoute ? "text-[#040150]" : "text-white"} ml-1`}

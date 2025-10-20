@@ -15,7 +15,7 @@ export default function DepartmentSection({ title }: DepartmentSectionProps) {
     <div>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between py-6   border-b border-gray-200 cursor-pointer transition-colors"
+        className="w-full flex items-center justify-between py-6 border-b border-gray-200 cursor-pointer transition-colors"
       >
         <h3 className="text-xl font-medium">{title}</h3>
         <ChevronDown className={`h-6 w-6 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`} />
@@ -23,55 +23,58 @@ export default function DepartmentSection({ title }: DepartmentSectionProps) {
 
       {isOpen && (
         <div className="py-6 px-4 space-y-4 bg-gray-50">
-           <FullDepartmentSection
-              title="Operations & Research (1)"
-              jobs={[
-                { 
-                  title: "Operations & Research Coordinator",
-                  experience: "2+ Years of experience",
-                  description: `Ready to take charge of deadlines, processes, and research? We're looking for a detail-oriented team player to:
+          <FullDepartmentSection
+            title="Frontend Development (1)"
+            jobs={[
+              {
+                title: "React & Next.js Developer",
+                experience: "3+ Years of experience",
+                description: `We’re looking for a passionate React & Next.js Developer to build high-performance web applications and contribute to our growing team.
 
-• Manage project timelines & deliverables
-• Coordinate communication across teams
-• Conduct research for course development
-• Optimize processes and keep us on track
-• Provide regular updates to management
-
-What You Bring:
-• Excellent organizational skills
-• Strong research & analytical mindset
-• Top-notch communication skills
-• Experience with project management tools`
-                }
-              ]}
-              defaultOpen={true}
-            />
-
-<FullDepartmentSection
-              title="Design (1)"
-              jobs={[
-                { 
-                  title: "Senior Graphic Designer",
-                  experience: "4+ Years of experience",
-                  description: `We're seeking a talented Senior Graphic Designer with video editing expertise to join our creative team. In this role, you'll be responsible for:
-
-• Creating compelling visual designs for digital and print media
-• Producing high-quality video content and animations
-• Leading design projects from concept to completion
-• Collaborating with cross-functional teams
-• Maintaining brand consistency across all platforms
+Responsibilities:
+• Develop dynamic and responsive user interfaces using React and Next.js  
+• Optimize performance and ensure SEO-friendly builds  
+• Integrate REST and GraphQL APIs  
+• Collaborate with designers and backend developers for smooth integrations  
+• Maintain clean, reusable, and efficient code  
 
 Requirements:
-• Strong portfolio showcasing both graphic design and video editing work
-• Proficiency in Adobe Creative Suite (Photoshop, Illustrator, After Effects, Premiere Pro)
-• Experience with motion graphics and animation
-• Excellent time management and project coordination skills
-• Ability to work under tight deadlines while maintaining quality`
-                }
-              ]}
-            />
+• Strong proficiency in React, Next.js, TypeScript, and Tailwind CSS  
+• Experience with server-side rendering (SSR) and static site generation (SSG)  
+• Understanding of Git workflows and modern CI/CD practices  
+• Knowledge of modern frontend tools (Webpack, Vercel, etc.)  
+• Attention to detail and performance optimization`
+              }
+            ]}
+            defaultOpen={true}
+          />
+
+          <FullDepartmentSection
+            title="Backend Development (1)"
+            jobs={[
+              {
+                title: "Backend Developer",
+                experience: "3+ Years of experience",
+                description: `We’re seeking a skilled Backend Developer to architect, develop, and optimize robust server-side solutions for modern applications.
+
+Responsibilities:
+• Design and build scalable APIs and backend systems  
+• Work closely with frontend teams to define data structures and API requirements  
+• Implement secure authentication and authorization systems  
+• Optimize database queries and application performance  
+• Maintain documentation and ensure high code quality  
+
+Requirements:
+• Strong experience with Node.js, Express, or NestJS  
+• Good knowledge of databases (MongoDB, PostgreSQL, or MySQL)  
+• Familiarity with cloud services (AWS, Vercel, or Firebase)  
+• Understanding of RESTful APIs and GraphQL  
+• Experience with Git and deployment pipelines`
+              }
+            ]}
+          />
         </div>
       )}
     </div>
   )
-} 
+}
