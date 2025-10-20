@@ -173,10 +173,9 @@ const serviceRoutes = [
   "/service/ai-agents-automation",
 ]
 
-function ServiceCard({ title, desc, icon, featured, index }: Service & { index: number }) {
+function ServiceCard({ title, desc, icon,  index }: Service & { index: number }) {
   const langCtx = useContext(LanguageContext)
   const t = langCtx?.t || ((k: string) => k)
-  const isFirst = index === 0
   const route = serviceRoutes[index]
 
   return (
@@ -195,52 +194,43 @@ function ServiceCard({ title, desc, icon, featured, index }: Service & { index: 
           role="listitem"
           className={cn(
             "relative flex h-full min-h-56 flex-col justify-between gap-6 sm:min-h-64 md:min-h-72",
-              featured ? "bg-white/5 rounded-[var(--radius-lg)] p-4" : "",
-            )}
-          >
-            <div className="flex items-start justify-between">
-              <div
-                className={cn(
-                  "inline-flex items-center justify-center rounded-full",
-                  "size-12 sm:size-14",
-                  "bg-[radial-gradient(circle_at_60%_40%,_#E1AAFF_0%,_#5A189A_60%,_#040150_100%)] text-white",
-                  "transition-transform duration-300 group-hover:scale-110 group-hover:shadow-lg border-2 border-[#E1AAFF]",
-                )}
-                aria-hidden
-              >
-                {icon}
-              </div>
-
-              {isFirst && (
-                <span
-                  className={cn(
-                    "pointer-events-none absolute -inset-0.5 rounded-[var(--radius-lg)]",
-                    "opacity-0 transition-opacity duration-300 group-hover:opacity-100",
-                    "bg-[radial-gradient(260px_260px_at_10%_10%,#5A189A55,transparent_70%)]",
-                  )}
-                  aria-hidden
-                />
+            // ✅ Apply slightly transparent background to ALL cards
+            "bg-white/10 backdrop-blur-[2px] rounded-[var(--radius-lg)] p-4",
+            "transition-all duration-300 hover:bg-white/15",
+          )}
+        >
+          <div className="flex items-start justify-between">
+            <div
+              className={cn(
+                "inline-flex items-center justify-center rounded-full",
+                "size-12 sm:size-14",
+                "bg-[radial-gradient(circle_at_60%_40%,_#E1AAFF_0%,_#5A189A_60%,_#040150_100%)] text-white",
+                "transition-transform duration-300 group-hover:scale-110 group-hover:shadow-lg border-2 border-[#E1AAFF]",
               )}
-            </div>
-
-            <div className="relative z-10 cursor-pointer">
-              <h3 className="mb-2 text-xl font-semibold sm:text-2xl text-[#fff]">{title}</h3>
-              <p className="text-sm leading-relaxed text-white sm:text-base">{desc}</p>
-            </div>
-
-            <div className="mt-4 flex items-center justify-start">
-              <div
-                className={cn(
-                  "inline-flex items-center gap-2 px-3 py-1 text-xs font-medium border-2 border-[#5A189A]",
-                  "bg-transparent text-[#FFF] rounded-[var(--radius-lg)] group-hover:bg-[#5A189A] group-hover:text-white transition-colors duration-300",
-                )}
-              >
-                {t("services.card.learnMore")}
-                <FiArrowUpRight className="size-3.5" aria-hidden />
-              </div>
+              aria-hidden
+            >
+              {icon}
             </div>
           </div>
-        </TiltCard>
+
+          <div className="relative z-10 cursor-pointer">
+            <h3 className="mb-2 text-xl font-semibold sm:text-2xl text-[#fff]">{title}</h3>
+            <p className="text-sm leading-relaxed text-white/90 sm:text-base">{desc}</p>
+          </div>
+
+          <div className="mt-4 flex items-center justify-start">
+            <div
+              className={cn(
+                "inline-flex items-center gap-2 px-3 py-1 text-xs font-medium border-2 border-[#5A189A]",
+                "bg-transparent text-[#FFF] rounded-[var(--radius-lg)] group-hover:bg-[#5A189A] group-hover:text-white transition-colors duration-300",
+              )}
+            >
+              {t("services.card.learnMore")}
+              <FiArrowUpRight className="size-3.5" aria-hidden />
+            </div>
+          </div>
+        </div>
+      </TiltCard>
     </Link>
   )
 }

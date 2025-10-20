@@ -14,6 +14,7 @@ type Item = {
   quoteKey: string;
 };
 
+
 const ITEMS: Item[] = [
   {
     src: "https://img.freepik.com/premium-photo/phone-mobile-application-development-concept-mobile-internet-3d-illustration_76964-5164.jpg?w=826",

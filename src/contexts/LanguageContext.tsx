@@ -219,13 +219,13 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       // Footer Navigation
       'footer.tagline': 'Delivering Technological Excellence and Innovation to Businesses Worldwide — With Presence in India, Saudi Arabia & the UK',
       'footer.pages': 'Pages',
-      'footer.brandbik' : 'BRANDBIK LLP' , 
+     
       'footer.home': 'Home',
       'footer.aboutUs': 'About us',
       'footer.works': 'Works',
       'footer.contactUs': 'Contact Us',
       'footer.contactInfo': 'Contact Us',
-      'footer.copyright': '© {year} Brandbik. All rights reserved.',
+      'footer.copyright': '© {year} DApps Solutions. All rights reserved.',
       'footer.privacyPolicy': 'Privacy Policy',
       'footer.termsOfService': 'Terms of Service',
       'footer.cookiePolicy': 'Cookie Policy',
@@ -237,13 +237,14 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       // Team Description
       'team.description.text': "We're a cross-disciplinary team of strategists, designers, developers, and storytellers. What brings us together is a shared belief",
       
-      // About Boxes
-      'about.boxes.brands': 'Brands We Work With',
-      'about.boxes.projects': 'Projects Completed',
-      'about.boxes.countries': 'Countries we work with',
-      'about.boxes.scaled': 'Industries Empowered',
-      'about.boxes.revenue': 'Revenue Generated',
-      'about.boxes.clients': 'Happy Clients',
+    // About Boxes
+'about.boxes.brands': 'Our Brands',
+'about.boxes.projects': 'Projects Done',
+'about.boxes.countries': 'Countries Served',
+'about.boxes.scaled': 'Industries',
+'about.boxes.revenue': 'Revenue',
+'about.boxes.clients': 'Clients',
+
       
       // Approach Section
       'approach.badge': 'Approach',
