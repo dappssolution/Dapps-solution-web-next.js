@@ -11,7 +11,7 @@ import { motion } from "framer-motion"
 
 export default function Header() {
   const [isLargeScreen, setIsLargeScreen] = useState(false)
-  const [isScrolled, setIsScrolled] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false) 
   const [isPanelOpen, setIsPanelOpen] = useState(false)
   const { language, setLanguage, t } = useLanguage()
   const pathname = usePathname()
@@ -84,12 +84,21 @@ export default function Header() {
   return (
 
     <header
-      className={`fixed h-[70px] md:h-[90px] top-2 border rounded-full left-2 right-2 md:left-10 md:right-10 z-50 flex justify-center items-center transition-all duration-500`}
-      style={{
-        background: isScrolled || isDarkTextRoute ? "#fff" : "transparent",
-        boxShadow: isScrolled || isDarkTextRoute ? "0 2px 16px 0 rgba(61,9,108,0.08)" : "none",
-        borderColor: isScrolled || isDarkTextRoute ? "rgba(0,0,0,0.1)" : "transparent",
-      }}
+      className={`fixed h-[70px] md:h-[70px] top-2  rounded-full left-2 right-2 md:left-20 md:right-20 z-50 flex justify-center items-center transition-all duration-500`}
+style={{
+  background: isScrolled || isDarkTextRoute
+    ? "linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(250,250,255,0.65) 100%)"
+    : "transparent",
+  backdropFilter: isScrolled || isDarkTextRoute ? "blur(16px) saturate(180%)" : "none",
+  WebkitBackdropFilter: isScrolled || isDarkTextRoute ? "blur(16px) saturate(180%)" : "none",
+  boxShadow: isScrolled || isDarkTextRoute
+    ? "0 4px 24px rgba(61,9,108,0.15)"
+    : "none",
+  transition: "all 0.4s ease-in-out",
+  zIndex: 999,
+}}
+
+
     >
       <div className="relative z-10 container mx-auto px-2 sm:px-3 md:px-6 lg:px-8">
         <div className="flex items-center justify-center">

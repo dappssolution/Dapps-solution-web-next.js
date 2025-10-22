@@ -14,7 +14,7 @@ function SocialLinks({ className = "" }: { className?: string }) {
   return (
     <div className={`flex items-center gap-3 ${className}`}>
       <Link href="https://www.instagram.com/dapps_solutions" aria-label="Instagram" className={linkBase}>
-        <FaInstagram className={iconBase} />
+        <FaInstagram className={iconBase} /> 
       </Link>
       <Link href="https://wa.me/919947400278" aria-label="WhatsApp" className={linkBase}>
         <FaWhatsapp className={iconBase} />
