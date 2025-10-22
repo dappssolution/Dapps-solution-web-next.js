@@ -128,8 +128,8 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     'services.service3.desc': 'Build a unique brand identity with thoughtful visual systems and messaging.',
     'services.service4.title': 'Digital Marketing',
     'services.service4.desc': 'Grow your audience with data-driven strategies across paid, search, and social.',
-    'services.service5.title': 'Video & Photo Editing',
-    'services.service5.desc': 'Professional editing for videos and images — enhancing visuals, color grading.',
+    'services.service5.title': 'ERP & CRM Softwares',
+    'services.service5.desc': 'Empower businesses with smart, scalable, and fully customized ERP & CRM  systems streamline operations and enhance customer relationships.',
     'services.service6.title': 'AI Agents & Automation',
     'services.service6.desc': 'Streamline workflows with intelligent AI agents and automated systems.',
     // Hero Section
@@ -380,8 +380,8 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     'services.service3.desc': 'بناء هوية علامة تجارية فريدة بأنظمة بصرية ورسائل مدروسة.',
     'services.service4.title': 'التسويق الرقمي',
     'services.service4.desc': 'نمِ جمهورك باستراتيجيات قائمة على البيانات عبر الإعلانات والبحث ووسائل التواصل.',
-    'services.service5.title': 'تحرير الفيديو والصور',
-    'services.service5.desc': 'تحرير احترافي للفيديوهات والصور — تحسين المرئيات وتعديل الألوان.',
+    'services.service5.title': 'أنظمة ERP و CRM',
+    'services.service5.desc': 'تمكّن الشركات من خلال أنظمة ERP وCRM ذكية وقابلة للتطوير ومخصصة بالكامل لتبسيط العمليات وتعزيز علاقات العملاء',
     'services.service6.title': 'وكلاء الذكاء الاصطناعي والأتمتة',
     'services.service6.desc': 'تبسيط سير العمل باستخدام وكلاء الذكاء الاصطناعي الذكي والأنظمة المؤتمتة.',
   // Hero Section (Arabic)
