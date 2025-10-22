@@ -217,7 +217,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       
          
       // Footer Navigation
-      'footer.tagline': 'Delivering Technological Excellence and Innovation to Businesses Worldwide — With Presence in India, Saudi Arabia & the UK',
+      'footer.tagline': 'Delivering Technological Excellence and Innovation to Businesses Worldwide — With Presence in India ,UAE & Qatar',
       'footer.pages': 'Pages',
      
       'footer.home': 'Home',
