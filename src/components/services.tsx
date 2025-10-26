@@ -119,25 +119,25 @@ function TiltCard({
   const [transform, setTransform] = useState<string>("")
 
   const handleMouseMove = (e: React.MouseEvent) => {
-    const node = ref.current
-    if (!node) return
-    const rect = node.getBoundingClientRect()
-    const x = e.clientX - rect.left
-    const y = e.clientY - rect.top
-
-    const px = x / rect.width
-    const py = y / rect.height
-
-    const rx = (py - 0.5) * -2 * maxRotate
-    const ry = (px - 0.5) * 2 * maxRotate
-
-    const next = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) scale(${hoverScale})`
-    setTransform(next)
-
-    if (glare) {
-      node.style.setProperty("--glare-x", `${px * 100}%`)
-      node.style.setProperty("--glare-y", `${py * 100}%`)
-    }
+    const node = ref.current;
+    if (!node) return;
+    // Batch DOM read
+    const rect = node.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const px = x / rect.width;
+    const py = y / rect.height;
+    const rx = (py - 0.5) * -2 * maxRotate;
+    const ry = (px - 0.5) * 2 * maxRotate;
+    const next = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) scale(${hoverScale})`;
+    // Use requestAnimationFrame for DOM write
+    window.requestAnimationFrame(() => {
+      setTransform(next);
+      if (glare) {
+        node.style.setProperty("--glare-x", `${px * 100}%`);
+        node.style.setProperty("--glare-y", `${py * 100}%`);
+      }
+    });
   }
 
   const handleLeave = () => {

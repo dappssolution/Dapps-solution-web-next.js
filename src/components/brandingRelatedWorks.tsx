@@ -16,11 +16,12 @@ export default function BrandingRelatedWorks() {
   const [hoveredProjectId, setHoveredProjectId] = useState<number | null>(null)
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect()
-    setMousePosition({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top
-    })
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    window.requestAnimationFrame(() => {
+      setMousePosition({ x, y });
+    });
   }
 
   // Sample data for the related works grid - using website development projects

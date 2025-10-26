@@ -1,5 +1,6 @@
-"use client"
 
+"use client"
+import React from "react";
 import Link from "next/link"
 import Image from "next/image"
 import { FaInstagram, FaLinkedin,  FaWhatsapp, FaFacebook } from "react-icons/fa"
@@ -34,6 +35,10 @@ function SocialLinks({ className = "" }: { className?: string }) {
 
 export default function Footer() {
   const { t } = useLanguage();
+  const [year, setYear] = React.useState<string>("");
+  React.useEffect(() => {
+    setYear(new Date().getFullYear().toString());
+  }, []);
   return (
     <footer
       className="w-full text-white px-4 py-10 md:py-14 lg:px-0 relative overflow-hidden"
@@ -53,6 +58,7 @@ export default function Footer() {
               src="/white-logo.png"
               alt="Dapps Solutions Logo"
               fill
+              sizes="(max-width: 600px) 100vw, 36vw"
               priority
               className="object-contain drop-shadow-lg"
             />
@@ -117,7 +123,7 @@ export default function Footer() {
       {/* Bottom bar */}
       <div className="mt-10 border-t border-white/20 pt-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-2 md:gap-4 text-xs text-white/80 max-w-7xl mx-auto">
         <div className="text-left w-full">
-          {t('footer.copyright').replace('{year}', new Date().getFullYear().toString())}
+          {year && t('footer.copyright').replace('{year}', year)}
         </div>
         <div className="flex gap-4 w-full md:w-auto">
           <Link href="/privacy-policy" className="hover:underline text-left">{t('footer.privacyPolicy')}</Link>

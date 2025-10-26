@@ -5,6 +5,7 @@ import { useEffect, useMemo, useState } from "react"
 import { useLanguage } from "../contexts/LanguageContext"
 import {  FiChevronLeft, FiChevronRight } from "react-icons/fi"
 import { FaStar } from "react-icons/fa6"
+import Image from "next/image"
 
 type Item = {
   src: string;
@@ -131,10 +132,13 @@ export default function TestimonialHero() {
               className="fade-anim-box relative w-full rounded-2xl bg-white overflow-hidden flex items-center justify-center"
               style={{ height: "100%" }}
             >
-              <img
+              <Image
                 src={current.src}
                 alt={current.alt}
                 className="fade-img object-cover rounded-2xl"
+                width={520}
+                height={520}
+                priority
                 style={{
                   width: "100%",
                   height: "auto",
@@ -144,6 +148,7 @@ export default function TestimonialHero() {
                   background: "black",
                   display: "block",
                 }}
+                unoptimized
               />
               <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 items-center gap-3 rounded-full border border-[#4B1083] bg-white px-2 py-1">
                 <button
