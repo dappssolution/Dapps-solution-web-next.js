@@ -12,14 +12,21 @@ const ClientReviews = dynamic(() => import("@/components/clientReview"));
 
 export default function Home() {
   return (
-    <div>
+    <main role="main" aria-label="Homepage main content">
+      {/* Hero section: ensure alt text and ARIA landmarks in HeroSection */}
       <HeroSection />
+      {/* Clients section: ensure logos have alt text */}
       <ClientsSection />
+      {/* About section: ensure carousel images have alt text and loading="lazy" */}
       <AboutSection />
+      {/* AboutBoxes: ensure interactive elements have aria-labels */}
       <AboutBoxes />
+      {/* Services section: ensure icons and cards have aria-labels */}
       <ServicesSection />
+      {/* Works: ensure images have width/height and loading="lazy" */}
       <Works />
+      {/* ClientReviews: ensure carousel images have alt text and loading="lazy" */}
       <ClientReviews />
-    </div>
+    </main>
   );
 }

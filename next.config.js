@@ -8,6 +8,8 @@ const nextConfig = {
   reactStrictMode: false,
   images: {
     domains: [
+      'sklc-tinymce-2021.s3.amazonaws.com',
+      'img.freepik.com',
       'images.unsplash.com',
       'plus.unsplash.com',
       'images.pexels.com',

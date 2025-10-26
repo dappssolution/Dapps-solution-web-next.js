@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import Image from "next/image";
 import Link from "next/link"
 
 
@@ -52,10 +53,13 @@ export default function WorkDetailFeaturedProjects({ projects, heading }: WorkDe
               }}
             >
               <div className="relative overflow-hidden rounded-2xl mb-4 aspect-square bg-muted">
-                <img
+                <Image
                   src={project.image || "/placeholder.svg"}
                   alt={project.title}
+                  width={400}
+                  height={400}
                   className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+                  priority={idx === 0}
                 />
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
               </div>
