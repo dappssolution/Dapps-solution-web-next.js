@@ -17,20 +17,49 @@ type Item = {
 
 const ITEMS: Item[] = [
   {
-    src: "https://img.freepik.com/premium-photo/phone-mobile-application-development-concept-mobile-internet-3d-illustration_76964-5164.jpg?w=826",
+    src: "/app development webside.jpg",
     alt: "Basil Saman",
     nameKey: "clientReview.item1.name",
     roleKey: "clientReview.item1.role",
     quoteKey: "clientReview.item1.quote",
   },
   {
-    src: "https://sklc-tinymce-2021.s3.amazonaws.com/comp/2023/02/179_1675948994.png",
+    src: "/erp crm softwares.jpg",
     alt: "Fadhil Alim",
     nameKey: "clientReview.item2.name",
     roleKey: "clientReview.item2.role",
     quoteKey: "clientReview.item2.quote",
   },
+  {
+    src: "/web development webside.jpg",
+    alt: "Client 3",
+    nameKey: "clientReview.item3.name",
+    roleKey: "clientReview.item3.role",
+    quoteKey: "clientReview.item3.quote",
+  },
+  {
+    src: "/ai agent.jpg",
+    alt: "Client 4",
+    nameKey: "clientReview.item4.name",
+    roleKey: "clientReview.item4.role",
+    quoteKey: "clientReview.item4.quote",
+  },
+  {
+    src: "digital marketting.jpg",
+    alt: "Client 5",
+    nameKey: "clientReview.item5.name",
+    roleKey: "clientReview.item5.role",
+    quoteKey: "clientReview.item5.quote",
+  },
+  {
+    src: "Branding webside.jpg",
+    alt: "Client 6",
+    nameKey: "clientReview.item6.name",
+    roleKey: "clientReview.item6.role",
+    quoteKey: "clientReview.item6.quote",
+  },
 ];
+
 
 const fadeAnimStyle = `
 @keyframes fade-ltr {
@@ -78,104 +107,116 @@ export default function TestimonialHero() {
       aria-label="Testimonial Hero"
       dir={language === 'ar' ? 'rtl' : 'ltr'}
     >
-      <div className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-6 py-16 sm:px-8 lg:grid-cols-2 lg:py-24">
-        {/* Left content */}
-        <div className="flex flex-col gap-8">
-          <header className="space-y-6">
-            <h1 className="text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl text-black">
-              {t('clientReview.title')}
-            </h1>
-            <p className="text-pretty leading-relaxed text-base sm:text-lg text-black">
-              {t('clientReview.description')}
-            </p>
-          </header>
+<div
+  className={`relative mx-auto max-w-7xl grid grid-cols-1 items-center gap-12 px-6 pt-0 pb-12 sm:px-8 lg:grid-cols-2 lg:py-24 ${
+    language === "ar" ? "lg:[direction:rtl]" : ""
+  }`}>
 
-          <div className="flex flex-wrap items-center gap-6">
-            <button
-              className="inline-flex items-center gap-3 rounded-lg border border-border bg-secondary px-5 py-3 text-base font-medium text-foreground transition-colors hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
-              aria-label={t('clientReview.cta')}
-            >
-              <span>{t('clientReview.cta')}</span>
-          
-            </button>
+  {/* Left content (text) */}
+  <div
+    className={`flex flex-col gap-8 min-h-[580px] ${
+      language === "ar" ? "lg:order-2 text-right" : ""
+    }`}
+  >
+    <header className="space-y-6">
+      <h1 className="text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl text-black">
+        {t("clientReview.title")}
+      </h1>
+      <p className="text-pretty leading-relaxed text-base sm:text-lg text-black">
+        {t("clientReview.description")}
+      </p>
+    </header>
 
-            <div className="flex items-center gap-2 text-[#A43EF9]">
-              {[...Array(5)].map((_, i) => (
-                <FaStar key={i} className="size-5" />
-              ))}
-              <span className="ml-2 text-sm text-[#A43EF9]">{t('clientReview.rating')}</span>
-            </div>
-          </div>
+    <div className="flex flex-wrap items-center gap-6">
+      <button
+        className="inline-flex items-center gap-3 rounded-lg border border-border bg-secondary px-5 py-3 text-base font-medium text-foreground transition-colors hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+        aria-label={t("clientReview.cta")}
+      >
+        <span>{t("clientReview.cta")}</span>
+      </button>
 
-          <div className="mt-2 flex items-start gap-4 rounded-xl border border-[#4B1083] bg-white p-5">
-            <div className="mt-1 rounded-full border border-[#4B1083] p-2 text-[#4B1083]">
-              <FaStar className="size-6" />
-            </div>
-            <blockquote className="text-pretty leading-relaxed">
-              <p className="text-base sm:text-lg text-black">{t('clientReview.blockquotePrefix')}{t(current.quoteKey)}{t('clientReview.blockquoteSuffix')}</p>
-              <footer className="mt-3 text-sm text-[#4B1083]">
-                {t('clientReview.blockquoteBy').replace('{name}', t(current.nameKey)).replace('{role}', t(current.roleKey))}
-              </footer>
-            </blockquote>
-          </div>
-        </div>
-
-        {/* Right content - client image and controls */}
-        <div
-          className="relative w-full max-w-[400px] md:max-w-[340px] lg:max-w-[520px] flex items-center"
-          style={{ height: "100%" }}
-        >
-          <div className="group relative w-full flex items-center justify-center">
-            <div
-              key={index}
-              className="fade-anim-box relative w-full rounded-2xl bg-white overflow-hidden flex items-center justify-center"
-              style={{ height: "100%" }}
-            >
-              <img
-                src={current.src}
-                alt={current.alt}
-                className="fade-img object-cover rounded-2xl"
-                style={{
-                  width: "100%",
-                  height: "auto",
-                  maxHeight: "520px",
-                  aspectRatio: "4/5",
-                  animation: "fade-ltr 1.2s",
-                  background: "black",
-                  display: "block",
-                }}
-              />
-              <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 items-center gap-3 rounded-full border border-[#4B1083] bg-white px-2 py-1">
-                <button
-                  className="rounded-full p-2 text-[#4B1083] transition hover:bg-[#4B1083] hover:text-white focus-visible:outline-none focus-visible:ring-2"
-                  aria-label="Previous"
-                  onClick={prev}
-                >
-                  <FiChevronLeft className="size-5" />
-                </button>
-                <div className="flex items-center gap-1">
-                  {ITEMS.map((_, i) => (
-                    <span
-                      key={i}
-                      className={`h-1.5 w-6 rounded-full transition-all ${
-                        i === index ? "bg-[#4B1083]" : "bg-black"
-                      }`}
-                      aria-hidden
-                    />
-                  ))}
-                </div>
-                <button
-                  className="rounded-full p-2 text-[#4B1083] transition hover:bg-[#4B1083] hover:text-white focus-visible:outline-none focus-visible:ring-2"
-                  aria-label="Next"
-                  onClick={next}
-                >
-                  <FiChevronRight className="size-5" />
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div className="flex items-center gap-2 text-[#A43EF9]">
+        {[...Array(5)].map((_, i) => (
+          <FaStar key={i} className="size-5" />
+        ))}
+        <span className="ml-2 text-sm text-[#A43EF9]">
+          {t("clientReview.rating")}
+        </span>
       </div>
+    </div>
+
+    <div className="mt-2 flex items-start gap-4 rounded-xl border border-[#4B1083] bg-white p-5">
+      <div className="mt-1 rounded-full border border-[#4B1083] p-2 text-[#4B1083]">
+        <FaStar className="size-6" />
+      </div>
+      <blockquote className="text-pretty leading-relaxed">
+        <p className="text-base sm:text-lg text-black">
+          {t("clientReview.blockquotePrefix")}
+          {t(current.quoteKey)}
+          {t("clientReview.blockquoteSuffix")}
+        </p>
+        <footer className="mt-3 text-sm text-[#4B1083]">
+          {t("clientReview.blockquoteBy")
+            .replace("{name}", t(current.nameKey))
+            .replace("{role}", t(current.roleKey))}
+        </footer>
+      </blockquote>
+    </div>
+  </div>
+
+{/* Right content - client image and controls */}
+<div
+  className={`relative w-full flex items-center justify-center
+    ${language === "ar" ? "lg:justify-start lg:pl-8" : "lg:justify-end lg:pr-8"}
+  `}>
+
+  <div className="relative w-full max-w-[400px] md:max-w-[340px] lg:max-w-[520px] flex flex-col items-center">
+    <img
+      src={current.src}
+      alt={current.alt}
+      className="object-contain rounded-2xl transition-all duration-700 ease-in-out"
+      style={{
+        width: "100%",
+        height: "auto",
+        maxHeight: "520px",
+        animation: "fade-ltr 1.2s",
+        background: "white",
+      }}
+    />
+
+    {/* Carousel controls */}
+    <div className="flex items-center justify-center mt-4 gap-3">
+      <button
+        onClick={prev}
+        className="p-2 rounded-full border border-gray-300 hover:bg-gray-200 transition"
+      >
+        <FiChevronLeft size={20} />
+      </button>
+
+      <div className="flex gap-2">
+        {ITEMS.map((_, i) => (
+          <div
+            key={i}
+            className={`h-[6px] rounded-full transition-all duration-500 ${
+              i === index ? "w-6 bg-[#4B1083]" : "w-2 bg-gray-400"
+            }`}
+          />
+        ))}
+      </div>
+
+      <button
+        onClick={next}
+        className="p-2 rounded-full border border-gray-300 hover:bg-gray-200 transition"
+      >
+        <FiChevronRight size={20} />
+      </button>
+    </div>
+  </div>
+</div>
+
+
+</div>
+
     </section>
   )
 }

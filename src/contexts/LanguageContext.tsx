@@ -80,10 +80,26 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       // Client Review Items
       'clientReview.item1.name': 'Basil Saman',
       'clientReview.item1.role': 'Client',
-      'clientReview.item1.quote': 'Innovative solutions with reliable support. Highly recommended.',
+      'clientReview.item1.quote': 'Our mobile app was delivered perfectly — fast, user-friendly, and modern',
       'clientReview.item2.name': 'Fadhil Alim',
-      'clientReview.item2.role': 'Client',
-      'clientReview.item2.quote': 'Efficient team delivering smart, scalable technology.',
+      'clientReview.item2.role': 'Clients',
+      'clientReview.item2.quote': 'The ERP and CRM systems streamlined our operations and improved team productivity.',
+       'clientReview.item3.name': 'Mohammed Al-Qahtani,',
+      'clientReview.item3.role': 'client',
+      'clientReview.item3.quote': 'Our website looks amazing and performs flawlessly — excellent work',
+       'clientReview.item4.name': 'Layla Al-Shehri',
+      'clientReview.item4.role': 'Client',
+      'clientReview.item4.quote': 'The AI automation saved us hours every day — truly impressive technology.',
+        'clientReview.item5.name': 'Yousef Al-Mutairi',
+      'clientReview.item5.role': 'Client',
+     'clientReview.item5.quote': 'Their digital marketing boosted our brand visibility and brought real results.',
+        'clientReview.item6.name': 'Fatimah Al-Zahrani',
+      'clientReview.item6.role': 'Client',
+      'clientReview.item6.quote': 'Our brand identity looks professional and memorable — perfectly captured our vision.',
+       
+
+
+
       // Client Review Section
       'clientReview.title': 'Smart Growth with Technology',
       'clientReview.description': 'Dapps Solutions empowers businesses with AI, automation, and tailored systems for smarter growth.',
@@ -333,7 +349,20 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       'clientReview.item1.quote': 'حلول مبتكرة ودعم موثوق. أنصح بهم بشدة.',
       'clientReview.item2.name': 'فاضل عليم',
       'clientReview.item2.role': 'عميل',
-      'clientReview.item2.quote': 'فريق فعال يقدم تقنيات ذكية وقابلة للتطوير.',
+      'clientReview.item.quote': 'فريق فعال يقدم تقنيات ذكية وقابلة للتطوير.',
+      'clientReview.item3.name': 'محمد القحطاني',
+      'clientReview.item3.role': 'عميل',
+      'clientReview.item3.quote': 'موقعنا الإلكتروني يبدو رائعًا ويعمل بسلاسة – عمل ممتاز!.',
+      'clientReview.item4.name': 'ليلى الشهري',
+      'clientReview.item4.role': 'عميل',
+      'clientReview.item4.quote': 'أتمتة الذكاء الاصطناعي وفرت لنا ساعات من العمل يوميًا – تقنية مذهلة حقًا.',
+        'clientReview.item5.name': 'يوسف المطيري',
+      'clientReview.item5.role': 'عميل',
+      'clientReview.item5.quote': 'حملاتهم في التسويق الرقمي زادت من نطاق وصولنا وحققت نموًا ملموسًا.',
+      'clientReview.item6.name': 'فاطمة الزهراني',
+      'clientReview.item6.role': 'عميل',
+      'clientReview.item6.quote': 'هويتنا البصرية أصبحت احترافية ولا تُنسى – عكست رؤيتنا بشكل مثالي.',
+      
       // Client Review Section (RTL)
       'clientReview.title': 'النمو الذكي بالتكنولوجيا',
       'clientReview.description': 'تمكّن Dapps Solutions الشركات من خلال الذكاء الاصطناعي والأتمتة والأنظمة المصممة خصيصًا لنمو أذكى.',
