@@ -1,6 +1,7 @@
 "use client"
 
-import type React from "react"
+
+import Image from "next/image";
 
 import { useState } from "react"
 import { useLanguage } from "@/contexts/LanguageContext"
@@ -209,7 +210,7 @@ export default function ContactFormPage() {
               {/* Rating */}
               <div className="flex items-center gap-3 mb-6 form-input opacity-0">
                 <div className="w-12 h-12   rounded-full flex items-center justify-center font-bold text-[#000539]text-lg" >
-                  <img src="/rafi-one.jpg" alt="Logo"    className="rounded-full object-cover w-full h-full" />
+                  <Image src="/rafi-one.jpg" alt="Logo" width={48} height={48} className="rounded-full object-cover w-full h-full" priority />
                 </div>
                 <div>
                   <div className="flex gap-1">

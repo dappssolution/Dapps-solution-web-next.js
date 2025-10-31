@@ -233,7 +233,7 @@ export default function Works() {
         type: "text",
       },
     ],
-  ], [language, t])
+  ], [])
 
   useEffect(() => {
     const handleResize = () => {
@@ -321,7 +321,7 @@ export default function Works() {
       }
       stopAutoScroll()
     }
-  }, [isMobile, direction])
+  }, [isMobile, direction, projects.length])
 
   const stopAutoScroll = () => {
     if (animationRef.current) {

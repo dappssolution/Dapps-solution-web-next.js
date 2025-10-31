@@ -51,13 +51,16 @@ const HeroSection = () => {
 
   return (
     <section className="relative w-full min-h-screen flex flex-col items-center justify-center text-center px-4 overflow-hidden">
-      {/* Background Image */}
-      <img
-        src="/work-bg.jpg"
-        className="absolute inset-0 w-full h-full object-cover z-0 transition-opacity duration-500"
-        draggable={false}
-        alt="Background"
-      />
+        {/* Background Image (optimized) */}
+        <Image
+          src="/work-bg.jpg"
+          alt="Background"
+          fill
+          priority
+          sizes="100vw"
+          className="absolute inset-0 w-full h-full object-cover z-0 transition-opacity duration-500"
+          draggable={false}
+        />
 
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/50 z-10" />
@@ -92,6 +95,7 @@ const HeroSection = () => {
           textShadow: "0 8px 32px #040150",
         }}
       >
+        
         <span>{t("hero.headline")}</span>
         <span className="flex items-center justify-center gap-3">
           {/* Show logo only on md+ screens */}

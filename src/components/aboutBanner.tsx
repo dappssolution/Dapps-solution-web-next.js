@@ -2,6 +2,7 @@
 
  
 import { useLanguage } from "../contexts/LanguageContext";
+import Image from "next/image";
  
 
 
@@ -45,11 +46,11 @@ Please share more details.`;
 
 					<div className="flex items-center gap-2 mt-4 sm:mt-0">
 									<div className="w-12 h-12 rounded-full overflow-hidden border-2">
-										<img src="https://www.softlabsgroup.com/Software-Companies-Mumbai-India-Images/Trends%20in%20Information%20Technology%202023-2024.webp" alt={t('aboutBanner.team1.alt')} width={48} height={48} className="w-full h-full object-cover" />
-									</div>
-									<div className="w-12 h-12 rounded-full overflow-hidden border-2 -ml-4">
-										<img src="https://wallpapercave.com/wp/wp1877444.jpg" alt={t('aboutBanner.team2.alt')} width={48} height={48} className="w-full h-full object-cover" />
-									</div>
+ 										<Image src="https://www.softlabsgroup.com/Software-Companies-Mumbai-India-Images/Trends%20in%20Information%20Technology%202023-2024.webp" alt={t('aboutBanner.team1.alt')} width={48} height={48} className="w-full h-full object-cover" />
+ 									</div>
+ 									<div className="w-12 h-12 rounded-full overflow-hidden border-2 -ml-4">
+ 										<Image src="https://wallpapercave.com/wp/wp1877444.jpg" alt={t('aboutBanner.team2.alt')} width={48} height={48} className="w-full h-full object-cover" />
+ 									</div>
 						<div className="w-12 h-12 rounded-full bg-[#A43EF9] flex items-center justify-center text-white font-bold text-2xl -ml-4">{t('aboutBanner.team.plus')}</div>
 					</div>
 				</div>

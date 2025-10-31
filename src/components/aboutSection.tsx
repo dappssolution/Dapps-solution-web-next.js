@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+// Removed unused eslint-disable directive
 "use client";
 
 import React, { useRef, useEffect, useState, useContext } from "react";
@@ -34,7 +34,7 @@ const AboutSection = () => {
       setImgIndex((prev) => (prev + 1) % carouselImages.length);
     }, 2000);
     return () => clearInterval(id);
-  }, []);
+  }, [carouselImages.length]);
 
   const prevImg = () => setImgIndex((prev) => (prev - 1 + carouselImages.length) % carouselImages.length);
   const nextImg = () => setImgIndex((prev) => (prev + 1) % carouselImages.length);
@@ -91,11 +91,9 @@ const AboutSection = () => {
                     background: "black",
                     display: "block",
                   }}
-                  loading="eager"
+                  loading="lazy"
                   width={520}
                   height={520}
-                  priority
-                  unoptimized
                 />
                 <style>{`
                   @keyframes fade-ltr {
@@ -107,6 +105,7 @@ const AboutSection = () => {
                   <button
                     className="rounded-full p-2 text-[#4B1083] transition hover:bg-[#4B1083] hover:text-white"
                     onClick={prevImg}
+                    aria-label="Previous image"
                   >
                     <FiChevronLeft className="size-5" />
                   </button>
@@ -121,6 +120,7 @@ const AboutSection = () => {
                   <button
                     className="rounded-full p-2 text-[#4B1083] transition hover:bg-[#4B1083] hover:text-white"
                     onClick={nextImg}
+                    aria-label="Next image"
                   >
                     <FiChevronRight className="size-5" />
                   </button>
@@ -151,7 +151,7 @@ const AboutSection = () => {
             <p className="text-gray-600 mb-8 text-base md:text-lg max-w-xl">
               {t('aboutSection.description')}
             </p>
-            <motion.a href="/about">
+            <motion.a href="/about" aria-label={t('aboutSection.button')}>
               <button
                 className="px-8 py-3 font-bold text-lg shadow-2xl transition-all duration-200 focus:outline-none focus:ring-4 rounded-[8px] focus:ring-[#A43EF9] border-2 hover:scale-105"
                 style={{
@@ -161,6 +161,7 @@ const AboutSection = () => {
                   boxShadow: "0 4px 32px 0 #A43EF966",
                   letterSpacing: 1.5,
                 }}
+                aria-label={t('aboutSection.button')}
               >
                 {t('aboutSection.button')}
               </button>

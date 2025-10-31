@@ -5,6 +5,7 @@ import { useEffect, useMemo, useState } from "react"
 import { useLanguage } from "../contexts/LanguageContext"
 import {  FiChevronLeft, FiChevronRight } from "react-icons/fi"
 import { FaStar } from "react-icons/fa6"
+import Image from "next/image"
 
 type Item = {
   src: string;
@@ -107,6 +108,7 @@ export default function TestimonialHero() {
       aria-label="Testimonial Hero"
       dir={language === 'ar' ? 'rtl' : 'ltr'}
     >
+
 <div
   className={`relative mx-auto max-w-7xl grid grid-cols-1 items-center gap-12 px-6 pt-0 pb-12 sm:px-8 lg:grid-cols-2 lg:py-24 ${
     language === "ar" ? "lg:[direction:rtl]" : ""
@@ -142,6 +144,7 @@ export default function TestimonialHero() {
         <span className="ml-2 text-sm text-[#A43EF9]">
           {t("clientReview.rating")}
         </span>
+
       </div>
     </div>
 
@@ -213,7 +216,6 @@ export default function TestimonialHero() {
     </div>
   </div>
 </div>
-
 
 </div>
 
