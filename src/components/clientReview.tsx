@@ -3,8 +3,9 @@
 import type React from "react"
 import { useEffect, useMemo, useState } from "react"
 import { useLanguage } from "../contexts/LanguageContext"
-import {  FiChevronLeft, FiChevronRight } from "react-icons/fi"
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi"
 import { FaStar } from "react-icons/fa6"
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import Image from "next/image"
 
 type Item = {
@@ -14,7 +15,6 @@ type Item = {
   roleKey: string;
   quoteKey: string;
 };
-
 
 const ITEMS: Item[] = [
   {
@@ -97,7 +97,6 @@ export default function TestimonialHero() {
               aria-label={t('clientReview.cta')}
             >
               <span>{t('clientReview.cta')}</span>
-          
             </button>
 
             <div className="flex items-center gap-2 text-[#A43EF9]">
@@ -113,9 +112,15 @@ export default function TestimonialHero() {
               <FaStar className="size-6" />
             </div>
             <blockquote className="text-pretty leading-relaxed">
-              <p className="text-base sm:text-lg text-black">{t('clientReview.blockquotePrefix')}{t(current.quoteKey)}{t('clientReview.blockquoteSuffix')}</p>
+              <p className="text-base sm:text-lg text-black">
+                {t('clientReview.blockquotePrefix')}
+                {t(current.quoteKey)}
+                {t('clientReview.blockquoteSuffix')}
+              </p>
               <footer className="mt-3 text-sm text-[#4B1083]">
-                {t('clientReview.blockquoteBy').replace('{name}', t(current.nameKey)).replace('{role}', t(current.roleKey))}
+                {t('clientReview.blockquoteBy')
+                  .replace('{name}', t(current.nameKey))
+                  .replace('{role}', t(current.roleKey))}
               </footer>
             </blockquote>
           </div>
