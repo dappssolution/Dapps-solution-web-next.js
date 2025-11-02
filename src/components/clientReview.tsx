@@ -18,14 +18,14 @@ type Item = {
 
 const ITEMS: Item[] = [
   {
-    src: "https://img.freepik.com/premium-photo/phone-mobile-application-development-concept-mobile-internet-3d-illustration_76964-5164.jpg?w=826",
+    src: "/web-development.jpg",
     alt: "Basil Saman",
     nameKey: "clientReview.item1.name",
     roleKey: "clientReview.item1.role",
     quoteKey: "clientReview.item1.quote",
   },
   {
-    src: "https://sklc-tinymce-2021.s3.amazonaws.com/comp/2023/02/179_1675948994.png",
+    src: "/ai-agents.jpg",
     alt: "Fadhil Alim",
     nameKey: "clientReview.item2.name",
     roleKey: "clientReview.item2.role",
@@ -140,7 +140,7 @@ export default function TestimonialHero() {
               <Image
                 src={current.src}
                 alt={current.alt}
-                className="fade-img object-cover rounded-2xl"
+                className="fade-img object-contain rounded-2xl"
                 width={520}
                 height={520}
                 priority

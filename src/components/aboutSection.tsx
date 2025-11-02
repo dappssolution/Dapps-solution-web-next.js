@@ -19,13 +19,26 @@ const AboutSection = () => {
 
   const carouselImages = [
     {
-      src: "https://img.freepik.com/premium-photo/phone-mobile-application-development-concept-mobile-internet-3d-illustration_76964-5164.jpg?w=826",
-      alt: "Shamna",
+      src: "/web-development.jpg",
+      alt: "Web Development",
     },
     {
-      src: "https://sklc-tinymce-2021.s3.amazonaws.com/comp/2023/02/179_1675948994.png",
-      alt: "Shaheed",
+      src: "/ai-agents.jpg",
+      alt: "AI Agents",
     },
+     {
+      src: "/branding.jpg",
+      alt: "Branding",
+    },
+    {
+      src: "/digital-marketing.jpg",
+      alt: "Digital Marketing",
+    },
+     {
+      src: "/erp-crm-software.jpg",
+      alt: "Software",
+    },
+     
   ];
 
   const [imgIndex, setImgIndex] = useState(0);
@@ -75,13 +88,13 @@ const AboutSection = () => {
             <div className="relative w-full flex items-center justify-center" style={{ maxWidth: "520px", height: "100%" }}>
               <div
                 key={imgIndex}
-                className="fade-anim-box relative w-full rounded-2xl bg-white overflow-hidden flex items-center justify-center"
+                className="fade-anim-box relative w-full rounded-2xl bg-[#270343] overflow-hidden flex items-center justify-center"
                 style={{ height: "100%" }}
               >
                 <Image
                   src={carouselImages[imgIndex].src}
                   alt={carouselImages[imgIndex].alt}
-                  className="fade-img object-cover rounded-2xl"
+                  className="fade-img object-contain rounded-2xl"
                   style={{
                     width: "100%",
                     height: "auto",
@@ -113,7 +126,7 @@ const AboutSection = () => {
                     {carouselImages.map((_, i) => (
                       <span
                         key={i}
-                        className={`h-1.5 w-6 rounded-full transition-all ${i === imgIndex ? "bg-[#A43EF9]" : "bg-black"}`}
+                        className={`h-1.5 w-6 rounded-full transition-all ${i === imgIndex ? "bg-[#A43EF9]" : "bg-[#270343]"}`}
                       />
                     ))}
                   </div>
