@@ -38,6 +38,7 @@ const InteractiveCard = ({
     e.currentTarget.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
   };
 
+  
   return (
     
     <div 

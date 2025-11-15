@@ -1,0 +1,38 @@
+
+/* 3D Logo Hover Animation for ClientsSection */
+.clients-3d-group:hover img {
+	animation: logo3dUp 0.8s cubic-bezier(.4,2,.3,1) forwards;
+}
+
+@keyframes logo3dUp {
+	0% {
+		opacity: 1;
+		filter: drop-shadow(0 2px 8px rgba(0,0,0,0.12));
+		transform: translate3d(0, 0, 0) scale(1) rotateX(0deg) rotateY(0deg);
+	}
+	25% {
+		opacity: 0.7;
+		filter: drop-shadow(0 8px 24px rgba(0,0,0,0.18));
+		transform: translate3d(0, -40px, 60px) scale(0.85) rotateX(-45deg) rotateY(10deg);
+	}
+	50% {
+		opacity: 0;
+		filter: blur(2px);
+		transform: translate3d(0, -80px, 120px) scale(0.6) rotateX(-90deg) rotateY(20deg);
+	}
+	60% {
+		opacity: 0;
+		filter: blur(2px);
+		transform: translate3d(0, 80px, -120px) scale(0.6) rotateX(90deg) rotateY(-20deg);
+	}
+	75% {
+		opacity: 0.7;
+		filter: drop-shadow(0 -8px 24px rgba(0,0,0,0.18));
+		transform: translate3d(0, 40px, -60px) scale(0.85) rotateX(45deg) rotateY(-10deg);
+	}
+	100% {
+		opacity: 1;
+		filter: drop-shadow(0 2px 8px rgba(0,0,0,0.12));
+		transform: translate3d(0, 0, 0) scale(1) rotateX(0deg) rotateY(0deg);
+	}
+}

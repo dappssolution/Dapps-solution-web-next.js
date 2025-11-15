@@ -61,8 +61,8 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   const translations: Translations = {
   en: {
     // Service Main Banner (custom for ServiceMain)
-    'serviceMain.title': 'AI-Powered Digital Solutions',
-    'serviceMain.description': 'Transform your business with cutting-edge AI technology, intelligent automation, and comprehensive digital solutions. From AI-driven web applications to smart business systems, we deliver innovation that drives growth.',
+    "serviceMain.title": "Next-Gen Intelligent Technologies",
+    "serviceMain.description": "Elevate your brand with advanced intelligence, smart automation, and modern digital ecosystems. From adaptive AI platforms to efficient business tools, we craft future-ready solutions that accelerate your success.",
     'serviceMain.button': 'Start Your AI Journey',
     'serviceMain.whatsappMessage': "Hello Dapps Solutions,%0AI'm interested in learning more about your AI-powered solutions, intelligent automation systems, and digital transformation services designed to enhance business growth and efficiency.%0APlease share more details.",
     // About Banner
@@ -133,11 +133,13 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     'services.service6.title': 'Advanced AI Agents & Automation',
     'services.service6.desc': 'Implement sophisticated AI agents, intelligent chatbots, and automated workflows that learn and adapt to your business needs.',
     // Hero Section
-    'hero.tagline': 'AI Technology • Smart Automation • Digital Innovation',
-    'hero.headline': 'AI-Powered Growth',
-    'hero.forYourBusiness': 'For Your Business',
-    'hero.cta': 'Start Your Journey',
-    'hero.shortTagline': 'Transform your business with cutting-edge AI technology and intelligent automation.',
+    "hero.tagline": "Intelligent Systems • Automated Workflows • Future Solutions",
+    "hero.headline": "Intelligence-Driven Success",
+    "hero.forYourBusiness": "For Your Enterprise",
+    "hero.cta": "Begin Your Transformation",
+    "hero.shortTagline":
+      "Empower your enterprise with intelligent systems and advanced automated workflows."
+  ,
       // Contact Form
       'contact.heading': 'Start your journey to profit',
       'contact.subheading': "Let's work together to grow your idea into a market success.",
@@ -315,8 +317,8 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
      'workDetailChallenge.title': 'تحدي',
 
   // Service Main Banner (custom for ServiceMain)
-  'serviceMain.title': 'الحلول الرقمية المدعومة بالذكاء الاصطناعي',
-  'serviceMain.description': 'حوّل عملك بتقنية الذكاء الاصطناعي المتطورة والأتمتة الذكية والحلول الرقمية الشاملة. من تطبيقات الويب المدعومة بالذكاء الاصطناعي إلى أنظمة الأعمال الذكية، نقدم الابتكار الذي يدفع النمو.',
+   "serviceMain.title": "تقنيات الجيل الذكي",
+    "serviceMain.description": "ارفع مستوى عملك بتقنيات ذكية متقدمة وأتمتة فعّالة وأنظمة رقمية حديثة. من منصات الذكاء الاصطناعي التفاعلية إلى أدوات الأعمال المبتكرة، نطوّر حلولًا مستقبلية تعزز نجاحك.",
   'serviceMain.button': 'ابدأ رحلتك مع الذكاء الاصطناعي',
   'serviceMain.whatsappMessage': 'مرحبًا Dapps Solutions،%0Aأرغب في معرفة المزيد عن حلولكم المدعومة بالذكاء الاصطناعي وأنظمة الأتمتة الذكية وخدمات التحول الرقمي المصممة لتعزيز نمو وكفاءة الأعمال.%0Aيرجى مشاركة المزيد من التفاصيل.',
   // About Banner (Arabic)
@@ -386,11 +388,12 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     'services.service6.title': 'وكلاء الذكاء الاصطناعي والأتمتة المتقدمة',
     'services.service6.desc': 'تنفيذ وكلاء ذكاء اصطناعي متطورين وروبوتات دردشة ذكية وسير عمل مؤتمت يتعلم ويتكيف مع احتياجات عملك.',
   // Hero Section (Arabic)
-  'hero.tagline': 'تقنية الذكاء الاصطناعي • الأتمتة الذكية • الابتكار الرقمي',
-  'hero.headline': 'نمو بالذكاء الاصطناعي',
-  'hero.forYourBusiness': 'من أجل عملك',
-  'hero.cta': 'ابدأ رحلتك مع الذكاء الاصطناعي',
-  'hero.shortTagline': 'حوّل عملك بتقنية الذكاء الاصطناعي المتطورة والأتمتة الذكية.',
+   "hero.tagline": "الأنظمة الذكية • تدفقات العمل الآلية • حلول المستقبل",
+    "hero.headline": "نجاح مدعوم بالذكاء",
+    "hero.forYourBusiness": "لأجل مؤسستك",
+    "hero.cta": "ابدأ رحلة التحول",
+    "hero.shortTagline":
+      "عزّز مؤسستك بأنظمة ذكية وتدفقات عمل آلية متطورة.",
       // Contact Form (Arabic)
       'work.banner.title': "عمل يتحدث بصوت أعلى من الكلمات.",
       'work.subtitle': "اكتشف أحدث مشاريعنا وحلولنا الإبداعية.",

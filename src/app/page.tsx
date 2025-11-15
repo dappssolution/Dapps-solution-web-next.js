@@ -16,7 +16,7 @@ export default function Home() {
       {/* Hero section: ensure alt text and ARIA landmarks in HeroSection */}
       <HeroSection />
       {/* Clients section: ensure logos have alt text */}
-      <ClientsSection />
+      {/* <ClientsSection /> */}
       {/* About section: ensure carousel images have alt text and loading="lazy" */}
       <AboutSection />
       {/* AboutBoxes: ensure interactive elements have aria-labels */}
