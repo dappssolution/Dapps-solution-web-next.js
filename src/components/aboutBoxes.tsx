@@ -1,196 +1,289 @@
-'use client'
+"use client";
 
-// Removed unused Suspense import after fallback cleanup
-import { useLanguage } from "@/contexts/LanguageContext"
-import React from 'react';
-// Import react-icons for box icons
-import { FiBriefcase, FiCheck, FiGlobe, FiTrendingUp, FiDollarSign, FiSmile } from "react-icons/fi";
+import React, { useRef, useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useLanguage } from "@/contexts/LanguageContext";
+import {
+  FiBriefcase,
+  FiCheck,
+  FiGlobe,
+  FiTrendingUp,
+  FiDollarSign,
+  FiSmile,
+  FiArrowRight,
+} from "react-icons/fi";
 
-// Separate client component for interactive cards
+// ---------------------------------------------------------------------------
+// 1. Data & Types
+// ---------------------------------------------------------------------------
 
-const InteractiveCard = ({ 
-  imageAlt, 
-  title, 
-  description,
-}: { 
-  // imageSrc removed
-  imageAlt: string; 
-  title: React.ReactNode; 
+type CardData = {
+  id: number; // Added ID for reliable keying
+  imageAlt: string;
+  value: string | number;
   description: string;
-}) => {
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const card = e.currentTarget;
-    // Batch DOM read
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    const rotateX = (y - centerY) / 10;
-    const rotateY = (centerX - x) / 10;
-    // Use requestAnimationFrame for DOM write
-    window.requestAnimationFrame(() => {
-      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
-    });
+  details: string;
+};
+
+// ---------------------------------------------------------------------------
+// 2. The Individual Card Component (Mobile-only, Compact Size)
+// ---------------------------------------------------------------------------
+
+interface StatCardProps {
+  data: CardData;
+  isLeft: boolean; // Prop to determine gradient direction
+}
+
+const StatCard = ({ data, isLeft }: StatCardProps) => {
+  const router = useRouter();
+
+  // GRADIENT LOGIC
+  const gradientClass = isLeft
+    ? "bg-gradient-to-br from-[#452D9B] to-[#01040D]"
+    : "bg-gradient-to-br from-[#01040D] to-[#452D9B]";
+
+  const handleClick = () => {
+    router.push("/about");
   };
 
-  const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
-    e.currentTarget.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
-  };
-
-  
   return (
-    
-    <div 
-      className="flex flex-col relative z-30 border rounded-[8px] border-gray-400 bg-gray-700/50 backdrop-blur-md transition-all duration-300 ease-out "
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      style={{ transformStyle: 'preserve-3d' }}
+    <div
+      onClick={handleClick}
+      className={`
+        relative w-full h-full
+        flex flex-col justify-between
+        rounded-[20px] p-5
+        shadow-xl
+        border border-white/10
+        group cursor-pointer
+        ${gradientClass}
+      `}
     >
-      <div className="p-8 lg:p-16 flex justify-center items-center mb-0">
-        <div className="w-12 h-12 lg:w-16 lg:h-16 flex items-center justify-center rounded-[8px] bg-gradient-to-br from-[#A43EF9] via-[#3D096C] to-[#E1AAFF] shadow-lg">
-          {imageAlt === "Brands We Work With" && <FiBriefcase className="text-white text-3xl lg:text-4xl" />}
-          {imageAlt === "Projects Completed" && <FiCheck className="text-white text-3xl lg:text-4xl" />}
-          {imageAlt === "Countries we work with" && <FiGlobe className="text-white text-3xl lg:text-4xl" />}
-          {imageAlt === "Brands scaled with us" && <FiTrendingUp className="text-white text-3xl lg:text-4xl" />}
-          {imageAlt === "Revenue Generated" && <FiDollarSign className="text-white text-3xl lg:text-4xl" />}
-          {imageAlt === "Happy Clients" && <FiSmile className="text-white text-3xl lg:text-4xl" />}
+      {/* Top Section: Icon & Arrow */}
+      <div className="flex justify-between items-start mb-4">
+        <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center backdrop-blur-sm border border-white/5 shadow-inner">
+          {data.imageAlt === "Brands We Work With" && <FiBriefcase className="text-white text-xl" />}
+          {data.imageAlt === "Projects Completed" && <FiCheck className="text-white text-xl" />}
+          {data.imageAlt === "Countries we work with" && <FiGlobe className="text-white text-xl" />}
+          {data.imageAlt === "Brands scaled with us" && <FiTrendingUp className="text-white text-xl" />}
+          {data.imageAlt === "Revenue Generated" && <FiDollarSign className="text-white text-xl" />}
+          {data.imageAlt === "Happy Clients" && <FiSmile className="text-white text-xl" />}
+        </div>
+
+        <div className="flex items-center justify-center w-8 h-8 rounded-full border border-white/20 group-hover:bg-white group-hover:text-[#452D9B] transition-all duration-300 text-white transform group-hover:-rotate-45">
+          <FiArrowRight className="text-sm" />
         </div>
       </div>
-      <div className="bg-white p-4 lg:p-4 h-[80px] lg:h-auto flex flex-col justify-center rounded-b-[8px]">
-        <h3 className={`text-xl lg:text-3xl font-bold text-gray-900 font-poppins`}>{title}</h3>
-        <p className="text-sm lg:text-base text-gray-500">{description}</p>
+
+      {/* Middle Section: Big Number & Title */}
+      <div className="mb-3">
+        <h2 className="text-3xl font-bold text-white mb-1 tracking-tighter font-['Figtree'] drop-shadow-lg">
+          {data.value}+
+        </h2>
+        <h3 className="text-sm font-bold text-purple-200 uppercase tracking-wide">
+          {data.imageAlt}
+        </h3>
+      </div>
+
+      {/* Bottom Section: Description & Details */}
+      <div>
+        <p className="text-sm text-gray-200 font-medium mb-2 leading-relaxed">
+          {data.description}
+        </p>
+        <p className="text-xs text-white/40 leading-relaxed border-t border-white/10 pt-2">
+          {data.details}
+        </p>
       </div>
     </div>
   );
 };
 
-// Main server component
-export default function AboutBoxes() {
-  const { t } = useLanguage()
-  
-  const cards = [
+// ---------------------------------------------------------------------------
+// 3. Main Section
+// ---------------------------------------------------------------------------
+
+export default function AboutBoxesStack() {
+  const { t } = useLanguage();
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [activeRowIdx, setActiveRowIdx] = useState(0);
+  const rowRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [rowProgress, setRowProgress] = useState<number[]>([]);
+
+  // Data
+  const rawCards: CardData[] = [
     {
-      imageSrc: "/images/work-one.png",
+      id: 1,
       imageAlt: "Brands We Work With",
       value: 20,
-      suffix: "",
-      description: t('about.boxes.brands')
+      description: t("about.boxes.brands"),
+      details: "We build long-term strategic partnerships with industry leaders, ensuring consistent growth."
     },
     {
-      imageSrc: "/images/work-two.png",
+      id: 2,
       imageAlt: "Projects Completed",
       value: 40,
-      suffix: "",
-      description: t('about.boxes.projects')
+      description: t("about.boxes.projects"),
+      details: "From complex web applications to high-conversion marketing funnels, our portfolio showcases success."
     },
     {
-      imageSrc: "/images/work-three.png",
+      id: 3,
       imageAlt: "Countries we work with",
       value: 5,
-      suffix: "",
-      description: t('about.boxes.countries')
+      description: t("about.boxes.countries"),
+      details: "Our global footprint allows us to understand diverse market dynamics and cultural nuances."
     },
     {
-      imageSrc: "/images/work-four.png",
+      id: 4,
       imageAlt: "Brands scaled with us",
       value: 20,
-      suffix: "",
-      description: t('about.boxes.scaled')
+      description: t("about.boxes.scaled"),
+      details: "We don't just build; we scale. Our clients average a 3x return on investment quickly."
     },
     {
-      imageSrc: "/images/work-five.png",
+      id: 5,
       imageAlt: "Revenue Generated",
       value: "2M",
-      suffix: "",
-      description: t('about.boxes.revenue')
+      description: t("about.boxes.revenue"),
+      details: "Driving tangible financial results is our core metric. We focus on high-impact strategies."
     },
     {
-      imageSrc: "/images/work-one.png",
+      id: 6,
       imageAlt: "Happy Clients",
       value: 45,
-      suffix: "",
-      description: t('about.boxes.clients'),
-      className: "block lg:hidden"
-    }
+      description: t("about.boxes.clients"),
+      details: "Client satisfaction is paramount. Our agile approach ensures transparency and speed."
+    },
   ];
 
+  // LOGIC: Always show 1 card per row (mobile-only view)
+  const rows = React.useMemo(() => {
+    // Always use chunk size of 1 for mobile-only view
+    return rawCards.map(card => [card]);
+  }, [rawCards]);
+
+  // -------------------------------------------------------------------------
+  // Animation Logic
+  // -------------------------------------------------------------------------
+  useEffect(() => {
+    let rafId: number | null = null;
+
+    // Reset refs array when row count changes
+    rowRefs.current = rowRefs.current.slice(0, rows.length);
+    setRowProgress(new Array(rows.length).fill(0));
+
+    const loop = () => {
+      if (sectionRef.current) {
+        const currentScrollYMid = window.scrollY + window.innerHeight * 0.5;
+        const sectionTop = sectionRef.current.offsetTop;
+        const sectionHeight = sectionRef.current.offsetHeight;
+        const totalRows = rows.length;
+        const step = sectionHeight / totalRows;
+
+        let newRowIdx = Math.floor((currentScrollYMid - sectionTop) / step);
+        if (newRowIdx < 0) newRowIdx = 0;
+        if (newRowIdx >= totalRows) newRowIdx = totalRows - 1;
+        setActiveRowIdx((prev) => (prev !== newRowIdx ? newRowIdx : prev));
+
+        const newProgressArray = rows.map((_, idx) => {
+          const el = rowRefs.current[idx];
+          if (!el) return 0;
+          const rect = el.getBoundingClientRect();
+          const viewportHeight = window.innerHeight;
+
+          // Animation offset for mobile-only view
+          const stickyTopPx = 80;
+          const entryStart = viewportHeight;
+          const entryEnd = stickyTopPx;
+
+          const raw = (entryStart - rect.top) / (entryStart - entryEnd);
+          return Math.min(Math.max(raw, 0), 1);
+        });
+
+        setRowProgress(newProgressArray);
+      }
+      rafId = window.requestAnimationFrame(loop);
+    };
+    rafId = window.requestAnimationFrame(loop);
+    return () => {
+      if (rafId !== null) window.cancelAnimationFrame(rafId);
+    };
+  }, [rows.length]);
+
   return (
-    <div className="relative pt-16 lg:py-28 flex justify-center items-center w-full   px-4 md:px-16 lg:px-24 overflow-hidden"
-    style={{
-  backgroundImage: "url('/work-bg.jpg')",
-  backgroundSize: 'cover',
-  backgroundPosition: 'center',
-  backgroundRepeat: 'no-repeat',
-}}
->
- 
-      {/* Shadow effects */}
-      <div className="absolute left-0 top-0 bottom-0 w-32 z-10">
-        <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent"></div>
-      </div>
-      <div className="absolute right-0 top-0 bottom-0 w-32 z-10">
-        <div className="absolute inset-0 bg-gradient-to-l from-white/20 to-transparent"></div>
+    <section
+      ref={sectionRef}
+      className="relative w-full flex flex-col items-center justify-center pt-8 bg-[#050505] md:hidden"
+      style={{
+        perspective: "1000px",
+        backgroundImage: "url('/work-bg.jpg')",
+        backgroundSize: "cover",
+        backgroundAttachment: "fixed",
+      }}
+    >
+      <div className="absolute inset-0 bg-black/80 pointer-events-none z-0"></div>
+
+      <div
+        className="w-full max-w-[400px] mx-auto relative flex flex-col z-10 px-4 pb-16"
+        style={{ transformStyle: "preserve-3d" }}
+      >
+        {rows.map((rowItems, rowIdx) => {
+          const isActive = rowIdx === activeRowIdx;
+          const progress = rowProgress[rowIdx] || 0;
+
+          // Rotation Logic (Alternating) - Reduced for mobile
+          const isRightTilt = rowIdx % 2 === 0;
+          const ROTATION_MAX = 1;
+          const targetDeg = isRightTilt ? ROTATION_MAX : -ROTATION_MAX;
+          const rotation = progress * targetDeg;
+
+          // Slide Up Animation - Reduced for compact layout
+          const rowTranslateY = (1 - progress) * 40;
+
+          // Depth for Stacking
+          let depthZ = 0;
+          if (rowIdx > activeRowIdx) depthZ = 3;
+          else if (rowIdx === activeRowIdx) depthZ = 1;
+
+          return (
+            <div
+              key={rowIdx}
+              ref={(el) => {
+                rowRefs.current[rowIdx] = el;
+              }}
+              // Sticky behavior ensures one covers the other
+              className="sticky top-[120px] w-full"
+              style={{
+                transform: `rotate(${rotation}deg) translateY(${rowTranslateY}px) translateZ(${depthZ}px)`,
+                pointerEvents: isActive ? "auto" : "none",
+                // Compact margins for mobile-only view
+                marginTop: rowIdx !== 0 ? "40px" : undefined,
+                marginBottom: rowIdx !== rows.length - 1 ? "40px" : "80px",
+                transition: "opacity 0.3s, translateZ 0.3s",
+              }}
+            >
+              {/* Grid Container - Single column for mobile-only */}
+              <div className="grid grid-cols-1 gap-4 w-full">
+                {rowItems.map((item) => {
+                  // GRADIENT DETERMINATION - Alternating pattern
+                  const isLeftStyle = rowIdx % 2 === 0;
+
+                  return (
+                    <div
+                      key={item.id}
+                    >
+                      <StatCard
+                        data={item}
+                        isLeft={isLeftStyle}
+                      />
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        })}
       </div>
 
-      <div className="container mx-auto">
-        <div
-          className="flex gap-4 sm:gap-6 overflow-x-auto hide-scrollbar pb-4 lg:pb-0 lg:grid lg:grid-cols-5"
-          style={{
-            scrollbarWidth: 'none',
-            msOverflowStyle: 'none',
-            overflowY: 'hidden',
-          }}
-        >
-          {cards.map((card, index) => {
-            const displayValue = (<span dir="ltr">{card.value}+</span>);
-            return (
-              <div
-                key={index}
-                className={index === 5 ? "block lg:hidden" : "about-box-square"}
-                style={{
-                  width: '260px',
-                  minWidth: '260px',
-                  height: '260px',
-                  maxWidth: '100%',
-                  display: index === 5 ? undefined : 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'stretch',
-                  borderRadius: '8px',
-                }}
-              >
-                <InteractiveCard
-                  imageAlt={card.imageAlt}
-                  title={displayValue}
-                  description={card.description}
-                />
-              </div>
-            );
-          })}
-        </div>
-          <style>{`
-          .hide-scrollbar {
-            scrollbar-width: none !important;
-            -ms-overflow-style: none !important;
-          }
-          .hide-scrollbar::-webkit-scrollbar {
-            display: none !important;
-          }
-          .about-box-square {
-            width: 240px !important;
-            min-width: 240px !important;
-            height: 290px !important;
-            border-radius: 8px; !important;
-          }
-          @media (max-width: 640px) {
-            .about-box-square {
-              width: 180px !important;
-              min-width: 180px !important;
-              height: 180px !important;
-            }
-          }
-        `}</style>
-      </div>
-    </div>
+    </section>
   );
 }

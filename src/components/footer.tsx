@@ -45,12 +45,14 @@ export default function Footer() {
   return (
     <footer
       className="w-full px-4 py-10 md:py-16 relative overflow-hidden"
-      style={{
-        background: '#5A189A',
-        backgroundColor: '#5A189A',
-        backdropFilter: 'blur(12px)',
-        WebkitBackdropFilter: 'blur(12px)',
-      }}
+    style={{
+  backgroundImage: `url('/work-bg.jpg')`,
+  backgroundSize: 'cover',
+  backgroundRepeat: 'no-repeat',
+  backgroundPosition: 'center',
+  // Remove backdropFilter since it's usually for transparent backgrounds
+}}
+
       dir="ltr"
     >
       <div className="max-w-5xl mx-auto rounded-3xl shadow-2xl bg-white/10 border border-white/20 backdrop-blur-lg p-6 md:p-8 flex flex-col items-center gap-8">
