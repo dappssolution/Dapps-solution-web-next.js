@@ -76,7 +76,7 @@ export default function Footer() {
         {/* Tagline Centered */}
         <div className="text-base text-white/90 max-w-xl font-light text-center px-2">
           {t('footer.tagline')}
-        </div>
+        </div> 
 
         {/* Navigation Links Responsive */}
         <nav className="flex flex-wrap justify-center gap-3 md:gap-6 text-white/80 text-sm md:text-base font-medium w-full border-t border-white/20 pt-6">
