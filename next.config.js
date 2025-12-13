@@ -26,7 +26,6 @@ const nextConfig = {
       "a.cdn-hotels.com",
       "www.photojaanic.com",
       "globalgrasshopper.com",
-      "globalgrasshopper.com",
       "cdn-icons-png.flaticon.com",
       "www.tastingtable.com",
       "d2rdhxfof4qmbb.cloudfront.net",
@@ -42,6 +41,28 @@ const nextConfig = {
       "wallpaperaccess.com",
       "www.globalbusinessculture.com",
       "www.softlabsgroup.com",
+      "images.news9live.com",
+      "m.economictimes.com",
+      "clipart-library.com",
+      "wallup.net",
+    ],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'img.resized.co',
+      },
+      {
+        protocol: 'https',
+        hostname: 'c.stocksy.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'image.freepik.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'tse1.mm.bing.net',
+      },
     ],
   },
 };
