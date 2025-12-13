@@ -1,263 +1,205 @@
-"use client"
+"use client";
 
-import { useState, useEffect, useCallback, memo } from "react"
-import { motion } from "framer-motion"
-import { useLanguage } from "@/contexts/LanguageContext"
+import { useState, useEffect, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { FiArrowUpRight } from "react-icons/fi";
 
-type AnimationType = "fade" | "scale" | "slide" | "bounce" | "rotate3d"
-type TransitionType = "spring" | "tween" | "bounce"
+// ---------------------------------------------------------------------------
+// 1. Data & Config
+// ---------------------------------------------------------------------------
 
-interface AnimationVariant {
-  initial: Record<string, number>
-  animate: Record<string, number | number[]>
-  exit: Record<string, number>
-}
-
- 
-
-
-interface HighlightSet {
-  words: string[]
-  color: string
-  animation: AnimationType
-  transition: TransitionType
-}
-
-// Memoize the animation variants
-const animationVariants: Record<AnimationType, AnimationVariant> = {
-  fade: {
-    initial: { opacity: 0 },
-    animate: { opacity: 1 },
-    exit: { opacity: 0 }
-  },
-  scale: {
-    initial: { scale: 0.8 },
-    animate: { scale: 1 },
-    exit: { scale: 0.8 }
-  },
-  slide: {
-    initial: { x: -20 },
-    animate: { x: 0 },
-    exit: { x: 20 }
-  },
-  bounce: {
-    initial: { y: 0 },
-    animate: { 
-      y: [-10, 0, -5, 0]
-    },
-    exit: { y: 0 }
-  },
-  rotate3d: {
-    initial: { 
-      rotateX: 10,
-      rotateY: 10,
-      scale: 0.8,
-      opacity: 0
-    },
-    animate: { 
-      rotateX: 0,
-      rotateY: 0,
-      scale: 1,
-      opacity: 1
-    },
-    exit: { 
-      rotateX: -10,
-      rotateY: -10,
-      scale: 0.8,
-      opacity: 0
-    }
-  }
+type HighlightSet = {
+  words: string[];
+  displayTitle: string; 
+  accentColor: string;
+  glowColor: string; // Added for the text-shadow effect
 };
 
- 
-
-// Memoize the highlighted sets
 const highlightedSets: HighlightSet[] = [
-  { 
-    words: ["cross-disciplinary", "strategists", "designers"], 
-    color: "text-[#3D096C]",
-    animation: "rotate3d",
-    transition: "spring"
+  {
+    words: ["cross-disciplinary", "strategists", "designers"],
+    displayTitle: "STRATEGISTS & DESIGNERS",
+    accentColor: "text-[#D8B4FE]", // Light Purple for dark bg
+    glowColor: "rgba(168, 85, 247, 0.5)",
   },
-  { 
-    words: ["developers", "storytellers", "belief"], 
-    color: "text-[#5A189A]",
-    animation: "rotate3d",
-    transition: "tween"
+  {
+    words: ["developers", "storytellers", "belief"],
+    displayTitle: "BUILDERS OF BELIEF",
+    accentColor: "text-[#E9D5FF]", // Lighter Purple
+    glowColor: "rgba(192, 132, 252, 0.5)",
   },
-  { 
-    words: ["design", "business", "together"], 
-    color: "text-[#E1AAFF]",
-    animation: "rotate3d",
-    transition: "bounce"
-  }
+  {
+    words: ["design", "business", "together"],
+    displayTitle: "BUSINESS & DESIGN",
+    accentColor: "text-[#F3E8FF]", // Almost White Purple
+    glowColor: "rgba(216, 180, 254, 0.5)",
+  },
 ];
 
-// Arabic highlighted sets
 const arabicHighlightedSets: HighlightSet[] = [
-  { 
-    words: ["متعدد", "التخصصات", "الاستراتيجيين", "المصممين"], 
-    color: "text-[#5A189A]",
-    animation: "rotate3d",
-    transition: "spring"
+  {
+    words: ["متعدد", "التخصصات", "الاستراتيجيين", "المصممين"],
+    displayTitle: "استراتيجية وتصميم",
+    accentColor: "text-[#D8B4FE]",
+    glowColor: "rgba(168, 85, 247, 0.5)",
   },
-  { 
-    words: ["المطورين", "رواة", "القصص", "إيمان"], 
-    color: "text-[#E1AAFF]",
-    animation: "rotate3d",
-    transition: "tween"
+  {
+    words: ["المطورين", "رواة", "القصص", "إيمان"],
+    displayTitle: "بناء المعتقدات",
+    accentColor: "text-[#E9D5FF]",
+    glowColor: "rgba(192, 132, 252, 0.5)",
   },
-  { 
-    words: ["مشترك", "فريق", "يجمعنا"], 
-    color: "text-[#A43EF9]",
-    animation: "rotate3d",
-    transition: "bounce"
-  }
+  {
+    words: ["مشترك", "فريق", "يجمعنا"],
+    displayTitle: "تصميم الأعمال",
+    accentColor: "text-[#F3E8FF]",
+    glowColor: "rgba(216, 180, 254, 0.5)",
+  },
 ];
 
-interface AnimatedWordProps {
-  word: string;
-  isHighlighted: boolean;
-  currentSet: HighlightSet;
-  index: number;
-  onPauseToggle: () => void;
-}
-
-// Memoized Word Component
-const AnimatedWord = memo(({ 
-  word, 
-  isHighlighted, 
-  currentSet, 
-  index,
-  onPauseToggle
-}: AnimatedWordProps) => {
-  const handleClick = useCallback(() => {
-    if (isHighlighted) {
-      onPauseToggle();
-    }
-  }, [isHighlighted, onPauseToggle]);
-
-  return (
-    <motion.span
-      key={index}
-      initial={isHighlighted ? animationVariants[currentSet.animation].initial : {}}
-      animate={isHighlighted ? animationVariants[currentSet.animation].animate : {}}
-      exit={isHighlighted ? animationVariants[currentSet.animation].exit : {}}
-       className={`inline-block ${isHighlighted ? currentSet.color : 'text-black'} ${index !== 0 ? 'ml-1' : ''}`}
-      style={{
-        transformStyle: "preserve-3d",
-        perspective: "1000px"
-      }}
-      whileHover={isHighlighted ? {
-        scale: 1.1,
-        rotateX: 10,
-        rotateY: 10,
-        transition: { duration: 0.2 }
-      } : {}}
-      onClick={handleClick}
-    >
-      {word}
-    </motion.span>
-  );
-});
-
-AnimatedWord.displayName = 'AnimatedWord';
+// ---------------------------------------------------------------------------
+// 2. Main Component
+// ---------------------------------------------------------------------------
 
 export default function TeamDescription() {
-  const [currentHighlightIndex, setCurrentHighlightIndex] = useState(0)
-  const [isPaused, setIsPaused] = useState(false)
-  const { t, language } = useLanguage()
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const { t, language } = useLanguage();
 
-  const handlePauseToggle = useCallback(() => {
-    setIsPaused(prev => !prev);
+  const handleWhatsAppClick = useCallback(() => {
+    const phoneNumber = "+919947400278";
+    const whatsappUrl = `https://wa.me/${phoneNumber}`;
+    window.open(whatsappUrl, "_blank");
   }, []);
 
-const handleWhatsAppClick = useCallback(() => {
-  const phoneNumber = "+919947400278";
-  const message = `Hello Dapps Solutions,%0AI'm interested in learning more about your AI-driven websites, automation systems, and digital transformation services designed to enhance business growth and efficiency.%0APlease share more details.`;
-  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
-  window.open(whatsappUrl, '_blank');
-}, []);
-
-
-  // Use appropriate highlighted sets based on language
-  const currentHighlightedSets = language === 'ar' ? arabicHighlightedSets : highlightedSets;
+  const currentSets = language === "ar" ? arabicHighlightedSets : highlightedSets;
+  const activeSet = currentSets[currentIndex];
 
   useEffect(() => {
-    if (!isPaused) {
-      const interval = setInterval(() => {
-        setCurrentHighlightIndex((prev) => (prev + 1) % currentHighlightedSets.length)
-      }, 3000)
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % currentSets.length);
+    }, 4500); // Slightly slower for better reading
+    return () => clearInterval(interval);
+  }, [currentSets.length]);
 
-      return () => clearInterval(interval)
-    }
-  }, [isPaused, currentHighlightedSets.length])
+  // Helper to render the paragraph
+  const renderContextParagraph = () => {
+    const text = t("team.description.text") || "";
+    return text.split(" ").map((word, i) => {
+      const cleanWord = word.toLowerCase().replace(/[.,—]/g, "");
+      const isActive = activeSet.words.includes(cleanWord);
 
-  const renderText = useCallback(() => {
-    const text = t('team.description.text')
-    const currentSet = currentHighlightedSets[currentHighlightIndex]
-    
-    return text.split(' ').map((word, index) => {
-      const isHighlighted = currentSet.words.includes(
-        word.toLowerCase().replace(/[.,—]/g, '')
-      )
-      
       return (
-        <AnimatedWord
-          key={index}
-          word={word}
-          isHighlighted={isHighlighted}
-          currentSet={currentSet}
-          index={index}
-          onPauseToggle={handlePauseToggle}
-        />
-      )
-    })
-  }, [currentHighlightIndex, handlePauseToggle, t, currentHighlightedSets])
+        <span
+          key={i}
+          className={`relative inline-block transition-all duration-700 mx-1 ${
+            isActive
+              ? "text-white font-bold opacity-100 scale-105"
+              : "text-gray-400 font-medium opacity-50 blur-[0.5px]"
+          }`}
+          style={{
+             textShadow: isActive ? `0 0 20px ${activeSet.glowColor}` : 'none'
+          }}
+        >
+          {word}
+          {isActive && (
+            // Animated Underline
+            <motion.span 
+                layoutId="underline"
+                className="absolute left-0 bottom-0 block h-[2px] w-full bg-gradient-to-r from-[#A43EF9] to-[#E1AAFF]" 
+                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            />
+          )}
+        </span>
+      );
+    });
+  };
 
   return (
-    <div className="w-full px-4 sm:px-8 md:px-16 lg:px-24 lg:pt-16  py-12    sm:py-12 md:py-24 md:pt-28 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 md:gap-8 relative">
-      <div className="max-w-[957px] w-full">
-        <h2 
-          className={`$${language === 'ar' ? 'text-right' : 'text-left'} text-xl px-2 sm:text-2xl md:text-3xl lg:text-[40px] font-poppins leading-tight`}
-          style={{
-            perspective: "1000px",
-            transformStyle: "preserve-3d"
-          }}
-          dir={language === 'ar' ? 'rtl' : 'ltr'}
-        >
-          {renderText()}
-        </h2>
-        
-      </div>
-      <div className="hidden md:flex items-center justify-center w-full md:w-auto">
-        <div className="flex items-center justify-center w-full">
-          <div className="relative w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 flex items-center justify-center group">
-            <div className="absolute w-full h-full rounded-full bg-gradient-to-r from-[#59189a84] to-[#290d458e] scale-105 group-hover:scale-110 transition-transform duration-300"></div>
-            <button 
-              onClick={handleWhatsAppClick}
-              className="relative z-10 w-[90%] h-[90%] rounded-full bg-gradient-to-r from-[#5A189A] to-[#290d45] text-white text-sm sm:text-base font-medium flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow duration-300"
-            >
-              {t('team.contactUs')}
-            </button>
-          </div>
-        </div>
-      </div>
+    <section className="relative w-full py-20 px-6 md:px-12 lg:px-24 overflow-hidden min-h-[80vh] flex items-center">
       
-      
+      {/* 1. Background Image */}
+      <div 
+        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
+        style={{
+            backgroundImage: "url('/work-bg.jpg')",
+        }}
+      >
+        {/* Dark Overlay for readability */}
+        <div className="absolute inset-0 bg-[#050505]/60 backdrop-blur-[2px]"></div>
+      </div>
 
-      {/* Mobile Contact Button */}
-      <div className="md:hidden fixed bottom-6 right-6 z-50">
-        <div className="relative w-20 h-20 flex items-center justify-center group">
-          <div className="absolute w-full h-full rounded-full bg-gradient-to-r from-blue-100 to-cyan-100 scale-105 group-hover:scale-110 transition-transform duration-300"></div>
-          <button 
-            onClick={handleWhatsAppClick}
-            className="relative z-10  w-18 h-18 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 text-white text-[14px] font-medium flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow duration-300"
+      <div className="relative z-10 max-w-7xl mx-auto flex flex-col lg:flex-row items-center lg:items-start justify-between gap-16 lg:gap-32">
+        
+        {/* LEFT COLUMN: The "Big Impact" Title */}
+        <div className="flex-1 w-full relative h-[140px] sm:h-[180px] lg:h-auto lg:min-h-[400px] flex items-center lg:items-start justify-center lg:justify-start">
+          <AnimatePresence mode="wait">
+            <motion.h2
+              key={currentIndex}
+              initial={{ y: 60, opacity: 0, filter: "blur(20px)" }}
+              animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
+              exit={{ y: -60, opacity: 0, filter: "blur(20px)" }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }} // Elegant ease
+              className={`
+                text-5xl sm:text-6xl lg:text-8xl 
+                font-black uppercase leading-[0.9] tracking-tighter 
+                text-center lg:text-left absolute lg:relative w-full
+                ${activeSet.accentColor}
+              `}
+              style={{
+                textShadow: `0 0 40px ${activeSet.glowColor}`
+              }}
+            >
+              {activeSet.displayTitle}
+            </motion.h2>
+          </AnimatePresence>
+
+          {/* Background decorative huge number */}
+          <span className="absolute -left-12 -top-16 text-[250px] font-bold text-white/5 -z-10 select-none hidden lg:block font-['Figtree']">
+            0{currentIndex + 1}
+          </span>
+        </div>
+
+        {/* RIGHT COLUMN: Context & CTA */}
+        <div className="flex-1 w-full flex flex-col items-center lg:items-start gap-10">
+          
+          {/* Tag */}
+          <div className="flex items-center gap-3 w-full justify-center lg:justify-start">
+            <span className="h-[1px] w-12 bg-[#E1AAFF]/50"></span>
+            <span className="text-xs font-bold tracking-[0.25em] text-[#E1AAFF] uppercase shadow-glow">
+              {t('team.label') || "Our DNA"}
+            </span>
+          </div>
+
+          {/* Paragraph */}
+          <p 
+            className="text-lg sm:text-xl lg:text-2xl leading-relaxed text-center lg:text-left font-light tracking-wide"
+            dir={language === 'ar' ? 'rtl' : 'ltr'}
           >
-            {t('team.contactUs')}
+            {renderContextParagraph()}
+          </p>
+
+          {/* Glassmorphism Button */}
+          <button
+            onClick={handleWhatsAppClick}
+            className="group relative inline-flex items-center justify-center px-10 py-5 overflow-hidden font-bold text-white rounded-full transition-all duration-300 hover:scale-105 active:scale-95"
+          >
+            {/* Button Background: Glass + Gradient Border */}
+            <span className="absolute inset-0 w-full h-full bg-white/10 backdrop-blur-md border border-white/20 rounded-full group-hover:bg-white/20 transition-all duration-300"></span>
+            
+            {/* Hover Gradient Glow */}
+            <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-[#5A189A] to-[#452D9B] opacity-0 group-hover:opacity-40 blur-xl transition-opacity duration-500"></span>
+
+            <span className="relative flex items-center gap-3 z-10">
+              {t("team.contactUs")} 
+              <span className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-colors duration-300">
+                <FiArrowUpRight className="text-lg" />
+              </span>
+            </span>
           </button>
+
         </div>
       </div>
-    </div>
-  )
+    </section>
+  );
 }

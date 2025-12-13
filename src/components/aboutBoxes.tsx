@@ -1,6 +1,14 @@
 "use client";
 
 import React, { useRef, useEffect, useState } from "react";
+import { Montserrat } from "next/font/google";
+// Load Montserrat font with required weights
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  style: ["normal"],
+  display: "swap",
+});
 import { useRouter } from "next/navigation";
 import { useLanguage } from "@/contexts/LanguageContext";
 import {
@@ -57,17 +65,30 @@ const StatCard = ({ data, isLeft }: StatCardProps) => {
         border border-white/10
         group cursor-pointer
         ${gradientClass}
+        ${montserrat.className}
       `}
     >
       {/* Top Section: Icon & Arrow */}
       <div className="flex justify-between items-start mb-4">
         <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center backdrop-blur-sm border border-white/5 shadow-inner">
-          {data.imageAlt === "Brands We Work With" && <FiBriefcase className="text-white text-xl" />}
-          {data.imageAlt === "Projects Completed" && <FiCheck className="text-white text-xl" />}
-          {data.imageAlt === "Countries we work with" && <FiGlobe className="text-white text-xl" />}
-          {data.imageAlt === "Brands scaled with us" && <FiTrendingUp className="text-white text-xl" />}
-          {data.imageAlt === "Revenue Generated" && <FiDollarSign className="text-white text-xl" />}
-          {data.imageAlt === "Happy Clients" && <FiSmile className="text-white text-xl" />}
+          {data.imageAlt === "Brands We Work With" && (
+            <FiBriefcase className="text-white text-xl" />
+          )}
+          {data.imageAlt === "Projects Completed" && (
+            <FiCheck className="text-white text-xl" />
+          )}
+          {data.imageAlt === "Countries we work with" && (
+            <FiGlobe className="text-white text-xl" />
+          )}
+          {data.imageAlt === "Brands scaled with us" && (
+            <FiTrendingUp className="text-white text-xl" />
+          )}
+          {data.imageAlt === "Revenue Generated" && (
+            <FiDollarSign className="text-white text-xl" />
+          )}
+          {data.imageAlt === "Happy Clients" && (
+            <FiSmile className="text-white text-xl" />
+          )}
         </div>
 
         <div className="flex items-center justify-center w-8 h-8 rounded-full border border-white/20 group-hover:bg-white group-hover:text-[#452D9B] transition-all duration-300 text-white transform group-hover:-rotate-45">
@@ -77,7 +98,7 @@ const StatCard = ({ data, isLeft }: StatCardProps) => {
 
       {/* Middle Section: Big Number & Title */}
       <div className="mb-3">
-        <h2 className="text-3xl font-bold text-white mb-1 tracking-tighter font-['Figtree'] drop-shadow-lg">
+        <h2 className="text-3xl font-bold text-white mb-1 tracking-tighter drop-shadow-lg">
           {data.value}+
         </h2>
         <h3 className="text-sm font-bold text-purple-200 uppercase tracking-wide">
@@ -109,57 +130,61 @@ export default function AboutBoxesStack() {
   const rowRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [rowProgress, setRowProgress] = useState<number[]>([]);
 
-  // Data
-  const rawCards: CardData[] = [
-    {
-      id: 1,
-      imageAlt: "Brands We Work With",
-      value: 20,
-      description: t("about.boxes.brands"),
-      details: "We build long-term strategic partnerships with industry leaders, ensuring consistent growth."
-    },
-    {
-      id: 2,
-      imageAlt: "Projects Completed",
-      value: 40,
-      description: t("about.boxes.projects"),
-      details: "From complex web applications to high-conversion marketing funnels, our portfolio showcases success."
-    },
-    {
-      id: 3,
-      imageAlt: "Countries we work with",
-      value: 5,
-      description: t("about.boxes.countries"),
-      details: "Our global footprint allows us to understand diverse market dynamics and cultural nuances."
-    },
-    {
-      id: 4,
-      imageAlt: "Brands scaled with us",
-      value: 20,
-      description: t("about.boxes.scaled"),
-      details: "We don't just build; we scale. Our clients average a 3x return on investment quickly."
-    },
-    {
-      id: 5,
-      imageAlt: "Revenue Generated",
-      value: "2M",
-      description: t("about.boxes.revenue"),
-      details: "Driving tangible financial results is our core metric. We focus on high-impact strategies."
-    },
-    {
-      id: 6,
-      imageAlt: "Happy Clients",
-      value: 45,
-      description: t("about.boxes.clients"),
-      details: "Client satisfaction is paramount. Our agile approach ensures transparency and speed."
-    },
-  ];
-
-  // LOGIC: Always show 1 card per row (mobile-only view)
+  // Data (move inside useMemo)
   const rows = React.useMemo(() => {
+    const rawCards: CardData[] = [
+      {
+        id: 1,
+        imageAlt: "Brands We Work With",
+        value: 20,
+        description: t("about.boxes.brands"),
+        details:
+          "We build long-term strategic partnerships with industry leaders, ensuring consistent growth.",
+      },
+      {
+        id: 2,
+        imageAlt: "Projects Completed",
+        value: 40,
+        description: t("about.boxes.projects"),
+        details:
+          "From complex web applications to high-conversion marketing funnels, our portfolio showcases success.",
+      },
+      {
+        id: 3,
+        imageAlt: "Countries we work with",
+        value: 5,
+        description: t("about.boxes.countries"),
+        details:
+          "Our global footprint allows us to understand diverse market dynamics and cultural nuances.",
+      },
+      {
+        id: 4,
+        imageAlt: "Brands scaled with us",
+        value: 20,
+        description: t("about.boxes.scaled"),
+        details:
+          "We don't just build; we scale. Our clients average a 3x return on investment quickly.",
+      },
+      {
+        id: 5,
+        imageAlt: "Revenue Generated",
+        value: "2M",
+        description: t("about.boxes.revenue"),
+        details:
+          "Driving tangible financial results is our core metric. We focus on high-impact strategies.",
+      },
+      {
+        id: 6,
+        imageAlt: "Happy Clients",
+        value: 45,
+        description: t("about.boxes.clients"),
+        details:
+          "Client satisfaction is paramount. Our agile approach ensures transparency and speed.",
+      },
+    ];
     // Always use chunk size of 1 for mobile-only view
-    return rawCards.map(card => [card]);
-  }, [rawCards]);
+    return rawCards.map((card) => [card]);
+  }, [t]);
 
   // -------------------------------------------------------------------------
   // Animation Logic
@@ -207,12 +232,12 @@ export default function AboutBoxesStack() {
     return () => {
       if (rafId !== null) window.cancelAnimationFrame(rafId);
     };
-  }, [rows.length]);
+  }, [rows, rows.length]);
 
   return (
     <section
       ref={sectionRef}
-      className="relative w-full flex flex-col items-center justify-center pt-8 bg-[#050505] md:hidden"
+      className="relative w-full flex flex-col items-center justify-center pt-8   md:hidden"
       style={{
         perspective: "1000px",
         backgroundImage: "url('/work-bg.jpg')",
@@ -220,8 +245,6 @@ export default function AboutBoxesStack() {
         backgroundAttachment: "fixed",
       }}
     >
-      <div className="absolute inset-0 bg-black/80 pointer-events-none z-0"></div>
-
       <div
         className="w-full max-w-[400px] mx-auto relative flex flex-col z-10 px-4 pb-16"
         style={{ transformStyle: "preserve-3d" }}
@@ -268,13 +291,8 @@ export default function AboutBoxesStack() {
                   const isLeftStyle = rowIdx % 2 === 0;
 
                   return (
-                    <div
-                      key={item.id}
-                    >
-                      <StatCard
-                        data={item}
-                        isLeft={isLeftStyle}
-                      />
+                    <div key={item.id}>
+                      <StatCard data={item} isLeft={isLeftStyle} />
                     </div>
                   );
                 })}
@@ -283,7 +301,6 @@ export default function AboutBoxesStack() {
           );
         })}
       </div>
-
     </section>
   );
 }

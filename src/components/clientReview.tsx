@@ -1,12 +1,11 @@
-"use client"
+"use client";
 
-import type React from "react"
-import { useEffect, useMemo, useState } from "react"
-import { useLanguage } from "../contexts/LanguageContext"
-import { FiChevronLeft, FiChevronRight } from "react-icons/fi"
-import { FaStar } from "react-icons/fa6"
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import Image from "next/image"
+import type React from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useLanguage } from "../contexts/LanguageContext";
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import { FaStar } from "react-icons/fa6";
+import Image from "next/image";
 
 type Item = {
   src: string;
@@ -44,66 +43,71 @@ const fadeAnimStyle = `
     transform: translateX(0);
   }
 }
-`
+`;
 
 export default function TestimonialHero() {
-  const [index, setIndex] = useState(0)
+  const [index, setIndex] = useState(0);
   const { t, language } = useLanguage();
 
   // Auto advance carousel every 2 seconds
   useEffect(() => {
     const id = setInterval(() => {
-      setIndex((prev) => (prev + 1) % ITEMS.length)
-    }, 2000)
-    return () => clearInterval(id)
-  }, [])
+      setIndex((prev) => (prev + 1) % ITEMS.length);
+    }, 2000);
+    return () => clearInterval(id);
+  }, []);
 
-  const current = useMemo(() => ITEMS[index], [index])
+  const current = useMemo(() => ITEMS[index], [index]);
 
-  const prev = () => setIndex((prev) => (prev - 1 + ITEMS.length) % ITEMS.length)
-  const next = () => setIndex((prev) => (prev + 1) % ITEMS.length)
+  const prev = () =>
+    setIndex((prev) => (prev - 1 + ITEMS.length) % ITEMS.length);
+  const next = () => setIndex((prev) => (prev + 1) % ITEMS.length);
 
   // Add fade animation CSS on mount
   useEffect(() => {
-    const style = document.createElement("style")
-    style.innerHTML = fadeAnimStyle
-    document.head.appendChild(style)
+    const style = document.createElement("style");
+    style.innerHTML = fadeAnimStyle;
+    document.head.appendChild(style);
     return () => {
-      document.head.removeChild(style)
-    }
-  }, [])
+      document.head.removeChild(style);
+    };
+  }, []);
 
   return (
     <section
-      className={`relative w-full min-h-screen overflow-hidden bg-white text-black${language === 'ar' ? ' rtl' : ''}`}
+      className={`relative w-full min-h-screen overflow-hidden bg-white text-black${
+        language === "ar" ? " rtl" : ""
+      }`}
       aria-label="Testimonial Hero"
-      dir={language === 'ar' ? 'rtl' : 'ltr'}
+      dir={language === "ar" ? "rtl" : "ltr"}
     >
       <div className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-6 py-16 sm:px-8 lg:grid-cols-2 lg:py-24">
         {/* Left content */}
         <div className="flex flex-col gap-8">
           <header className="space-y-6">
             <h1 className="text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl text-black">
-              {t('clientReview.title')}
+              {t("clientReview.title")}
             </h1>
             <p className="text-pretty leading-relaxed text-base sm:text-lg text-black">
-              {t('clientReview.description')}
+              {t("clientReview.description")}
             </p>
           </header>
 
           <div className="flex flex-wrap items-center gap-6">
             <button
               className="inline-flex items-center gap-3 rounded-lg border border-border bg-secondary px-5 py-3 text-base font-medium text-foreground transition-colors hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
-              aria-label={t('clientReview.cta')}
+              aria-label={t("clientReview.cta")}
             >
-              <span>{t('clientReview.cta')}</span>
+              <span>{t("clientReview.cta")}</span>
             </button>
 
             <div className="flex items-center gap-2 text-[#A43EF9]">
               {[...Array(5)].map((_, i) => (
                 <FaStar key={i} className="size-5" />
               ))}
-              <span className="ml-2 text-sm text-[#A43EF9]">{t('clientReview.rating')}</span>
+              <span className="ml-2 text-sm text-[#A43EF9]">
+                {t("clientReview.rating")}
+              </span>
             </div>
           </div>
 
@@ -113,14 +117,14 @@ export default function TestimonialHero() {
             </div>
             <blockquote className="text-pretty leading-relaxed">
               <p className="text-base sm:text-lg text-black">
-                {t('clientReview.blockquotePrefix')}
+                {t("clientReview.blockquotePrefix")}
                 {t(current.quoteKey)}
-                {t('clientReview.blockquoteSuffix')}
+                {t("clientReview.blockquoteSuffix")}
               </p>
               <footer className="mt-3 text-sm text-[#4B1083]">
-                {t('clientReview.blockquoteBy')
-                  .replace('{name}', t(current.nameKey))
-                  .replace('{role}', t(current.roleKey))}
+                {t("clientReview.blockquoteBy")
+                  .replace("{name}", t(current.nameKey))
+                  .replace("{role}", t(current.roleKey))}
               </footer>
             </blockquote>
           </div>
@@ -187,5 +191,5 @@ export default function TestimonialHero() {
         </div>
       </div>
     </section>
-  )
+  );
 }

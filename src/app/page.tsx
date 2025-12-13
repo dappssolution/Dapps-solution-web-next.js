@@ -3,7 +3,6 @@ import dynamic from 'next/dynamic';
  
 
 const HeroSection = dynamic(() => import("@/components/heroSection"));
-const ClientsSection = dynamic(() => import("@/components/clientsSection"));
 const AboutSection = dynamic(() => import("@/components/aboutSection"));
 const ServicesSection = dynamic(() => import("@/components/services"));
 const Works = dynamic(() => import("@/components/worksSection"));

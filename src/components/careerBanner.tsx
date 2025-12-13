@@ -1,25 +1,25 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Montserrat } from "next/font/google"
-import { motion } from "framer-motion"
-import { 
-  ArrowUpRight, 
-  MapPin, 
-  Clock, 
-  Users, 
-  Zap, 
-  Heart, 
+// import { useState } from "react"
+import { Montserrat } from "next/font/google";
+import { motion } from "framer-motion";
+import {
+  ArrowUpRight,
+  MapPin,
+  Clock,
+  Users,
+  Zap,
+  Heart,
   ArrowRight,
-  Sparkles
-} from "lucide-react"
+  Sparkles,
+} from "lucide-react";
 
 // 1. Font Configuration
 const montserrat = Montserrat({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800'],
-  style: ['normal'],
-  display: 'swap',
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  style: ["normal"],
+  display: "swap",
 });
 
 // --- Data Configuration ---
@@ -30,13 +30,14 @@ const jobs = [
     department: "Marketing",
     type: "Full-time",
     location: "On-site",
-    description: "We are looking for a creative and analytical Digital Marketing Specialist to drive our online presence. You will lead SEO strategies, manage social media campaigns, and analyze performance metrics to accelerate growth.",
+    description:
+      "We are looking for a creative and analytical Digital Marketing Specialist to drive our online presence. You will lead SEO strategies, manage social media campaigns, and analyze performance metrics to accelerate growth.",
     requirements: [
       "3+ years experience in Digital Marketing or SEO",
       "Proficiency in Google Analytics, SEMrush, and Ad Managers",
       "Strong copywriting and content creation skills",
-      "Ability to build comprehensive marketing funnels"
-    ]
+      "Ability to build comprehensive marketing funnels",
+    ],
   },
   {
     id: 2,
@@ -44,27 +45,40 @@ const jobs = [
     department: "Operations",
     type: "Part-time / Full-time",
     location: "On-site",
-    description: "Be the face of our company. We need a warm, organized, and proactive Front Desk Assistant to manage reception duties, coordinate schedules, and ensure our daily office operations run seamlessly.",
+    description:
+      "Be the face of our company. We need a warm, organized, and proactive Front Desk Assistant to manage reception duties, coordinate schedules, and ensure our daily office operations run seamlessly.",
     requirements: [
       "Excellent verbal and written communication skills",
       "Proficient in Microsoft Office Suite & Google Workspace",
       "Strong organizational and multitasking abilities",
-      "Previous experience in admin/customer service is a plus"
-    ]
-  }
-]
+      "Previous experience in admin/customer service is a plus",
+    ],
+  },
+];
 
 const benefits = [
-  { icon: Users, title: "Great Culture", desc: "Collaborative environment where every voice matters." },
-  { icon: Zap, title: "Fast Growth", desc: "Opportunities to learn and advance your career quickly." },
-  { icon: Heart, title: "Wellness", desc: "Healthy work-life balance and supportive management." },
-]
+  {
+    icon: Users,
+    title: "Great Culture",
+    desc: "Collaborative environment where every voice matters.",
+  },
+  {
+    icon: Zap,
+    title: "Fast Growth",
+    desc: "Opportunities to learn and advance your career quickly.",
+  },
+  {
+    icon: Heart,
+    title: "Wellness",
+    desc: "Healthy work-life balance and supportive management.",
+  },
+];
 
 // --- Components ---
 
-const JobCard = ({ job }: { job: typeof jobs[0] }) => {
+const JobCard = ({ job }: { job: (typeof jobs)[0] }) => {
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -100,7 +114,9 @@ const JobCard = ({ job }: { job: typeof jobs[0] }) => {
         </p>
 
         <div className="mb-10">
-          <h4 className="text-sm font-bold text-white mb-4 uppercase tracking-wider opacity-90">Requirements</h4>
+          <h4 className="text-sm font-bold text-white mb-4 uppercase tracking-wider opacity-90">
+            Requirements
+          </h4>
           <ul className="space-y-3">
             {job.requirements.map((req, idx) => (
               <li key={idx} className="flex items-start text-sm text-white/70">
@@ -113,32 +129,34 @@ const JobCard = ({ job }: { job: typeof jobs[0] }) => {
       </div>
 
       <a
-        href={`mailto:info@dappssolutions.com?subject=Application for ${encodeURIComponent(job.title)}`}
+        href={`mailto:info@dappssolutions.com?subject=Application for ${encodeURIComponent(
+          job.title
+        )}`}
         className="w-full mt-auto inline-flex items-center justify-center gap-2 bg-white text-[#2D0C74] py-4 px-6 rounded-xl font-bold transition-all hover:bg-[#a78bfa] hover:text-white"
       >
         Apply for this role
         <ArrowRight className="w-5 h-5" />
       </a>
     </motion.div>
-  )
-}
+  );
+};
 
 export default function CareerSection() {
   return (
-    <div className={`min-h-screen text-white selection:bg-white selection:text-[#2D0C74] ${montserrat.className}`}>
-      
+    <div
+      className={`min-h-screen text-white selection:bg-white selection:text-[#2D0C74] ${montserrat.className}`}
+    >
       {/* BACKGROUND GRADIENT
          Using fixed position to ensure it stays perfect during scroll 
       */}
-      <div 
+      <div
         className="fixed inset-0 z-[-1]"
-      style={{
-  backgroundImage: `url('/bg-1.jpg')`,
-  backgroundSize: 'cover',
-  backgroundRepeat: 'no-repeat',
-  backgroundPosition: 'center',
-}}
-
+        style={{
+          backgroundImage: `url('/bg-1.jpg')`,
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
+        }}
       />
 
       {/* Decorative Blur Orbs for visual interest */}
@@ -147,7 +165,7 @@ export default function CareerSection() {
 
       {/* 1. Hero Section */}
       <section className="relative pt-32 pb-24 md:pt-48 md:pb-32 px-6 sm:px-12 lg:px-24 max-w-8xl mx-auto">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
@@ -157,14 +175,19 @@ export default function CareerSection() {
             <Sparkles className="w-4 h-4 text-yellow-300" />
             <span>WE ARE HIRING</span>
           </div>
-          
+
           <h1 className="text-5xl sm:text-7xl lg:text-8xl font-bold tracking-tight leading-[0.95] mb-12 drop-shadow-2xl">
             Do your <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/50">best work</span> here.
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/50">
+              best work
+            </span>{" "}
+            here.
           </h1>
-          
+
           <p className="max-w-2xl text-lg sm:text-2xl text-white/70 leading-relaxed font-light">
-            Join a team of visionaries. We are building the future of digital solutions, and we need passionate people like you to help shape what comes next.
+            Join a team of visionaries. We are building the future of digital
+            solutions, and we need passionate people like you to help shape what
+            comes next.
           </p>
         </motion.div>
       </section>
@@ -178,8 +201,12 @@ export default function CareerSection() {
                 <div className="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center mb-6 text-white border border-white/10 shadow-lg">
                   <item.icon className="w-7 h-7" />
                 </div>
-                <h3 className="text-xl font-bold mb-3 tracking-tight">{item.title}</h3>
-                <p className="text-white/60 leading-relaxed font-medium">{item.desc}</p>
+                <h3 className="text-xl font-bold mb-3 tracking-tight">
+                  {item.title}
+                </h3>
+                <p className="text-white/60 leading-relaxed font-medium">
+                  {item.desc}
+                </p>
               </div>
             ))}
           </div>
@@ -187,11 +214,18 @@ export default function CareerSection() {
       </section>
 
       {/* 3. Job Listings Grid */}
-      <section className="py-24 px-6 sm:px-12 lg:px-24 max-w-7xl mx-auto" id="openings">
+      <section
+        className="py-24 px-6 sm:px-12 lg:px-24 max-w-7xl mx-auto"
+        id="openings"
+      >
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
           <div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">Open Positions</h2>
-            <p className="text-white/60 text-lg">We are currently looking for talent in the following roles.</p>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
+              Open Positions
+            </h2>
+            <p className="text-white/60 text-lg">
+              We are currently looking for talent in the following roles.
+            </p>
           </div>
           <div className="hidden md:block h-px flex-1 bg-white/20 mx-12 mb-4" />
           <span className="text-sm font-mono text-white/40 border border-white/20 px-4 py-2 rounded-lg">
@@ -210,16 +244,19 @@ export default function CareerSection() {
 
         {/* Empty State / General Contact */}
         <div className="mt-32 p-12 rounded-3xl text-center border border-white/10 bg-gradient-to-b from-white/5 to-transparent backdrop-blur-md">
-          <h3 className="text-2xl font-bold mb-3">Don't see your role?</h3>
+          <h3 className="text-2xl font-bold mb-3">Don&apos;t see your role?</h3>
           <p className="text-white/60 mb-8 max-w-md mx-auto">
-            We are always looking for exceptional talent. If you think you'd be a great fit, we want to hear from you.
+            We are always looking for exceptional talent. If you think
+            you&apos;d be a great fit, we want to hear from you.
           </p>
-          <a href="mailto:info@dappssolutions.com" className="inline-block text-white font-semibold border-b border-white pb-1 hover:text-[#a78bfa] hover:border-[#a78bfa] transition-colors">
+          <a
+            href="mailto:info@dappssolutions.com"
+            className="inline-block text-white font-semibold border-b border-white pb-1 hover:text-[#a78bfa] hover:border-[#a78bfa] transition-colors"
+          >
             Email us your portfolio
           </a>
         </div>
       </section>
-
     </div>
-  )
+  );
 }

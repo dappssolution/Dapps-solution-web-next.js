@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.dappssolutions.com
+
+# Sitemaps
+Sitemap: https://www.dappssolutions.com/sitemap.xml
