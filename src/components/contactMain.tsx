@@ -5,7 +5,7 @@ import Image from "next/image";
 
 import { useState } from "react"
 import { useLanguage } from "@/contexts/LanguageContext"
-import { FiStar,  FiCheck } from "react-icons/fi"
+import { FiStar, FiCheck } from "react-icons/fi"
 
 export default function ContactFormPage() {
   const { t, language } = useLanguage();
@@ -46,13 +46,13 @@ export default function ContactFormPage() {
   }
 
   return (
-    <div className={`min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex items-center justify-center p-4 md:p-8 ${language === 'ar' ? 'text-right' : ''}` } dir={language === 'ar' ? 'rtl' : 'ltr'}
-    style={{
-  backgroundImage: "url('/bg-3.jpg')",
-  backgroundSize: 'cover',
-  backgroundPosition: 'center',
-  backgroundRepeat: 'no-repeat',
-}}
+    <div className={`min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex items-center justify-center p-4 md:p-8 ${language === 'ar' ? 'text-right' : ''}`} dir={language === 'ar' ? 'rtl' : 'ltr'}
+      style={{
+        backgroundImage: "url('/bg-3.jpg')",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+      }}
     >
       <style>{`
         @keyframes slideInLeft {
@@ -195,7 +195,7 @@ export default function ContactFormPage() {
                     ) : (
                       <>
                         {t('contact.send') || 'Send a message'}
-                        
+
                       </>
                     )}
                   </button>
@@ -210,7 +210,7 @@ export default function ContactFormPage() {
               {/* Rating */}
               <div className="flex items-center gap-3 mb-6 form-input opacity-0">
                 <div className="w-12 h-12   rounded-full flex items-center justify-center font-bold text-[#000539]text-lg" >
-                  <Image src="/rafi-one.jpg" alt="Logo" width={48} height={48} className="rounded-full object-cover w-full h-full" priority />
+                  <Image src="/rafi-logo.png" alt="Logo" width={48} height={48} className="rounded-full object-cover w-full h-full" priority />
                 </div>
                 <div>
                   <div className="flex gap-1">
