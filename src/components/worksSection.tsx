@@ -91,7 +91,7 @@ export default function Works() {
 
   return (
     <section
-      className="relative min-h-screen w-full bg-[#0a0a0a] py-10 lg:py-0 flex flex-col justify-center overflow-hidden"
+      className="relative min-h-screen w-full bg-[#0a0a0a] py-16 lg:py-36 flex flex-col justify-center overflow-hidden"
       dir={language === "ar" ? "rtl" : "ltr"}
     >
       {/* Background Image with Blur */}
@@ -131,7 +131,7 @@ export default function Works() {
             We use a custom animation class defined in styles below 
         */}
         <div
-          className="flex-1 w-full relative"
+          className="flex-1 w-full relative pb-10 lg:pb-16"
           onMouseEnter={() => setIsHoveringContainer(true)}
           onMouseLeave={() => {
             setIsHoveringContainer(false);
