@@ -161,7 +161,7 @@ export default function RootLayout({
             }),
           }}
         />
-        
+
         {/* Google Tag Manager */}
 
         <Script
@@ -177,7 +177,7 @@ export default function RootLayout({
           `}
         </Script>
 
-        {/* Google Analytics (GA4) */}
+        {/* Google Analytics tags (GA4) */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-D8KB1VRVML"
           strategy="afterInteractive"
