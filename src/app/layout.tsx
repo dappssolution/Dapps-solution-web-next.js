@@ -1,4 +1,6 @@
-"use client";
+// "use client";
+import Script from "next/script";
+
 
 import "./globals.css";
 import { Montserrat } from "next/font/google";
@@ -159,6 +161,37 @@ export default function RootLayout({
             }),
           }}
         />
+        
+        {/* Google Tag Manager */}
+
+        <Script
+          id="gtm-script"
+          strategy="afterInteractive"
+        >
+          {`
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-NVL7HVHT');
+          `}
+        </Script>
+
+        {/* Google Analytics (GA4) */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-D8KB1VRVML"
+          strategy="afterInteractive"
+        />
+
+        <Script id="ga4-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-D8KB1VRVML');
+          `}
+        </Script>
+
       </head>
       <body>
         <LanguageProvider>
@@ -169,6 +202,18 @@ export default function RootLayout({
             <LayoutShell>{children}</LayoutShell>
           </FontProvider>
         </LanguageProvider>
+         {/* Google Tag Manager (noscript)  */}
+         
+          <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-NVL7HVHT"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          />
+        </noscript>
+
+        {/* End Google Tag Manager (noscript) */}
       </body>
     </html>
   );
